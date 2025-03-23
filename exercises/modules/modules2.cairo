@@ -1,6 +1,5 @@
 // I AM NOT DONE
-// These modules have some issues, can you fix?
-// Run `starklings hint modules2` or `hint` watch command for a hint.
+// These modules have some issues, can you fix them?
 
 const YEAR: u16 = 2050;
 

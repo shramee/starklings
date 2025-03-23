@@ -195,7 +195,7 @@ export const Workspace = () => {
                   <Typography>
                     {data.description?.trim() !== ""
                       ? data.description?.split(".\n").map((line, i) => <p key={i}>{line}.</p>)
-                      : "Having trouble to solve this one? Click 'GET HINT' button for help!"}
+                      : "Make me compile! Having trouble to solve it? Click 'GET HINT' button for help!"}
                   </Typography>
                 )}
               </Box>

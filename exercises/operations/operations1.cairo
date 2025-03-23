@@ -3,10 +3,9 @@
 
 // I AM NOT DONE
 
-// TODO
-// Return the solution of x^3 + y - 2
 
 fn poly(x: usize, y: usize) -> usize {
+    // Return the solution of x^3 + y - 2
     // FILL ME
     res // Do not change
 }
