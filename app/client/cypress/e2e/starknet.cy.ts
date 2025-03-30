@@ -18,4 +18,8 @@ describe("starknet", () => {
   it("starknet5", () => {
     cy.testExercise("starknet5");
   });
+
+  it("starknet6", () => {
+    cy.testExercise("starknet6");
+  });
 });
