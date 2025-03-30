@@ -44,6 +44,7 @@ Cypress.Commands.add("clearEditor", () => {
 });
 
 Cypress.Commands.add("testExercise", (exerciseName: string) => {
+  localStorage.setItem("basecamp-modal-dismissed", "true");
   cy.visit(`/exercise/${exerciseName}?compatibility=true`);
   cy.githubFakeLogin();
   cy.fixture(`${exerciseName}.cairo`).then((resolution) => {
