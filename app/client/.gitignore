@@ -24,5 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 #cypress
-/cypress/fixtures/*.cairo
 /cypress/screenshots
