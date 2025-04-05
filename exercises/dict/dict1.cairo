@@ -6,12 +6,14 @@
 // and the third should map 'bob' to the value 3.
 // Make me compile and pass the test!
 
-// I AM NOT DONE
 
 fn create_dictionary() -> Felt252Dict<u32> {
     let mut dict: Felt252Dict<u32> = Default::default();
 //TODO
-
+    dict.insert('A', 1);
+    dict.insert('B', 2);
+    dict.insert('bob', 3);
+    dict
 }
 
 

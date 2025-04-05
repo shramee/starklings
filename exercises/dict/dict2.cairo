@@ -2,12 +2,14 @@
 // Your task is to create a function that multiplies the elements stored at the indexes 0 to n of a dictionary by 10
 // Make me compile and pass the test!
 
-// I AM NOT DONE
-
 
 fn multiply_element_by_10(ref dict: Felt252Dict<u32>, n: usize) {
     //TODO : make a function that multiplies the elements stored at the indexes 0 to n of a dictionary by 10
-
+    for i in 0..n {
+        let mut value = dict.get(i.into());
+        value *= 10;
+        dict.insert(i.into(), value);
+    }
 
 }
 

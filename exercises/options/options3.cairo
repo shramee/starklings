@@ -1,7 +1,5 @@
 
 
-// I AM NOT DONE
-
 #[derive(Drop)]
 struct Student {
     name: felt252,
@@ -36,7 +34,19 @@ fn display_grades(student: @Student, index: usize) {
     // TODO: Modify the following lines so that if there is a grade for the course, it is printed.
     //       Otherwise, print "No grade".
     // 
-    println!("grade is {}", course.unwrap());
+    match course {
+        Option::Some(grade) => {
+            let mut msg = ArrayTrait::new();
+            msg.append('Grade is ');
+            msg.append(grade);
+            debug::print(msg);
+        },
+        Option::None => {
+            let mut msg = ArrayTrait::new();
+            msg.append('No grade');
+            debug::print(msg);
+        }
+    }
     display_grades(student, index + 1);
 }
 

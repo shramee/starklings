@@ -2,7 +2,6 @@
 // defined the Package struct and we want to test some logic attached to it.
 // Make the code compile and the tests pass!
 
-// I AM NOT DONE
 
 #[derive(Copy, Drop)]
 struct Package {
@@ -13,8 +12,8 @@ struct Package {
 
 trait PackageTrait {
     fn new(sender_country: felt252, recipient_country: felt252, weight_in_grams: usize) -> Package;
-    fn is_international(ref self: Package) -> //???;
-    fn get_fees(ref self: Package, cents_per_gram: usize) -> //???;
+    fn is_international(ref self: Package) -> bool;
+    fn get_fees(ref self: Package, cents_per_gram: usize) -> usize;
 }
 impl PackageImpl of PackageTrait {
     fn new(sender_country: felt252, recipient_country: felt252, weight_in_grams: usize) -> Package {
@@ -26,14 +25,18 @@ impl PackageImpl of PackageTrait {
         Package { sender_country, recipient_country, weight_in_grams,  }
     }
 
-    fn is_international(ref self: Package) -> //???
+    fn is_international(ref self: Package) -> bool
     {
     /// Something goes here...
-    }
+        // Check if the sender and recipient countries are different
+        // If they are, return true, else return false
+     return self.sender_country != self.recipient_country;
+}
 
-    fn get_fees(ref self: Package, cents_per_gram: usize) -> //???
+fn get_fees(ref self: Package, cents_per_gram: usize) -> usize//???
     {
     /// Something goes here...
+        return self.weight_in_grams * cents_per_gram;
     }
 }
 

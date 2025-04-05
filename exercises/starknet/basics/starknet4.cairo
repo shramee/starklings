@@ -34,11 +34,15 @@ mod LizInventory {
 
     #[abi(embed_v0)]
     impl LizInventoryImpl of super::ILizInventory<ContractState> {
-        fn add_stock(ref self: ContractState, ) {
+        fn add_stock(ref self: ContractState, product: felt252, new_stock: u32) {
             // TODO:
             // * takes product and new_stock
             // * adds new_stock to stock in inventory
             // * only owner can call this
+        let caller = get_caller_address();
+        assert!(caller == self.contract_owner.read(), "only owner can add stock");
+
+        let current_stock = self.invent
         }
 
         fn purchase(ref self: ContractState, ) {

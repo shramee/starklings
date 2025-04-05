@@ -1,12 +1,12 @@
 // Integer types implement basic comparison and arithmetic operators.
 // Felt252 operations should be avoided where possible, as they could have unwanted behavior.
 
-// I AM NOT DONE
 
 
 fn poly(x: usize, y: usize) -> usize {
     // Return the solution of x^3 + y - 2
     // FILL ME
+    let res = (x*x*x)+(y-2);
     res // Do not change
 }
 
