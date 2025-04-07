@@ -6,7 +6,6 @@
 // Make me compile and pass the test!
 
 
-// I AM NOT DONE
 
 #[derive(Destruct)]
 struct Team {
@@ -19,7 +18,7 @@ impl TeamImpl of TeamTrait {
     fn new() -> Team {
         //TODO : initialize empty team with 0 player
         let team = Team {
-            level: Felt252Dict::new(),
+            level: Default::default(),
             players_count: 0
         };
         return team;
