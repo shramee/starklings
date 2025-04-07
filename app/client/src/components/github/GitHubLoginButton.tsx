@@ -86,6 +86,7 @@ export const GitHubLoginButton = () => {
       {ghUser ? (
         <>
           <Button
+            className="gh-user-button"
             variant="contained"
             color="success"
             sx={{
@@ -99,7 +100,7 @@ export const GitHubLoginButton = () => {
             onClick={openMenu}
           >
             {ghUser}
-            {ghAvatar && <img src={ghAvatar} width="20px" />}
+            {ghAvatar && <img className="gh-avatar" src={ghAvatar} width="32px" />}
           </Button>
           <Menu
             sx={{ mt: 1 }}
