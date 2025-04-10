@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { API_URL } from "../constants/api";
 import { ICompletedExercise, IExercise } from "../types/exercise";
-import { getUser } from "../utils/getUser";
 import { getName } from "../utils/getName";
+import { getUser } from "../utils/getUser";
 
 export const useGetExercises = (user = getUser()) => {
   return useQuery<IExercise[]>({
@@ -20,7 +20,7 @@ export const useGetExercises = (user = getUser()) => {
           name: getName(exercise.name),
           completed: !!completedExercises.find(
             (completedExercise: ICompletedExercise) =>
-              completedExercise.exercise_id === exercise.id
+              completedExercise.exercise_id === exercise.name
           ),
         };
       });
