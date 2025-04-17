@@ -64,9 +64,7 @@ export const About = () => {
                   The Starklings App is an interactive web platform designed to
                   assist users in embarking on their journey to learn Cairo.
                   This platform is built upon{" "}
-                  <SimpleLink href="https://github.com/shramee/starklings-cairo1">
                     Starklings
-                  </SimpleLink>{" "}
                   exercises, which are considered essential for beginners
                   seeking to grasp the fundamentals of Cairo.
                   <br />
@@ -92,7 +90,7 @@ export const About = () => {
                   </li>
                   <li>
                     Visit our{" "}
-                    <SimpleLink href="https://github.com/dpinones/starklings-app">
+                    <SimpleLink href="https://github.com/shramee/starklings-cairo">
                       GitHub
                     </SimpleLink>
                   </li>
@@ -163,7 +161,7 @@ export const About = () => {
         <DialogActions
           sx={{ display: "flex", justifyContent: "space-between" }}
         >
-          <Typography sx={{ mx: 4 }}>Cairo version: 2.6.3</Typography>
+          <Typography sx={{ mx: 4 }}>Cairo version: 2.8.2</Typography>
           <Button
             sx={{ m: 2 }}
             variant="contained"
