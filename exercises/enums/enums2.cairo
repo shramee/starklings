@@ -1,15 +1,16 @@
 // I AM NOT DONE
 
-use debug::PrintTrait;
-
+use core::fmt::{Display, Formatter, Error};
 
 #[derive(Copy, Drop)]
 enum Message { // TODO: define the different variants used below
 }
 
 
-fn main() {
+fn main() { // don't change any of the lines inside main
     let mut messages: Array<Message> = ArrayTrait::new();
+
+    //don't change any of the next 4 lines
     messages.append(Message::Quit);
     messages.append(Message::Echo('hello world'));
     messages.append(Message::Move((10, 30)));
@@ -26,19 +27,11 @@ trait MessageTrait<T> {
 
 impl MessageImpl of MessageTrait<Message> {
     fn call(self: Message) {
-        self.print()
+        println!("{}", self);
     }
 }
 
 fn print_messages_recursive(messages: Array<Message>, index: u32) {
-    match gas::withdraw_gas() {
-        Option::Some(_) => {},
-        Option::None => {
-            let mut data = ArrayTrait::<felt252>::new();
-            data.append('OOG');
-            panic(data);
-        },
-    }
     if index >= messages.len() {
         return ();
     }
@@ -48,22 +41,17 @@ fn print_messages_recursive(messages: Array<Message>, index: u32) {
 }
 
 
-impl MessagePrintImpl of PrintTrait<Message> {
-    fn print(self: Message) {
+impl MessageDisplay of Display<Message> {
+    fn fmt(self: @Message, ref f: Formatter) -> Result<(), Error> {
         println!("___MESSAGE BEGINS___");
-        match self {
-            Message::Quit => println!("Quit"),
-            Message::Echo(msg) => println!("{}", msg),
-            Message::Move((a, b)) => {
-                println!("{}", a);
-                println!("{}",b);
-            },
-            Message::ChangeColor((red, green, blue)) => {
-                println!("{}",red);
-                println!("{}",green);
-                println!("{}",blue);
-            }
-        }
+        let str: ByteArray = match self {
+            Message::Quit => format!("Quit"),
+            Message::Echo(msg) => format!("{}", msg),
+            Message::Move((a, b)) => { format!("{} {}", a, b) },
+            Message::ChangeColor((red, green, blue)) => { format!("{} {} {}", red, green, blue) },
+        };
+        f.buffer.append(@str);
         println!("___MESSAGE ENDS___");
+        Result::Ok(())
     }
 }

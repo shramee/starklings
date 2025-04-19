@@ -1,23 +1,26 @@
 // I AM NOT DONE
+use core::fmt::{Display, Formatter, Error};
 
-use debug::PrintTrait;
+#[derive(Drop)]
 enum Message { // TODO: define a few types of messages as used below
 }
 
-fn main() {
-    Message::Quit.print();
-    Message::Echo.print();
-    Message::Move.print();
-    Message::ChangeColor.print();
+fn main() { // don't change any of the lines inside main
+    println!("{}", Message::Quit);
+    println!("{}", Message::Echo);
+    println!("{}", Message::Move);
+    println!("{}", Message::ChangeColor);
 }
 
-impl MessagePrintImpl of PrintTrait<Message> {
-    fn print(self: Message) {
-        match self {
-            Message::Quit => println!("Quit"),
-            Message::Echo => println!("Echo"),
-            Message::Move => println!("Move"),
-            Message::ChangeColor => println!("ChangeColor")
-        }
+impl MessageDisplay of Display<Message> {
+    fn fmt(self: @Message, ref f: Formatter) -> Result<(), Error> {
+        let str: ByteArray = match self {
+            Message::Quit => format!("Quit"),
+            Message::Echo => format!("Echo"),
+            Message::Move => format!("Move"),
+            Message::ChangeColor => format!("ChangeColor"),
+        };
+        f.buffer.append(@str);
+        Result::Ok(())
     }
 }
