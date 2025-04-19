@@ -19,7 +19,7 @@ export const About = () => {
   };
   return (
     <>
-      <Tooltip title="About starklings.app">
+      <Tooltip title="About Starklings App">
         <IconButton
           id="header-icon"
           onClick={() => setDialogOpen(true)}
@@ -63,10 +63,9 @@ export const About = () => {
                 <Grid xs={9} item>
                   The Starklings App is an interactive web platform designed to
                   assist users in embarking on their journey to learn Cairo.
-                  This platform is built upon{" "}
-                    Starklings
-                  exercises, which are considered essential for beginners
-                  seeking to grasp the fundamentals of Cairo.
+                  This platform is built upon Starklings exercises, which are
+                  considered essential for beginners seeking to grasp the
+                  fundamentals of Cairo.
                   <br />
                   <br />
                   Our objective is to simplify the Starklings experience by
@@ -90,7 +89,7 @@ export const About = () => {
                   </li>
                   <li>
                     Visit our{" "}
-                    <SimpleLink href="https://github.com/shramee/starklings-cairo">
+                    <SimpleLink href="https://github.com/shramee/starklings">
                       GitHub
                     </SimpleLink>
                   </li>
