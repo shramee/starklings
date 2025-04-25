@@ -20,6 +20,20 @@ Our objective is to simplify the Starklings experience by eliminating complex co
 The backend of the Starklings App is responsible for handling data processing and interactions with the Starknet exercises. 
 Follow these steps to set up and run the backend:
 
+Si es la primera vez que se ejecuta el backend debes configurar la conexion a la base de datos:
+
+Necesitamos crear una tabla en la base de datos. En este caso estoy usando dbeaver para crear la conexion a postgres y luego crear la tabla.
+(imagen creando la conexion en dbeaver)
+
+Una vez creada la conexion, debo crear una nueva query y ejecutar el archivo init.sql
+(imagen ejecutando el archivo init.sql)
+
+Ya tenemos la tabla creada.
+
+Ahora debemos configurar el archivo .env. En mi caso voy a copiar y pegar el archivo .env.example. Pero ustedes deben poner los valores que correspondan.
+(imagen del archivo .env)
+
+Ahora si, podemos ejecutar el backend:
 ```bash
 cd api/
 ```
@@ -35,6 +49,14 @@ Run the development server:
 ```bash
 npm run dev
 ```
+
+Para probar la conexion a la base de datos, podemos usar el endpoint de ping:
+```bash
+curl http://localhost:3000/api/ping
+```
+
+Deberiamos ver una respuesta similar a esta:
+(imagen de la respuesta del endpoint de ping)
 
 ### Frontend
 
