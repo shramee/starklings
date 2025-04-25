@@ -12,7 +12,6 @@ The Starklings App is an interactive web platform designed to assist users in em
 
 Our objective is to simplify the Starklings experience by eliminating complex configurations and installations. Simply access the app through your browser and begin coding.
 
-
 ## Components
 
 ### Backend
@@ -20,20 +19,16 @@ Our objective is to simplify the Starklings experience by eliminating complex co
 The backend of the Starklings App is responsible for handling data processing and interactions with the Starknet exercises. 
 Follow these steps to set up and run the backend:
 
-Si es la primera vez que se ejecuta el backend debes configurar la conexion a la base de datos:
+#### Database Setup
 
-Necesitamos crear una tabla en la base de datos. En este caso estoy usando dbeaver para crear la conexion a postgres y luego crear la tabla.
-(imagen creando la conexion en dbeaver)
+If you're running the backend for the first time, you need to configure the database connection:
 
-Una vez creada la conexion, debo crear una nueva query y ejecutar el archivo init.sql
-(imagen ejecutando el archivo init.sql)
+1. Create a table in the database. This example uses DBeaver to create a connection to PostgreSQL and then create the table.
+2. Once the connection is established, create a new query and execute the [init.sql](./database/init.sql) file.
+3. After the table is created, configure the [.env](./api/.env) file. You can copy the [.env.example](./api/.env.example) file and modify it with your own values.
 
-Ya tenemos la tabla creada.
+#### Running the Backend
 
-Ahora debemos configurar el archivo .env. En mi caso voy a copiar y pegar el archivo .env.example. Pero ustedes deben poner los valores que correspondan.
-(imagen del archivo .env)
-
-Ahora si, podemos ejecutar el backend:
 ```bash
 cd api/
 ```
@@ -50,13 +45,13 @@ Run the development server:
 npm run dev
 ```
 
-Para probar la conexion a la base de datos, podemos usar el endpoint de ping:
+To test the database connection, you can use the ping endpoint:
+
 ```bash
 curl http://localhost:3000/api/ping
 ```
 
-Deberiamos ver una respuesta similar a esta:
-(imagen de la respuesta del endpoint de ping)
+You should see a response indicating that the connection is working properly.
 
 ### Frontend
 
