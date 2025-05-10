@@ -16,7 +16,7 @@ import {
 import { useEffect, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Route, Routes } from "react-router-dom";
-import { BasecampModal } from "./components/basecamp/BasecampModal";
+import { StarknetHackthonModal } from "./components/starknet_hackathon/StarknetHackthonModal";
 import { ErrorFallback } from "./components/error/ErrorFallback";
 import { BasicLayout } from "./components/layout/BasicLayout";
 import { CheckGitHubAccount } from "./components/pages/Check/CheckGitHubAccount";
@@ -82,7 +82,7 @@ function App() {
         <StarknetProvider>
           <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={darkTheme}>
-              <BasecampModal open={open} handleClose={handleClose} />
+              <StarknetHackthonModal open={open} handleClose={handleClose} />
               <BasicLayout>
                 <>
                   <Routes>
