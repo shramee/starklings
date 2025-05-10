@@ -11,22 +11,22 @@ import {
 } from "@mui/material";
 import { isMobileOnly } from "react-device-detect";
 
-const BASECAMP_URL =
-  "https://us06web.zoom.us/webinar/register/7017368536020/WN_vPEdeTvqS5y-ZnC79_DBjw#/registration";
+const STARKNET_HACKATHON_URL =
+  "https://www.hackquest.io/hackathons/Starknet-Hackathon-Re%7Bignite%7D?utm=starklings";
 
 const openInNewTab = (url: string) => {
   const newWindow = window.open(url, "_blank", "noopener,noreferrer");
   if (newWindow) newWindow.opener = null;
 };
 
-interface BasecampModalProps {
+interface StarknetHackthonModalProps {
   open: boolean;
   handleClose: () => void;
 }
 
-export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
+export const StarknetHackthonModal = ({ open, handleClose }: StarknetHackthonModalProps) => {
   const handleDontShowAgain = () => {
-    localStorage.setItem("basecamp-modal-dismissed", "true");
+    localStorage.setItem("starknet_hackathon-modal-dismissed", "true");
     handleClose();
   };
 
@@ -87,9 +87,9 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
               }}
             >
               <img
-                onClick={() => openInNewTab(BASECAMP_URL)}
-                src="/basecamp.jpg"
-                alt="Starknet Basecamp"
+                onClick={() => openInNewTab(STARKNET_HACKATHON_URL)}
+                src="/starknet_hackathon.png"
+                alt=" Starknet Hackathon: Re{ignite}"
                 style={{
                   width: "100%",
                   height: "100%",
@@ -120,7 +120,7 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
                   textAlign="center"
                   gutterBottom
                 >
-                  Starknet Basecamp 12
+                   Starknet Hackathon
                 </Typography>
 
                 <Typography
@@ -128,12 +128,11 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
                   textAlign="center"
                   sx={{ color: "rgba(255, 255, 255, 0.7)" }}
                 >
-                  Starting April 03
+                  Starting May 12
                 </Typography>
 
                 <Typography textAlign="center" sx={{ my: 3 }}>
-                  Learn, build, and connect with the community. Start your
-                  Starknet Journey now!
+                  From idea to MVP: Build real solutions, form teams, and compete for prizes.
                 </Typography>
 
                 {/* Buttons */}
@@ -160,7 +159,7 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
                     variant="contained"
                     fullWidth
                     target="_blank"
-                    href={BASECAMP_URL}
+                    href={STARKNET_HACKATHON_URL}
                     sx={{
                       bgcolor: "#f37646",
                       color: "white",
@@ -172,7 +171,7 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
                       },
                     }}
                   >
-                    Register for Basecamp
+                    Register for Hackathon
                   </Button>
                 </Stack>
               </Box>
