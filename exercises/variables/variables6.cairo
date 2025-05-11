@@ -2,9 +2,13 @@
 
 // I AM NOT DONE
 
-const NUMBER = 3;
-const SMALL_NUMBER = 3_u8;
+const NUMBER: felt252 = 3;
+const SMALL_NUMBER: u8 = 3_u8;
+
 fn main() {
-    println!("NUMBER is {}", NUMBER);
-    println!("SMALL_NUMBER is {}", SMALL_NUMBER);
+    let number: felt252 = NUMBER;
+    let small_number: u8 = SMALL_NUMBER;
+
+    println("NUMBER is {}", number);
+    println("SMALL_NUMBER is {}", small_number);
 }

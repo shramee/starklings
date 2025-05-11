@@ -1,10 +1,10 @@
 
 
-// I AM NOT DONE
+
 
 fn main() {
-    let number = 1_u8; // don't change this line
+    let mut number = 1_u8; // make the variable mutable
     println!("number is {}", number);
-    number = 3; // don't rename this variable
+    number = 3; // update the value of the variable
     println!("number is {}", number);
 }
