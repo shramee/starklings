@@ -1,48 +1,44 @@
-import React from "react";
-import { Dialog, DialogContent, IconButton, Button, Grid, Box, Typography, Stack } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import {
+    Box,
+    Button,
+    Dialog,
+    DialogContent,
+    Grid,
+    IconButton,
+    Stack,
+    Typography,
+} from "@mui/material";
+import { isMobileOnly } from "react-device-detect";
+
+
+const openInNewTab = (url: string) => {
+  const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+  if (newWindow) newWindow.opener = null;
+};
 
 export interface GenericModalProps {
   open: boolean;
-  onClose: () => void;
-  title?: string;
-  subtitle?: string;
-  content?: React.ReactNode;
-  primaryButton?: {
-    text: string;
-    onClick: () => void;
-    style?: object;
-  };
-  secondaryButton?: {
-    text: string;
-    onClick: () => void;
-    style?: object;
-  };
-  imageUrl?: string;
-  imageAlt?: string;
-  sideBySide?: boolean;
-  backgroundStyles?: object;
-  dialogStyles?: object;
+  handleClose: () => void;
+  image_src: string;
+  image_alt: string;
+  title: string;
+  date: string;
+  description: string;
+  button_text: string;
+  button_link: string;
 }
 
-export const GenericModal: React.FC<GenericModalProps> = ({
-  open,
-  onClose,
-  title,
-  subtitle,
-  content,
-  primaryButton,
-  secondaryButton,
-  imageUrl,
-  imageAlt,
-  sideBySide = true,
-  backgroundStyles = {},
-  dialogStyles = {},
-}) => {
+export const GenericModal = ({ open, handleClose, image_src, image_alt, title, date, description, button_text, button_link}: GenericModalProps) => {
+  const handleDontShowAgain = () => {
+    localStorage.setItem("starknet_hackathon-modal-dismissed", "true");
+    handleClose();
+  };
+
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       maxWidth="md"
       PaperProps={{
         sx: {
@@ -51,7 +47,6 @@ export const GenericModal: React.FC<GenericModalProps> = ({
           boxShadow: "none",
           overflow: "visible",
           margin: 2,
-          ...dialogStyles,
         },
       }}
     >
@@ -62,12 +57,11 @@ export const GenericModal: React.FC<GenericModalProps> = ({
           overflow: "hidden",
           background: "linear-gradient(135deg, #4b30aa 0%, #a22f6a 100%)",
           position: "relative",
-          ...backgroundStyles,
         }}
       >
         {/* Close button */}
         <IconButton
-          onClick={onClose}
+          onClick={handleClose}
           sx={{
             position: "absolute",
             right: 8,
@@ -79,52 +73,51 @@ export const GenericModal: React.FC<GenericModalProps> = ({
           <CloseIcon />
         </IconButton>
 
-        {/* Layout */}
+        {/* Side-by-side layout */}
         <Grid container>
           {/* Left side - Image */}
-          {imageUrl && sideBySide && (
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{
-                display: "flex",
-                alignItems: "stretch",
-              }}
-            >
-              <Box
-                sx={{
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-                <img
-                  src={imageUrl}
-                  alt={imageAlt}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "block",
-                  }}
-                />
-              </Box>
-            </Grid>
-          )}
-
-          {/* Right side - Content */}
-          <Grid item xs={12} md={sideBySide ? 6 : 12}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              display: "flex",
+              alignItems: "stretch",
+            }}
+          >
             <Box
               sx={{
-                p: 4,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
+                width: "100%",
                 height: "100%",
-                color: "white",
               }}
             >
-              {/* Title */}
-              {title && (
+              <img
+                onClick={() => openInNewTab(button_link)}
+                src={image_src}
+                alt={image_alt}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "block",
+                }}
+              />
+            </Box>
+          </Grid>
+
+          {/* Right side - Content */}
+          {!isMobileOnly && (
+            <Grid item xs={12} md={6}>
+              <Box
+                sx={{
+                  p: 4,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  height: "100%",
+                  color: "white",
+                }}
+              >
+                {/* Text content */}
                 <Typography
                   variant="h4"
                   component="h2"
@@ -132,56 +125,46 @@ export const GenericModal: React.FC<GenericModalProps> = ({
                   textAlign="center"
                   gutterBottom
                 >
-                  {title}
+                    {title}
                 </Typography>
-              )}
 
-              {/* Subtitle */}
-              {subtitle && (
                 <Typography
                   variant="subtitle1"
                   textAlign="center"
                   sx={{ color: "rgba(255, 255, 255, 0.7)" }}
                 >
-                  {subtitle}
+                    {date}
                 </Typography>
-              )}
 
-              {/* Content */}
-              {content && (
                 <Typography textAlign="center" sx={{ my: 3 }}>
-                  {content}
+                   {description}
                 </Typography>
-              )}
 
-              {/* Buttons */}
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                spacing={2}
-                sx={{ mt: 2 }}
-              >
-                {secondaryButton && (
+                {/* Buttons */}
+                <Stack
+                  direction={{ xs: "column", sm: "row" }}
+                  spacing={2}
+                  sx={{ mt: 2 }}
+                >
                   <Button
                     variant="outlined"
                     fullWidth
-                    onClick={secondaryButton.onClick}
+                    onClick={handleDontShowAgain}
                     sx={{
                       borderColor: "rgba(255, 255, 255, 0.5)",
                       color: "white",
                       borderRadius: 2,
                       py: 1.5,
-                      ...secondaryButton.style,
                     }}
                   >
-                    {secondaryButton.text}
+                    Don't show again
                   </Button>
-                )}
 
-                {primaryButton && (
                   <Button
                     variant="contained"
                     fullWidth
-                    onClick={primaryButton.onClick}
+                    target="_blank"
+                    href={button_link}
                     sx={{
                       bgcolor: "#f37646",
                       color: "white",
@@ -191,15 +174,14 @@ export const GenericModal: React.FC<GenericModalProps> = ({
                       "&:hover": {
                         bgcolor: "#e06535",
                       },
-                      ...primaryButton.style,
                     }}
                   >
-                    {primaryButton.text}
+                    {button_text}
                   </Button>
-                )}
-              </Stack>
-            </Box>
-          </Grid>
+                </Stack>
+              </Box>
+            </Grid>
+          )}
         </Grid>
       </DialogContent>
     </Dialog>
