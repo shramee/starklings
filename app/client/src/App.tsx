@@ -16,7 +16,7 @@ import {
 import { useEffect, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Route, Routes } from "react-router-dom";
-import { StarknetHackthonModal } from "./components/starknet_hackathon/StarknetHackthonModal";
+import { StarknetHackthonModal } from "./components/modals/StarknetHackthonModal";
 import { ErrorFallback } from "./components/error/ErrorFallback";
 import { BasicLayout } from "./components/layout/BasicLayout";
 import { CheckGitHubAccount } from "./components/pages/Check/CheckGitHubAccount";
