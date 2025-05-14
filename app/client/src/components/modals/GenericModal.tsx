@@ -36,10 +36,10 @@ export interface GenericModalContentProps extends GenericModalBaseProps {
 }
 
 export interface GenericModalNoContentProps extends GenericModalBaseProps {
-  title: undefined;
-  date: undefined;
-  description: undefined;
-  button_text: undefined;
+  title?: undefined;
+  date?: undefined;
+  description?: undefined;
+  button_text?: undefined;
 }
 
 type GenericModalProps = GenericModalContentProps | GenericModalNoContentProps;
@@ -114,7 +114,7 @@ export const GenericModal = ({ id, open, handleClose, handleOpen, image_src, ima
                 height: "100%",
               }}
             >
-              <a href={link}>
+              <a href={link} style={{ display: 'block' }}>
                 <img
                   onClick={() => openInNewTab(link)}
                   src={image_src}
@@ -131,7 +131,6 @@ export const GenericModal = ({ id, open, handleClose, handleOpen, image_src, ima
                 fullWidth
                 onClick={handleDontShowAgain}
                 sx={{
-                  borderColor: "rgba(255, 255, 255, 0.5)",
                   color: "white",
                   borderRadius: 2,
                   py: 1.5,
