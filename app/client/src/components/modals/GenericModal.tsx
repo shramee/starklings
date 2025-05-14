@@ -1,32 +1,60 @@
 import CloseIcon from "@mui/icons-material/Close";
 import {
-    Box,
-    Button,
-    Dialog,
-    DialogContent,
-    Grid,
-    IconButton,
-    Stack,
-    Typography,
+  Box,
+  Button,
+  Dialog,
+  DialogContent,
+  Grid,
+  IconButton,
+  Stack,
+  Typography,
 } from "@mui/material";
+import { useEffect } from "react";
 import { isMobileOnly } from "react-device-detect";
 
-const BASECAMP_URL =
-  "https://us06web.zoom.us/webinar/register/7017368536020/WN_vPEdeTvqS5y-ZnC79_DBjw#/registration";
 
 const openInNewTab = (url: string) => {
   const newWindow = window.open(url, "_blank", "noopener,noreferrer");
   if (newWindow) newWindow.opener = null;
 };
 
-interface BasecampModalProps {
+export interface GenericModalBaseProps {
   open: boolean;
   handleClose: () => void;
+  handleOpen: () => void;
+  image_src: string;
+  image_alt: string;
+  id: string;
+  link: string;
+};
+
+export interface GenericModalContentProps extends GenericModalBaseProps {
+  title: string;
+  date: string;
+  description: string;
+  button_text: string;
 }
 
-export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
+export interface GenericModalNoContentProps extends GenericModalBaseProps {
+  title: undefined;
+  date: undefined;
+  description: undefined;
+  button_text: undefined;
+}
+
+type GenericModalProps = GenericModalContentProps | GenericModalNoContentProps;
+
+export const GenericModal = ({ id, open, handleClose, handleOpen, image_src, image_alt, title, date, description, button_text, link }: GenericModalProps) => {
+  useEffect(() => {
+    if (localStorage.getItem(id + "-modal-dismissed") === "true") {
+      return;
+    } else {
+      handleOpen();
+    }
+  }, []);
+
   const handleDontShowAgain = () => {
-    localStorage.setItem("basecamp-modal-dismissed", "true");
+    localStorage.setItem(id + "-modal-dismissed", "true");
     handleClose();
   };
 
@@ -74,7 +102,7 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
           <Grid
             item
             xs={12}
-            md={6}
+            md={title ? 6 : 12}
             sx={{
               display: "flex",
               alignItems: "stretch",
@@ -86,25 +114,41 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
                 height: "100%",
               }}
             >
-              <img
-                onClick={() => openInNewTab(BASECAMP_URL)}
-                src="/basecamp.jpg"
-                alt="Starknet Basecamp"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "block",
+              <a href={link}>
+                <img
+                  onClick={() => openInNewTab(link)}
+                  src={image_src}
+                  alt={image_alt}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "block",
+                  }}
+                />
+              </a>
+              {!title && <Button
+                variant="text"
+                fullWidth
+                onClick={handleDontShowAgain}
+                sx={{
+                  borderColor: "rgba(255, 255, 255, 0.5)",
+                  color: "white",
+                  borderRadius: 2,
+                  py: 1.5,
                 }}
-              />
+              >
+                Don't show again
+              </Button>}
+
             </Box>
           </Grid>
 
           {/* Right side - Content */}
-          {!isMobileOnly && (
+          {!isMobileOnly && title && (
             <Grid item xs={12} md={6}>
               <Box
                 sx={{
-                  p: 4,
+                  px: 2,
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
@@ -120,7 +164,7 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
                   textAlign="center"
                   gutterBottom
                 >
-                  Starknet Basecamp 12
+                  {title}
                 </Typography>
 
                 <Typography
@@ -128,29 +172,27 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
                   textAlign="center"
                   sx={{ color: "rgba(255, 255, 255, 0.7)" }}
                 >
-                  Starting April 03
+                  {date}
                 </Typography>
 
                 <Typography textAlign="center" sx={{ my: 3 }}>
-                  Learn, build, and connect with the community. Start your
-                  Starknet Journey now!
+                  {description}
                 </Typography>
 
                 {/* Buttons */}
                 <Stack
                   direction={{ xs: "column", sm: "row" }}
                   spacing={2}
-                  sx={{ mt: 2 }}
                 >
                   <Button
                     variant="outlined"
-                    fullWidth
                     onClick={handleDontShowAgain}
                     sx={{
                       borderColor: "rgba(255, 255, 255, 0.5)",
                       color: "white",
                       borderRadius: 2,
-                      py: 1.5,
+                      flex: "0 1 22em",
+                      py: 1,
                     }}
                   >
                     Don't show again
@@ -160,7 +202,7 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
                     variant="contained"
                     fullWidth
                     target="_blank"
-                    href={BASECAMP_URL}
+                    href={link}
                     sx={{
                       bgcolor: "#f37646",
                       color: "white",
@@ -172,7 +214,7 @@ export const BasecampModal = ({ open, handleClose }: BasecampModalProps) => {
                       },
                     }}
                   >
-                    Register for Basecamp
+                    {button_text}
                   </Button>
                 </Stack>
               </Box>

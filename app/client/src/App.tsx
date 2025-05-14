@@ -16,7 +16,6 @@ import {
 import { useEffect, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Route, Routes } from "react-router-dom";
-import { BasecampModal } from "./components/basecamp/BasecampModal";
 import { ErrorFallback } from "./components/error/ErrorFallback";
 import { BasicLayout } from "./components/layout/BasicLayout";
 import { CheckGitHubAccount } from "./components/pages/Check/CheckGitHubAccount";
@@ -28,6 +27,7 @@ import { Workspace } from "./components/pages/Workspace/Workspace";
 import { PocApp } from "./components/poc/PocApp";
 import { StarknetProvider } from "./context/StarknetProvider";
 import { useNotification } from "./hooks/useNotification";
+import { GenericModal } from "./components/modals/GenericModal";
 
 const darkTheme = createTheme({
   palette: {
@@ -63,14 +63,6 @@ function App() {
   const provider = publicProvider();
   const connectors = [braavos(), argent()];
 
-  useEffect(() => {
-    if (localStorage.getItem("basecamp-modal-dismissed") === "true") {
-      return;
-    } else {
-      handleOpen();
-    }
-  }, []);
-
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <StarknetConfig
@@ -82,7 +74,20 @@ function App() {
         <StarknetProvider>
           <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={darkTheme}>
-              <BasecampModal open={open} handleClose={handleClose} />
+              <GenericModal
+                id="starknet_hackathon"
+                open={open}
+                handleClose={handleClose}
+                handleOpen={handleOpen}
+                image_src="/starknet_hackathon.png"
+                image_alt="Starknet Hackathon: Re{ignite}"
+                title="Starknet Hackathon"
+                date="Starting May 12"
+                description="From idea to MVP: Build real solutions, form teams, and compete for prizes."
+                button_text="Register for Hackathon"
+                link="https://www.hackquest.io/hackathons/Starknet-Hackathon-Re%7Bignite%7D?utm=starklings"
+              />
+
               <BasicLayout>
                 <>
                   <Routes>
