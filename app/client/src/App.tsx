@@ -81,10 +81,10 @@ function App() {
                 handleOpen={handleOpen}
                 image_src="/starknet_hackathon.png"
                 image_alt="Starknet Hackathon: Re{ignite}"
-                title="Starknet Hackathon"
-                date="Starting May 12"
-                description="From idea to MVP: Build real solutions, form teams, and compete for prizes."
-                button_text="Register for Hackathon"
+                // title="Starknet Hackathon"
+                // date="Starting May 12"
+                // description="From idea to MVP: Build real solutions, form teams, and compete for prizes."
+                // button_text="Register for Hackathon"
                 link="https://www.hackquest.io/hackathons/Starknet-Hackathon-Re%7Bignite%7D?utm=starklings"
               />
 
