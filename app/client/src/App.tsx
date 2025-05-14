@@ -75,8 +75,10 @@ function App() {
           <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={darkTheme}>
               <GenericModal
+                id="starknet_hackathon"
                 open={open}
                 handleClose={handleClose}
+                handleOpen={handleOpen}
                 image_src="/starknet_hackathon.png"
                 image_alt="Starknet Hackathon: Re{ignite}"
                 title="Starknet Hackathon"
