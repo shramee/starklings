@@ -29,7 +29,15 @@ export interface GenericModalProps {
   button_link: string;
 }
 
-export const GenericModal = ({ open, handleClose, image_src, image_alt, title, date, description, button_text, button_link}: GenericModalProps) => {
+export const GenericModal = ({ open, handleClose, handleOpen, image_src, image_alt, title, date, description, button_text, button_link }: GenericModalProps) => {
+  useEffect(() => {
+    if (localStorage.getItem("starknet_hackathon-modal-dismissed") === "true") {
+      return;
+    } else {
+      handleOpen();
+    }
+  }, []);
+
   const handleDontShowAgain = () => {
     localStorage.setItem("starknet_hackathon-modal-dismissed", "true");
     handleClose();

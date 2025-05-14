@@ -63,14 +63,6 @@ function App() {
   const provider = publicProvider();
   const connectors = [braavos(), argent()];
 
-  useEffect(() => {
-    if (localStorage.getItem("basecamp-modal-dismissed") === "true") {
-      return;
-    } else {
-      handleOpen();
-    }
-  }, []);
-
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <StarknetConfig
