@@ -85,7 +85,7 @@ function App() {
                 date="Starting May 12"
                 description="From idea to MVP: Build real solutions, form teams, and compete for prizes."
                 button_text="Register for Hackathon"
-                button_link="https://www.hackquest.io/hackathons/Starknet-Hackathon-Re%7Bignite%7D?utm=starklings"
+                link="https://www.hackquest.io/hackathons/Starknet-Hackathon-Re%7Bignite%7D?utm=starklings"
               />
 
               <BasicLayout>
