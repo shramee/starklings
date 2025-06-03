@@ -74,7 +74,7 @@ function App() {
         <StarknetProvider>
           <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={darkTheme}>
-              <GenericModal
+              {/* <GenericModal
                 id="starknet_hackathon"
                 open={open}
                 handleClose={handleClose}
@@ -86,7 +86,7 @@ function App() {
                 // description="From idea to MVP: Build real solutions, form teams, and compete for prizes."
                 // button_text="Register for Hackathon"
                 link="https://www.hackquest.io/hackathons/Starknet-Hackathon-Re%7Bignite%7D?utm=starklings"
-              />
+              /> */}
 
               <BasicLayout>
                 <>
