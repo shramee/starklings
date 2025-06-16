@@ -57,7 +57,7 @@ pub fn test_exercise(exercise: &Exercise) -> Result<String, ()> {
 }
 
 pub fn print_exercise_output(exercise_output: String) {
-    if exercise_output.len() > 0 {
+    if !exercise_output.is_empty() {
         println!("    {} {exercise_output}", style("Output").green().bold());
     }
 }

@@ -2,13 +2,6 @@
 version = 1
 
 [[package]]
-name = "runner_crate"
-version = "0.1.0"
-dependencies = [
- "snforge_std",
-]
-
-[[package]]
 name = "snforge_scarb_plugin"
 version = "0.44.0"
 source = "registry+https://scarbs.xyz/"
@@ -21,4 +14,11 @@ source = "registry+https://scarbs.xyz/"
 checksum = "sha256:d4affedfb90715b1ac417b915c0a63377ae6dd69432040e5d933130d65114702"
 dependencies = [
  "snforge_scarb_plugin",
+]
+
+[[package]]
+name = "starklings_cairo1"
+version = "0.1.0"
+dependencies = [
+ "snforge_std",
 ]
