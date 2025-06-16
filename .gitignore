@@ -12,3 +12,4 @@ rust-project.json
 *.iml
 *.o
 **/runner-crate/src/lib.cairo
+**/.snfoundry_cache

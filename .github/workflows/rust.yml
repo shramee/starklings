@@ -16,6 +16,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup Rust v1.80.1
         run: rustup default 1.80.1
+      - name: Install all Cairo tools
+        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.starkup.sh | sh -s -- --version-set latest
       - name: Build
         run: cargo build --verbose
       - name: Run tests
