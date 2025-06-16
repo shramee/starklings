@@ -14,6 +14,7 @@ mod ContractA {
     use starknet::ContractAddress;
     use super::IContractBDispatcher;
     use super::IContractBDispatcherTrait;
+    use starknet::storage::*;
 
     #[storage]
     struct Storage {
@@ -31,6 +32,13 @@ mod ContractA {
         fn set_value(ref self: ContractState, value: u128) -> bool {
             // TODO: check if contract_b is enabled.
             // If it is, set the value and return true. Otherwise, return false.
+            let contract_b = self.contract_b.read();
+            let contract_b_dispatcher = IContractBDispatcher { contract_address: contract_b };
+            if contract_b_dispatcher.is_enabled() {
+                self.value.write(value);
+                return true;
+            }
+            return false;
         }
 
         fn get_value(self: @ContractState) -> u128 {
@@ -48,6 +56,8 @@ trait IContractB<TContractState> {
 
 #[starknet::contract]
 mod ContractB {
+    use starknet::storage::*;
+
     #[storage]
     struct Storage {
         enabled: bool
@@ -100,7 +110,8 @@ mod test {
         // Deploy ContractA
         let contract_a = deploy_contract_a(contract_b.contract_address);
 
-        //TODO interact with contract_b to make the test pass.
+        // Enable contract_b to make the test pass
+        contract_b.enable();
 
         // Tests
         assert(contract_a.set_value(300) == true, 'Could not set value');

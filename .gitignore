@@ -11,5 +11,4 @@ rust-project.json
 !.vscode/extensions.json
 *.iml
 *.o
-solutions/
 **/runner-crate/src/lib.cairo

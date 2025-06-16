@@ -34,6 +34,13 @@ CLI-based interactive tutorial
 
 #### Both versions share the same core exercises and hints, with a single source of truth for all content.
 
+## Requirements
+
+You'll need to have Scarb and Starknet Foundry installed. You can do this with a single CLI command, using [Starkup](https://github.com/software-mansion/starkup):
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.starkup.sh | sh
+```
+
 ## Contributing
 
 Thanks for your interest in the project. You can fork the repo, create a branch with a descriptive name (maybe the issue number and a word or two to describe it) and submit a pull request.

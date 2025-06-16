@@ -2,26 +2,14 @@ use regex::Regex;
 use serde::Deserialize;
 
 use std::fmt::{self, Display, Formatter};
-use std::fs::{remove_file, File};
+use std::fs::File;
 use std::io::Read;
 use std::path::PathBuf;
-use std::process::{self};
 
 use crate::scarb::{scarb_build, scarb_run, scarb_test};
 
 const I_AM_DONE_REGEX: &str = r"(?m)^\s*///?\s*I\s+AM\s+NOT\s+DONE";
 const CONTEXT: usize = 2;
-
-// Get a temporary file name that is hopefully unique
-#[inline]
-fn temp_file() -> String {
-    let thread_id: String = format!("{:?}", std::thread::current().id())
-        .chars()
-        .filter(|c| c.is_alphanumeric())
-        .collect();
-
-    format!("./temp_{}_{thread_id}", process::id())
-}
 
 // The mode of the exercise.
 #[derive(Deserialize, Copy, Clone, Debug)]
@@ -75,22 +63,6 @@ pub struct ContextLine {
     pub important: bool,
 }
 
-// A representation of an already executed binary
-#[derive(Debug)]
-pub struct ExerciseOutput {
-    // The textual contents of the standard output of the binary
-    pub stdout: String,
-    // The textual contents of the standard error of the binary
-    pub stderr: String,
-}
-
-struct FileHandle;
-
-impl Drop for FileHandle {
-    fn drop(&mut self) {
-        clean();
-    }
-}
 
 impl Exercise {
     pub fn build(&self) -> anyhow::Result<String> {
@@ -162,11 +134,6 @@ impl Display for Exercise {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         write!(f, "{}", self.path.to_str().unwrap())
     }
-}
-
-#[inline]
-fn clean() {
-    let _ignored = remove_file(temp_file());
 }
 
 #[cfg(test)]
