@@ -2,8 +2,6 @@
 // This is a bit challenging for Joe and Jill, Liz prepared an outline
 // for how contract should work, can you help Jill and Joe write it?
 
-// I AM NOT DONE
-
 use starknet::ContractAddress;
 
 #[starknet::interface]
@@ -18,12 +16,12 @@ trait ILizInventory<TContractState> {
 mod LizInventory {
     use starknet::ContractAddress;
     use starknet::get_caller_address;
-    use starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess, StoragePathEntry, Map};
+    use starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess, StoragePathEntry, Map, StorageMapReadAccess, StorageMapWriteAccess};
 
     #[storage]
     struct Storage {
         contract_owner: ContractAddress,
-        // TODO: add storage inventory, that maps product (felt252) to stock quantity (u32)
+        inventory: Map<felt252, u32>,
     }
 
     #[constructor]
@@ -34,24 +32,31 @@ mod LizInventory {
 
     #[abi(embed_v0)]
     impl LizInventoryImpl of super::ILizInventory<ContractState> {
-        fn add_stock(ref self: ContractState, ) {
-            // TODO:
-            // * takes product and new_stock
-            // * adds new_stock to stock in inventory
-            // * only owner can call this
+        fn add_stock(ref self: ContractState, product: felt252, new_stock: u32) {
+            // Only owner can call this
+            let caller = get_caller_address();
+            let owner = self.contract_owner.read();
+            assert(caller == owner, 'Only owner can add stock');
+
+            // Add new_stock to existing stock in inventory
+            let current_stock = self.inventory.entry(product).read();
+            let updated_stock = current_stock + new_stock;
+            self.inventory.entry(product).write(updated_stock);
         }
 
-        fn purchase(ref self: ContractState, ) {
-            // TODO:
-            // * takes product and quantity
-            // * subtracts quantity from stock in inventory
-            // * anybody can call this
+        fn purchase(ref self: ContractState, product: felt252, quantity: u32) {
+            // Anybody can call this
+            // Subtract quantity from stock in inventory
+            let current_stock = self.inventory.entry(product).read();
+            assert(current_stock >= quantity, 'Insufficient stock');
+
+            let updated_stock = current_stock - quantity;
+            self.inventory.entry(product).write(updated_stock);
         }
 
-        fn get_stock(self: @ContractState, ) -> u32 {
-            // TODO:
-            // * takes product
-            // * returns product stock in inventory
+        fn get_stock(self: @ContractState, product: felt252) -> u32 {
+            // Returns product stock in inventory
+            self.inventory.entry(product).read()
         }
 
         fn get_owner(self: @ContractState) -> ContractAddress {
