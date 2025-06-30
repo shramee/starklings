@@ -22,6 +22,11 @@ export interface Append {
   code: string;
 }
 
+export interface CairoResponse {
+  success: boolean;
+  message: string;
+}
+
 export interface ICompletedExercise {
   exercise_id: string;
   id: number;

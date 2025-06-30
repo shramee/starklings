@@ -23,6 +23,7 @@ import { useGetExercise } from "../../../queries/useGetExercise";
 import { useGetExercises } from "../../../queries/useGetExercises";
 import { useGetHint } from "../../../queries/useGetHint";
 import { antiCheatShouldContain } from "../../../utils/antiCheat";
+import { compileCairoCode } from "../../../utils/compileCairoCode";
 import {
   findNextExercise,
   findPrevExercise,
@@ -35,12 +36,6 @@ import { useMarkExerciseDone } from "../../../queries/useMarkExerciseDone";
 import LinkifyText from "../../layout/LinkfyText";
 
 export const Workspace = () => {
-  const worker: Worker = useMemo(
-    () =>
-      new Worker(new URL("../../../workers/cairoWorker.ts", import.meta.url)),
-    []
-  );
-
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const compatibility = !!searchParams.get("compatibility");
@@ -107,17 +102,14 @@ export const Workspace = () => {
     } else {
       mode = "COMPILE";
     }
-    worker.postMessage({
-      code: editorValue,
-      mode,
-      append: data?.antiCheat?.append,
-    });
+
     setCompiling(true);
     setCompileError(undefined);
     setSucceeded(false);
-    worker.onmessage = (event) => {
-      setCompiling(false);
-      const result = event.data;
+
+    try {
+      const result = await compileCairoCode(editorValue, mode, data?.antiCheat?.append);
+
       if (result.success) {
         try {
           antiCheatShouldContain(editorValue, data?.antiCheat?.shouldContain);
@@ -134,11 +126,16 @@ export const Workspace = () => {
           setWarning(e?.toString());
         }
       } else {
-        const { error } = result;
-        console.error(error);
-        setCompileError(error);
+        const { message } = result;
+        console.error(message);
+        setCompileError(message);
       }
-    };
+    } catch (error) {
+      console.error('Compilation request failed:', error);
+      setCompileError(`Network error: ${error}`);
+    } finally {
+      setCompiling(false);
+    }
   };
 
   const handleHintClick = async () => {
@@ -202,7 +199,7 @@ export const Workspace = () => {
               {/* alerts */}
               <Box>
                 {hintLoading && <CircularProgressCenterLoader />}
-                `{hint && (
+                {hint && (
                   <Alert
                     sx={{ m: 2, ml: 4, color: "#FFF" }}
                     severity="info"
