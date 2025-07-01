@@ -24,7 +24,6 @@ import { EvaluateGraduates } from "./components/pages/EvaluateGraduates/Evaluate
 import { FinalScreen } from "./components/pages/FinalScreen/FinalScreen";
 import { Home } from "./components/pages/Home/Home";
 import { Workspace } from "./components/pages/Workspace/Workspace";
-import { PocApp } from "./components/poc/PocApp";
 import { StarknetProvider } from "./context/StarknetProvider";
 import { useNotification } from "./hooks/useNotification";
 import { GenericModal } from "./components/modals/GenericModal";
@@ -92,7 +91,6 @@ function App() {
                 <>
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/poc" element={<PocApp />} />
                     <Route path="/exercise/:id" element={<Workspace />} />
                     <Route path="/end" element={<FinalScreen />} />
                     <Route
