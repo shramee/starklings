@@ -127,8 +127,16 @@ export const Workspace = () => {
         }
       } else {
         const { message } = result;
-        console.error(message);
-        setCompileError(message);
+        
+        let processedMessage = message;
+        if (message.includes("tests")) {
+          processedMessage = message
+            .split('\n')
+            .filter(line => !line.includes("duplicate"))
+            .join('\n');
+        }
+        
+        setCompileError(processedMessage);
       }
     } catch (error) {
       console.error('Compilation request failed:', error);
@@ -275,7 +283,7 @@ export const Workspace = () => {
                     <Typography sx={{ whiteSpace: "pre-wrap", fontSize: 14 }}>
                       {compileError}
                       <br />
-                      Fix the code and click <strong>COMPILE</strong> again.
+                      Fix the code and click <strong>{isTest ? "TEST" : "COMPILE"}</strong> again.
                     </Typography>
                   </Alert>
                 )}
