@@ -130,10 +130,27 @@ export const Workspace = () => {
         
         let processedMessage = message;
         if (message.includes("tests")) {
-          processedMessage = message
-            .split('\n')
-            .filter(line => !line.includes("duplicate"))
-            .join('\n');
+          const lines = message.split('\n');
+          const originalLines = lines.slice();
+          const filteredLines = lines.filter(line => !line.includes("duplicate"));
+          const removedCount = originalLines.length - filteredLines.length;
+          
+          if (removedCount > 0) {
+            const updatedLines = filteredLines.map(line => {
+              if (line.startsWith("running") && line.includes("tests")) {
+                const match = line.match(/running (\d+) tests/);
+                if (match) {
+                  const currentCount = parseInt(match[1]);
+                  const newCount = currentCount - removedCount;
+                  return line.replace(/running \d+ tests/, `running ${newCount} tests`);
+                }
+              }
+              return line;
+            });
+            processedMessage = updatedLines.join('\n');
+          } else {
+            processedMessage = filteredLines.join('\n');
+          }
         }
         
         setCompileError(processedMessage);
