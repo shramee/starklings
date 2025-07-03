@@ -2,7 +2,7 @@ describe("intro", () => {
   it("opens app", () => {
     localStorage.setItem("basecamp-modal-dismissed", "true");
     cy.visit("https://starklings.app");
-    cy.contains("starklings.app");
+    cy.contains("starklings");
     cy.githubFakeLogin();
     cy.get("button").contains("Start coding").click();
   });
