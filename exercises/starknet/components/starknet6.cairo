@@ -62,7 +62,6 @@ mod OwnableCounter {
 mod tests {
     use super::OwnableCounter;
     use super::{IOwnableDispatcher, IOwnable, IOwnableDispatcherTrait};
-    use starknet::contract_address_const;
     use starknet::syscalls::deploy_syscall;
 
     #[test]
