@@ -127,8 +127,33 @@ export const Workspace = () => {
         }
       } else {
         const { message } = result;
-        console.error(message);
-        setCompileError(message);
+        
+        let processedMessage = message;
+        if (message.includes("tests")) {
+          const lines = message.split('\n');
+          const originalLines = lines.slice();
+          const filteredLines = lines.filter(line => !line.includes("duplicate"));
+          const removedCount = originalLines.length - filteredLines.length;
+          
+          if (removedCount > 0) {
+            const updatedLines = filteredLines.map(line => {
+              if (line.startsWith("running") && line.includes("tests")) {
+                const match = line.match(/running (\d+) tests/);
+                if (match) {
+                  const currentCount = parseInt(match[1]);
+                  const newCount = currentCount - removedCount;
+                  return line.replace(/running \d+ tests/, `running ${newCount} tests`);
+                }
+              }
+              return line;
+            });
+            processedMessage = updatedLines.join('\n');
+          } else {
+            processedMessage = filteredLines.join('\n');
+          }
+        }
+        
+        setCompileError(processedMessage);
       }
     } catch (error) {
       console.error('Compilation request failed:', error);
@@ -275,7 +300,7 @@ export const Workspace = () => {
                     <Typography sx={{ whiteSpace: "pre-wrap", fontSize: 14 }}>
                       {compileError}
                       <br />
-                      Fix the code and click <strong>COMPILE</strong> again.
+                      Fix the code and click <strong>{isTest ? "TEST" : "COMPILE"}</strong> again.
                     </Typography>
                   </Alert>
                 )}
