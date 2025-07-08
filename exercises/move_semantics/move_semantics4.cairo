@@ -5,7 +5,7 @@
 // I AM NOT DONE
 
 fn main() {
-    let arr0 = array![];
+    let arr0: Array<felt252> = array![];
 
     let mut arr1 = fill_arr(arr0);
 
