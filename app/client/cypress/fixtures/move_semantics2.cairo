@@ -1,5 +1,5 @@
 fn main() {
-    let arr0 = ArrayTrait::new();
+    let arr0 = array![];
 
     let mut _arr1 = fill_arr(arr0);
     let arr0 = _arr1.clone();

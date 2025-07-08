@@ -1,5 +1,5 @@
 fn main() {
-    let arr0 = ArrayTrait::<felt252>::new();
+    let arr0: Array<felt252> = array![];
 
     let mut arr1 = fill_arr();
 
