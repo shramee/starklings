@@ -201,16 +201,16 @@
   "move_semantics1": {
     "shouldContain": [
       "let arr0 = array![];", 
-      "print(arr1.clone().span());",
+      "println!(\"{:?}\", arr1.clone().span());",
       "arr1.append(88);",
-      "print(arr1.span());"
+      "println!(\"{:?}\", arr1.span());"
     ]
   },
   "move_semantics2": {
     "shouldContain": [
       "let arr0 = array![];",
       "let mut _arr1 = fill_arr(arr0);",
-      "print(arr0.span());"
+      "println!(\"{:?}\", arr0.span());"
     ]
   },
   "move_semantics3": {
