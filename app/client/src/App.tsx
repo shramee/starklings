@@ -94,9 +94,10 @@ function App() {
                     <Route path="/exercise/:id" element={<Workspace />} />
                     <Route path="/end" element={<FinalScreen />} />
                     <Route
-                      path="/check/:account"
+                      path="/check/"
                       element={<CheckGitHubAccount />}
                     />{" "}
+                    <Route path="/check-student" element={<CheckGitHubAccount />} />
                     <Route path="/graduates" element={<CheckGraduates />} />
                     <Route
                       path="/evaluate-students"

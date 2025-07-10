@@ -1,4 +1,4 @@
-import { Link, Typography, Button, Menu, MenuItem, TextField, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { Link, Typography, Button, Menu, MenuItem } from "@mui/material";
 import Box from "@mui/material/Box";
 import { isMobileOnly } from "react-device-detect";
 import { GitHubLoginButton } from "../github/GitHubLoginButton";
@@ -17,8 +17,6 @@ export const BasicLayout = ({ children }: IBasicLayoutProps) => {
   const navigate = useNavigate();
   
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [accountInput, setAccountInput] = useState("");
   
   const menuOpen = Boolean(anchorEl);
   
@@ -36,25 +34,13 @@ export const BasicLayout = ({ children }: IBasicLayoutProps) => {
   };
   
   const handleStudentExercisesClick = () => {
-    setDialogOpen(true);
+    navigate("/check-student");
     handleMenuClose();
   };
   
   const handleMentorUtilsClick = () => {
     navigate("/evaluate-students");
     handleMenuClose();
-  };
-  
-  const handleDialogClose = () => {
-    setDialogOpen(false);
-    setAccountInput("");
-  };
-  
-  const handleAccountSubmit = () => {
-    if (accountInput.trim()) {
-      navigate(`/check/${accountInput.trim()}`);
-      handleDialogClose();
-    }
   };
   return (
     <Box
@@ -137,74 +123,6 @@ export const BasicLayout = ({ children }: IBasicLayoutProps) => {
         >
           {children}
         </Box>
-        
-        <Dialog 
-          open={dialogOpen} 
-          onClose={handleDialogClose}
-          PaperProps={{
-            sx: {
-              backgroundColor: "#333",
-              color: "#FFF",
-            },
-          }}
-        >
-          <DialogTitle>Consultar ejercicios completados</DialogTitle>
-          <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              label="Nombre de usuario de GitHub"
-              type="text"
-              fullWidth
-              variant="outlined"
-              value={accountInput}
-              onChange={(e) => setAccountInput(e.target.value)}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleAccountSubmit();
-                }
-              }}
-              sx={{
-                "& .MuiOutlinedInput-root": {
-                  color: "#FFF",
-                  "& fieldset": {
-                    borderColor: "#666",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "#999",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#dd3d3d",
-                  },
-                },
-                "& .MuiInputLabel-root": {
-                  color: "#CCC",
-                  "&.Mui-focused": {
-                    color: "#dd3d3d",
-                  },
-                },
-              }}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDialogClose} sx={{ color: "#CCC" }}>
-              Cancelar
-            </Button>
-            <Button 
-              onClick={handleAccountSubmit} 
-              variant="contained"
-              disabled={!accountInput.trim()}
-              sx={{ 
-                backgroundColor: "#dd3d3d",
-                "&:hover": {
-                  backgroundColor: "#bb2d2d",
-                },
-              }}
-            >
-              Consultar
-            </Button>
-          </DialogActions>
-        </Dialog>
       </Box>
     </Box>
   );
