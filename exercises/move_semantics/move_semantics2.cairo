@@ -2,15 +2,13 @@
 
 // I AM NOT DONE
 
-use debug::PrintTrait;
-
 fn main() {
-    let arr0 = ArrayTrait::new();
+    let arr0 = array![];
 
     let mut _arr1 = fill_arr(arr0);
 
     // Do not change the following line!
-    arr0.print();
+    println!("{:?}", arr0);
 }
 
 // Do not change the following line!

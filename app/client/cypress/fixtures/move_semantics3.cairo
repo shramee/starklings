@@ -1,13 +1,13 @@
 fn main() {
-    let arr0 = ArrayTrait::new();
+    let arr0 = array![];
 
     let mut arr1 = fill_arr(arr0);
 
-    print(arr1.span());
+    println!("{:?}", arr1);
 
     arr1.append(88);
 
-    print(arr1.span());
+    println!("{:?}", arr1);
 }
 
 fn fill_arr(mut arr: Array<felt252>) -> Array<felt252> {
@@ -16,22 +16,4 @@ fn fill_arr(mut arr: Array<felt252>) -> Array<felt252> {
     arr.append(66);
 
     arr
-}
-
-fn print(span: Span<felt252>) { 
-    let mut i = 0;
-    print!("PATH: {{ len: {}, values: [ ", span.len());
-    loop {
-        if span.len() == i {
-            break;
-        }
-        let value = *(span.at(i));
-        if span.len() - 1 != i {
-            print!("{}, ", value);
-        } else {
-            print!("{}", value);
-        }
-        i += 1;
-    };
-    println!(" ] }}");
 }
