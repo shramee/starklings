@@ -5,7 +5,7 @@ fn main() {
     let arr0 = _arr1.clone();
 
     // Do not change the following line!
-    println!("{:?}", arr0.span());
+    println!("{:?}", arr0);
 }
 
 fn fill_arr(arr: Array<felt252>) -> Array<felt252> {

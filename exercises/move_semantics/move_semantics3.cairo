@@ -8,11 +8,11 @@ fn main() {
 
     let mut arr1 = fill_arr(arr0);
 
-    println!("{:?}", arr1.clone().span());
+    println!("{:?}", arr1.clone());
 
     arr1.append(88);
 
-    println!("{:?}", arr1.clone().span());
+    println!("{:?}", arr1.clone());
 }
 
 fn fill_arr(arr: Array<felt252>) -> Array<felt252> {

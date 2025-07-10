@@ -3,11 +3,11 @@ fn main() {
 
     let mut arr1 = fill_arr();
 
-    println!("{:?}", arr1.span());
+    println!("{:?}", arr1);
 
     arr1.append(88);
 
-    println!("{:?}", arr1.span());
+    println!("{:?}", arr1);
 }
 
 // `fill_arr()` should no longer take `arr: Array<felt252>` as argument

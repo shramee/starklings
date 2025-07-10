@@ -8,7 +8,7 @@ fn main() {
     let mut _arr1 = fill_arr(arr0);
 
     // Do not change the following line!
-    println!("{:?}", arr0.span());
+    println!("{:?}", arr0);
 }
 
 // Do not change the following line!
