@@ -41,18 +41,18 @@ export const CheckGitHubAccount = () => {
       }}
     >
       <Typography variant="h4" sx={{ mb: 4, textAlign: "center" }}>
-        Consultar ejercicios completados
+        Check Student Progress
       </Typography>
       
       <Box sx={{ display: "flex", gap: 2, mb: 4, alignItems: "center" }}>
         <TextField
-          label="Nombre de usuario de GitHub"
+          label="GitHub Username"
           variant="outlined"
           fullWidth
           value={accountInput}
           onChange={(e) => setAccountInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="Ej: username"
+          placeholder="e.g.: username"
           sx={{
             "& .MuiOutlinedInput-root": {
               color: "#FFF",
@@ -90,18 +90,18 @@ export const CheckGitHubAccount = () => {
             height: "56px",
           }}
         >
-          Buscar
+          Search
         </Button>
       </Box>
 
       {hasSearched && searchedAccount && (
         <>
           <Typography variant="h5" sx={{ mb: 2 }}>
-            Resultados para: {searchedAccount}
+            Results for: {searchedAccount}
           </Typography>
           {!isLoading && (
             <Typography sx={{ mb: 3 }}>
-              {completedExercises}/{exercises?.length ?? 54} ejercicios completados
+              {completedExercises}/{exercises?.length ?? 54} exercises completed
             </Typography>
           )}
           <Box sx={{ maxHeight: "calc(100vh - 400px)", overflowY: "auto" }}>

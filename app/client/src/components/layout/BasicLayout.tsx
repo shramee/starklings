@@ -1,4 +1,5 @@
 import { Link, Typography, Button, Menu, MenuItem } from "@mui/material";
+import { School } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import { isMobileOnly } from "react-device-detect";
 import { GitHubLoginButton } from "../github/GitHubLoginButton";
@@ -77,7 +78,6 @@ export const BasicLayout = ({ children }: IBasicLayoutProps) => {
             </Link>
           </Box>
           <Box sx={{ display: "flex", gap: 1, alignItems: "center", mr: 2 }}>
-            <About />
             <Button
               onClick={handleMenuClick}
               sx={{
@@ -87,9 +87,13 @@ export const BasicLayout = ({ children }: IBasicLayoutProps) => {
                 "&:hover": {
                   backgroundColor: "rgba(255, 255, 255, 0.08)",
                 },
+                display: "flex",
+                alignItems: "center",
+                gap: 0.5,
               }}
             >
-              Admin ▼
+              <School sx={{ fontSize: 18 }} />
+              Mentor
             </Button>
             <Menu
               anchorEl={anchorEl}
@@ -105,14 +109,15 @@ export const BasicLayout = ({ children }: IBasicLayoutProps) => {
                 },
               }}
             >
-              <MenuItem onClick={handleGraduatesClick}>Graduados</MenuItem>
+              <MenuItem onClick={handleGraduatesClick}>Graduates</MenuItem>
               <MenuItem onClick={handleStudentExercisesClick}>
-                Ejercicios completados de un alumno
+                Student Progress
               </MenuItem>
               <MenuItem onClick={handleMentorUtilsClick}>
-                Utils para mentores
+                Student Evaluation
               </MenuItem>
             </Menu>
+            <About />
             {!isMobileOnly && <GitHubLoginButton />}
           </Box>
         </Box>
