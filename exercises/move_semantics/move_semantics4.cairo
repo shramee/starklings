@@ -4,18 +4,16 @@
 
 // I AM NOT DONE
 
-use debug::PrintTrait;
-
 fn main() {
     let arr0 = ArrayTrait::<felt252>::new();
 
     let mut arr1 = fill_arr(arr0);
 
-    arr1.clone().print();
+    println!("arr1: {:?}", arr1);
 
     arr1.append(88);
 
-    arr1.clone().print();
+    println!("arr1: {:?}", arr1);
 }
 
 // `fill_arr()` should no longer take `arr: Array<felt252>` as argument

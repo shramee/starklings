@@ -6,6 +6,7 @@
 // Make me compile and pass the test!
 
 // I AM NOT DONE
+use core::dict::Felt252Dict;
 
 #[derive(Destruct)]
 struct Team {

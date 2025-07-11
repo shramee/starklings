@@ -4,8 +4,8 @@
 
 // I AM NOT DONE
 
-mod restaurant {
-    fn take_order() -> felt252 {
+pub mod restaurant {
+    pub fn take_order() -> felt252 {
         'order_taken'
     }
 }

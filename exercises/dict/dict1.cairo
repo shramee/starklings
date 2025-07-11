@@ -7,6 +7,7 @@
 // Make me compile and pass the test!
 
 // I AM NOT DONE
+use core::dict::Felt252Dict;
 
 fn create_dictionary() -> Felt252Dict<u32> {
     let mut dict: Felt252Dict<u32> = Default::default();
