@@ -3,7 +3,13 @@ name = "runner_crate"
 version = "0.1.0"
 edition = "2024_07"
 
+[scripts]
+test = "snforge test"
 
+[tool.scarb]
+allow-prebuilt-plugins = ["snforge_std"]
+
+# Core Starknet dependencies
 [dependencies]
 starknet = "2.11.4"
 
@@ -11,11 +17,4 @@ starknet = "2.11.4"
 snforge_std = "0.44.0"
 assert_macros = "2.11.4"
 
-[[target.starknet-contract]]
-sierra = true
-
-[scripts]
-test = "snforge test"
-
-[tool.scarb]
-allow-prebuilt-plugins = ["snforge_std"]
+# Starknet contract compilation target

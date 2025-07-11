@@ -12,12 +12,12 @@ trait IOwnable<TContractState> {
     fn set_owner(ref self: TContractState, new_owner: ContractAddress);
 }
 
-mod OwnableComponent {
+pub mod OwnableComponent {
     use starknet::ContractAddress;
     use super::IOwnable;
 
     #[storage]
-    struct Storage {
+    pub struct Storage {
         owner: ContractAddress,
     }
 
@@ -35,7 +35,7 @@ mod OwnableComponent {
 }
 
 #[starknet::contract]
-mod OwnableCounter {
+pub mod OwnableCounter {
     use starknet::ContractAddress;
     use super::OwnableComponent;
 
@@ -51,7 +51,7 @@ mod OwnableCounter {
         OwnableEvent: OwnableComponent::Event,
     }
     #[storage]
-    struct Storage {
+    pub struct Storage {
         counter: u128,
         #[substorage(v0)]
         ownable: OwnableComponent::Storage,
@@ -60,6 +60,7 @@ mod OwnableCounter {
 
 #[cfg(test)]
 mod tests {
+    use crate::IOwnableDispatcherTrait;
     use snforge_std::{declare, ContractClassTrait, DeclareResultTrait};
     use starknet::{contract_address_const, ContractAddress};
     use super::IOwnableDispatcher;

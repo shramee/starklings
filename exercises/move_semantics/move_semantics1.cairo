@@ -1,19 +1,17 @@
 
 
 // I AM NOT DONE
-
 fn main() {
     let arr0 = array![];
 
-    let arr1 = fill_arr(arr0);
+    let mut arr1 = fill_arr(arr0);
 
-    // This is just a print statement for arrays.
-    println!("{:?}", arr1.clone());
+    println!("arr1: {:?}", arr1);
 
     //TODO fix the error here without modifying this line.
     arr1.append(88);
 
-    println!("{:?}", arr1);
+    println!("arr1: {:?}", arr1);
 }
 
 fn fill_arr(arr: Array<felt252>) -> Array<felt252> {
