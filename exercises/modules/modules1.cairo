@@ -10,6 +10,7 @@ mod restaurant {
     }
 }
 
+#[cfg(test)]
 #[test]
 fn test_mod_fn() {
     // Fix this line to call take_order function from module

@@ -12,8 +12,8 @@ fn multiply_element_by_10(ref dict: Felt252Dict<u32>, n: usize) {
 }
 
 // Don't change anything in the test
+#[cfg(test)]
 #[test]
-#[available_gas(2000000000)]
 fn test_3() {
     let mut dict: Felt252Dict<u32> = Default::default();
     dict.insert(0, 1);
@@ -27,8 +27,8 @@ fn test_3() {
     assert(dict.get(2) == 30, 'Third element is not 30');
 }
 
+#[cfg(test)]
 #[test]
-#[available_gas(200000000)]
 fn test_4() {
     let mut dict: Felt252Dict<u32> = Default::default();
     dict.insert(0, 1);

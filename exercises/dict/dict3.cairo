@@ -20,7 +20,7 @@ impl TeamImpl of TeamTrait {
     }
 
     fn get_level(ref self: Team, name: felt252) -> usize {
-        //TODO 
+        //TODO
     }
 
     fn add_player(ref self: Team, name: felt252, level: usize) -> () {
@@ -37,8 +37,8 @@ impl TeamImpl of TeamTrait {
 }
 
 
+#[cfg(test)]
 #[test]
-#[available_gas(200000)]
 fn test_add_player() {
     let mut team = TeamTrait::new();
     team.add_player('bob', 10);
@@ -49,8 +49,8 @@ fn test_add_player() {
     assert(team.get_level('alice') == 20, 'Wrong level');
 }
 
+#[cfg(test)]
 #[test]
-#[available_gas(200000)]
 fn test_level_up() {
     let mut team = TeamTrait::new();
     team.add_player('bobby', 10);

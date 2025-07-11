@@ -25,6 +25,7 @@ fn multiplication(x: u64, y: u64) -> u64 {
 
 
 // Do not change the tests
+#[cfg(test)]
 #[test]
 fn test_modulus() {
     let res = modulus(16, 2);
@@ -34,6 +35,7 @@ fn test_modulus() {
     assert(res == 2, 'Error message');
 }
 
+#[cfg(test)]
 #[test]
 fn test_floor_division() {
     let res = floor_division(160, 2);
@@ -43,6 +45,7 @@ fn test_floor_division() {
     assert(res == 5, 'Error message');
 }
 
+#[cfg(test)]
 #[test]
 fn test_mul() {
     let res = multiplication(16, 2);
@@ -52,6 +55,7 @@ fn test_mul() {
     assert(res == 84, 'Error message');
 }
 
+#[cfg(test)]
 #[test]
 #[should_panic]
 fn test_u64_mul_overflow_1() {

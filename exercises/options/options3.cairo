@@ -35,14 +35,14 @@ fn display_grades(student: @Student, index: usize) {
 
     // TODO: Modify the following lines so that if there is a grade for the course, it is printed.
     //       Otherwise, print "No grade".
-    // 
+    //
     println!("grade is {}", course.unwrap());
     display_grades(student, index + 1);
 }
 
 
+#[cfg(test)]
 #[test]
-#[available_gas(20000000)]
 fn test_all_defined() {
     let courses = array![
         Option::Some('A'),
@@ -55,8 +55,8 @@ fn test_all_defined() {
 }
 
 
+#[cfg(test)]
 #[test]
-#[available_gas(20000000)]
 fn test_some_empty() {
     let courses = array![
         Option::Some('A'),

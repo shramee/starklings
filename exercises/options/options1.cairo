@@ -13,6 +13,7 @@ fn maybe_icecream(
 }
 
 
+#[cfg(test)]
 #[test]
 fn check_icecream() {
     assert(maybe_icecream(9).unwrap() == 5, 'err_1');
@@ -22,6 +23,7 @@ fn check_icecream() {
     assert(maybe_icecream(25).is_none(), 'err_5');
 }
 
+#[cfg(test)]
 #[test]
 fn raw_value() {
     // TODO: Fix this test. How do you get at the value contained in the Option?

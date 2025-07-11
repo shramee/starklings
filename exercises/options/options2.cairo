@@ -2,6 +2,7 @@
 
 // I AM NOT DONE
 
+#[cfg(test)]
 #[test]
 fn test_options() {
     let target = 'starklings';

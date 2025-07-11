@@ -7,6 +7,7 @@ struct ColorStruct { // TODO: Something goes here
 }
 
 
+#[cfg(test)]
 #[test]
 fn classic_c_structs() {
     // TODO: Instantiate a classic color struct!

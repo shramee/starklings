@@ -60,6 +60,7 @@ impl AnimalDogImpl of AnimalTrait<Dog> {
 
 // TODO: implement DogTrait for the type Dog
 
+#[cfg(test)]
 #[test]
 fn test_traits3() {
     // Don't modify this test!

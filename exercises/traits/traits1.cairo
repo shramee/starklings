@@ -21,6 +21,7 @@ trait AnimalTrait {
 impl AnimalImpl of AnimalTrait { // TODO: implement the trait AnimalTrait for Animal
 }
 
+#[cfg(test)]
 #[test]
 fn test_traits1() {
     // TODO make the test pass by creating two instances of Animal

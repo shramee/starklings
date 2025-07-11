@@ -12,6 +12,7 @@ fn poly(x: usize, y: usize) -> usize {
 
 
 // Do not change the test function
+#[cfg(test)]
 #[test]
 fn test_poly() {
     let res = poly(5, 3);
@@ -23,4 +24,3 @@ fn test_poly() {
     assert(res != 27, 'res != 27');
     assert(res % 2 == 0, 'res %2 != 0');
 }
-

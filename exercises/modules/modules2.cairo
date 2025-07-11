@@ -36,6 +36,7 @@ mod order_utils {
     }
 }
 
+#[cfg(test)]
 #[test]
 fn test_array() {
     let order1 = order_utils::dummy_phoned_order('John Doe');

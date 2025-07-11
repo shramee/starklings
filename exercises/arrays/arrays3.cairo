@@ -12,6 +12,7 @@ fn create_array() -> Array<felt252> {
 }
 
 
+#[cfg(test)]
 #[test]
 fn test_arrays3() {
     let mut a = create_array();

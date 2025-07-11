@@ -19,7 +19,7 @@ mod JillsContract {
 
     #[constructor]
     fn constructor(
-        ref self: ContractState, owner: ContractAddress
+        ref self: ContractState, owner: ContractAddress,
     ) { // TODO: Write `owner` to contract_owner storage
     }
 
@@ -37,10 +37,8 @@ trait IJillsContract<TContractState> {
 
 #[cfg(test)]
 mod test {
-    use super::IJillsContractDispatcher;
-    use super::IJillsContractDispatcherTrait;
-    use super::JillsContract;
-    use snforge_std::{declare, ContractClassTrait, DeclareResultTrait};
+    use snforge_std::{ContractClassTrait, DeclareResultTrait, declare};
+    use super::{IJillsContractDispatcher, IJillsContractDispatcherTrait, JillsContract};
 
     #[test]
     fn test_owner_setting() {
