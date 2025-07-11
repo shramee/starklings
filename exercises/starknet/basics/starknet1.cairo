@@ -23,10 +23,8 @@ mod JoesContract {
 
 #[cfg(test)]
 mod test {
-    use super::JoesContract;
-    use super::IJoesContractDispatcher;
-    use super::IJoesContractDispatcherTrait;
-    use snforge_std::{declare, ContractClassTrait, DeclareResultTrait};
+    use snforge_std::{ContractClassTrait, DeclareResultTrait, declare};
+    use super::{IJoesContractDispatcher, IJoesContractDispatcherTrait, JoesContract};
 
     #[test]
     fn test_contract_view() {

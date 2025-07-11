@@ -37,6 +37,7 @@ impl PackageImpl of PackageTrait {
     }
 }
 
+#[cfg(test)]
 #[test]
 #[should_panic]
 fn fail_creating_weightless_package() {
@@ -45,6 +46,7 @@ fn fail_creating_weightless_package() {
     PackageTrait::new(sender_country, recipient_country, 0);
 }
 
+#[cfg(test)]
 #[test]
 fn create_international_package() {
     let sender_country = 'Spain';
@@ -55,6 +57,7 @@ fn create_international_package() {
     assert(package.is_international() == true, 'Not international');
 }
 
+#[cfg(test)]
 #[test]
 fn create_local_package() {
     let sender_country = 'Canada';
@@ -65,6 +68,7 @@ fn create_local_package() {
     assert(package.is_international() == false, 'International');
 }
 
+#[cfg(test)]
 #[test]
 fn calculate_transport_fees() {
     let sender_country = 'Spain';
@@ -76,4 +80,3 @@ fn calculate_transport_fees() {
 
     assert(package.get_fees(cents_per_gram) == 4500, 'Wrong fees');
 }
-

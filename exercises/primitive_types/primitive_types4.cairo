@@ -18,11 +18,13 @@ fn convert_to_felt(x: u8) -> felt252 { //TODO return x as a felt252.
 fn convert_felt_to_u8(x: felt252) -> u8 { //TODO return x as a u8.
 }
 
+#[cfg(test)]
 #[test]
 fn test_sum_u8s() {
     assert(sum_u8s(1, 2_u8) == 3_u8, 'Something went wrong');
 }
 
+#[cfg(test)]
 #[test]
 fn test_sum_big_numbers() {
     //TODO modify this test to use the correct integer types.
@@ -32,11 +34,13 @@ fn test_sum_big_numbers() {
     assert(sum_big_numbers(255_u8, 255_u8) == 510_u8, 'Something went wrong');
 }
 
+#[cfg(test)]
 #[test]
 fn test_convert_to_felt() {
     assert(convert_to_felt(1_u8) == 1, 'Type conversion went wrong');
 }
 
+#[cfg(test)]
 #[test]
 fn test_convert_to_u8() {
     assert(convert_felt_to_u8(1) == 1_u8, 'Type conversion went wrong');

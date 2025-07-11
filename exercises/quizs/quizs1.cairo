@@ -11,6 +11,7 @@ fn calculate_price_of_apples{
 }
 
 // Do not change the tests!
+#[cfg(test)]
 #[test]
 fn verify_test() {
     let price1 = calculate_price_of_apples(35);

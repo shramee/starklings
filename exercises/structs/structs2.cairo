@@ -24,6 +24,7 @@ fn create_order_template() -> Order {
         count: 0
     }
 }
+#[cfg(test)]
 #[test]
 fn test_your_order() {
     let order_template = create_order_template();
@@ -38,4 +39,3 @@ fn test_your_order() {
     assert(item_number == order_template.item_number, 'Wrong item number');
     assert(count == 0, 'Wrong count');
 }
-

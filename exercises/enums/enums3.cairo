@@ -52,6 +52,7 @@ impl StateImpl of StateTrait {
 }
 
 
+#[cfg(test)]
 #[test]
 fn test_match_message_call() {
     let mut state = State { quit: false, position: Point { x: 0, y: 0 }, color: (0, 0, 0) };
