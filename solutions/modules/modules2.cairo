@@ -43,9 +43,9 @@ pub mod order_utils {
 fn test_array() {
     let order1 = order_utils::dummy_phoned_order('John Doe');
     let fees1 = order_utils::order_fees(order1);
-    assert(fees1 == 500, 'Order fee should be 500');
+    assert!(fees1 == 500, "Order fee should be 500");
 
     let order2 = order_utils::dummy_emailed_order('Jane Doe');
     let fees2 = order_utils::order_fees(order2);
-    assert(fees2 == 200, 'Order fee should be 200');
+    assert!(fees2 == 200, "Order fee should be 200");
 }

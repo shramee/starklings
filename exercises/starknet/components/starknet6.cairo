@@ -75,6 +75,6 @@ mod tests {
     fn test_contract_read() {
         let dispatcher = deploy_ownable_counter();
         dispatcher.set_owner(contract_address_const::<0>());
-        assert(contract_address_const::<0>() == dispatcher.owner(), 'Some fuck up happened');
+        assert!(contract_address_const::<0>() == dispatcher.owner(), "Some fuck up happened");
     }
 }

@@ -103,8 +103,8 @@ mod test {
         //TODO interact with contract_b to make the test pass.
 
         // Tests
-        assert(contract_a.set_value(300) == true, 'Could not set value');
-        assert(contract_a.get_value() == 300, 'Value was not set');
-        assert(contract_b.is_enabled() == true, 'Contract b is not enabled');
+        assert!(contract_a.set_value(300) == true, "Could not set value");
+        assert!(contract_a.get_value() == 300, "Value was not set");
+        assert!(contract_b.is_enabled() == true, "Contract b is not enabled");
     }
 }

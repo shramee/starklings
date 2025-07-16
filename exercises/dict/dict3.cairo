@@ -45,9 +45,9 @@ fn test_add_player() {
     team.add_player('bob', 10);
     team.add_player('alice', 20);
 
-    assert(team.players_count == 2, 'Wrong number of player');
-    assert(team.get_level('bob') == 10, 'Wrong level');
-    assert(team.get_level('alice') == 20, 'Wrong level');
+    assert!(team.players_count == 2, "Wrong number of player");
+    assert!(team.get_level('bob') == 10, "Wrong level");
+    assert!(team.get_level('alice') == 20, "Wrong level");
 }
 
 #[cfg(test)]
@@ -57,5 +57,5 @@ fn test_level_up() {
     team.add_player('bobby', 10);
     team.level_up('bobby');
 
-    assert(team.level.get('bobby') == 11, 'Wrong level');
+    assert!(team.level.get('bobby') == 11, "Wrong level");
 }

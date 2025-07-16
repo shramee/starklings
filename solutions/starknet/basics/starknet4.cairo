@@ -36,7 +36,7 @@ mod LizInventory {
             // Only owner can call this
             let caller = get_caller_address();
             let owner = self.contract_owner.read();
-            assert(caller == owner, 'Only owner can add stock');
+            assert!(caller == owner, "Only owner can add stock");
 
             // Add new_stock to existing stock in inventory
             let current_stock = self.inventory.entry(product).read();
@@ -48,7 +48,7 @@ mod LizInventory {
             // Anybody can call this
             // Subtract quantity from stock in inventory
             let current_stock = self.inventory.entry(product).read();
-            assert(current_stock >= quantity, 'Insufficient stock');
+            assert!(current_stock >= quantity, "Insufficient stock");
 
             let updated_stock = current_stock - quantity;
             self.inventory.entry(product).write(updated_stock);
@@ -80,7 +80,7 @@ mod test {
 
         // Check that contract owner is set
         let contract_owner = dispatcher.get_owner();
-        assert(contract_owner == owner, 'Elizabeth should be the owner');
+        assert!(contract_owner == owner, "Elizabeth should be the owner");
     }
 
     #[test]
@@ -94,11 +94,11 @@ mod test {
         // Add stock
         dispatcher.add_stock('Nano', 10);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 10, 'stock should be 10');
+        assert!(stock == 10, "stock should be 10");
 
         dispatcher.add_stock('Nano', 15);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 25, 'stock should be 25');
+        assert!(stock == 25, "stock should be 25");
 
         stop_cheat_caller_address(dispatcher.contract_address);
     }
@@ -113,7 +113,7 @@ mod test {
         // Add stock
         dispatcher.add_stock('Nano', 10);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 10, 'stock should be 10');
+        assert!(stock == 10, "stock should be 10");
 
         // Call contract as different address
         stop_cheat_caller_address(dispatcher.contract_address);
@@ -121,7 +121,7 @@ mod test {
 
         dispatcher.purchase('Nano', 2);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 8, 'stock should be 8');
+        assert!(stock == 8, "stock should be 8");
 
         stop_cheat_caller_address(dispatcher.contract_address);
     }

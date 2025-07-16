@@ -63,7 +63,7 @@ mod test {
     fn test_owner() {
         let owner: ContractAddress = 'Sensei'.try_into().unwrap();
         let dispatcher = deploy_contract();
-        assert(owner == dispatcher.get_contract_owner(), 'Mr. Sensei should be the owner');
+        assert!(owner == dispatcher.get_contract_owner(), "Mr. Sensei should be the owner");
     }
 
     #[test]

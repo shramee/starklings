@@ -37,8 +37,8 @@ impl CatImpl of AnimalTrait<Cat> { // TODO: implement the trait Animal for the t
 #[test]
 fn test_traits2() {
     let kitty: Cat = AnimalTrait::new();
-    assert(kitty.make_noise() == 'meow', 'Wrong noise');
+    assert!(kitty.make_noise() == 'meow', "Wrong noise");
 
     let cow: Cow = AnimalTrait::new();
-    assert(cow.make_noise() == 'moo', 'Wrong noise');
+    assert!(cow.make_noise() == 'moo', "Wrong noise");
 }

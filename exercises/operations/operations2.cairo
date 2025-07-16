@@ -29,30 +29,30 @@ fn multiplication(x: u64, y: u64) -> u64 {
 #[test]
 fn test_modulus() {
     let res = modulus(16, 2);
-    assert(res == 0, 'Error message');
+    assert!(res == 0, "Error message");
 
     let res = modulus(17, 3);
-    assert(res == 2, 'Error message');
+    assert!(res == 2, "Error message");
 }
 
 #[cfg(test)]
 #[test]
 fn test_floor_division() {
     let res = floor_division(160, 2);
-    assert(res == 80, 'Error message');
+    assert!(res == 80, "Error message");
 
     let res = floor_division(21, 4);
-    assert(res == 5, 'Error message');
+    assert!(res == 5, "Error message");
 }
 
 #[cfg(test)]
 #[test]
 fn test_mul() {
     let res = multiplication(16, 2);
-    assert(res == 32, 'Error message');
+    assert!(res == 32, "Error message");
 
     let res = multiplication(21, 4);
-    assert(res == 84, 'Error message');
+    assert!(res == 84, "Error message");
 }
 
 #[cfg(test)]

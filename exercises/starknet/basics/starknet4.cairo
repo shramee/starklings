@@ -75,7 +75,7 @@ mod test {
 
         // Check that contract owner is set
         let contract_owner = dispatcher.get_owner();
-        assert(contract_owner == owner, 'Elizabeth should be the owner');
+        assert!(contract_owner == owner, "Elizabeth should be the owner");
     }
 
     #[test]
@@ -89,11 +89,11 @@ mod test {
         // Add stock
         dispatcher.add_stock('Nano', 10);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 10, 'stock should be 10');
+        assert!(stock == 10, "stock should be 10");
 
         dispatcher.add_stock('Nano', 15);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 25, 'stock should be 25');
+        assert!(stock == 25, "stock should be 25");
 
         stop_cheat_caller_address(dispatcher.contract_address);
     }
@@ -108,7 +108,7 @@ mod test {
         // Add stock
         dispatcher.add_stock('Nano', 10);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 10, 'stock should be 10');
+        assert!(stock == 10, "stock should be 10");
 
         // Call contract as different address
         stop_cheat_caller_address(dispatcher.contract_address);
@@ -116,7 +116,7 @@ mod test {
 
         dispatcher.purchase('Nano', 2);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 8, 'stock should be 8');
+        assert!(stock == 8, "stock should be 8");
 
         stop_cheat_caller_address(dispatcher.contract_address);
     }
