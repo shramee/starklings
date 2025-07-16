@@ -10,5 +10,5 @@ fn test_loop() {
         break ();
         counter += 1;
     };
-    assert(counter == 10, 'counter should be 10')
+    assert!(counter == 10, "counter should be 10")
 }

@@ -54,7 +54,7 @@ fn create_international_package() {
 
     let mut package = PackageTrait::new(sender_country, recipient_country, 1200);
 
-    assert(package.is_international() == true, 'Not international');
+    assert!(package.is_international() == true, "Not international");
 }
 
 #[cfg(test)]
@@ -65,7 +65,7 @@ fn create_local_package() {
 
     let mut package = PackageTrait::new(sender_country, recipient_country, 1200);
 
-    assert(package.is_international() == false, 'International');
+    assert!(package.is_international() == false, "International");
 }
 
 #[cfg(test)]
@@ -78,5 +78,5 @@ fn calculate_transport_fees() {
 
     let mut package = PackageTrait::new(sender_country, recipient_country, 1500);
 
-    assert(package.get_fees(cents_per_gram) == 4500, 'Wrong fees');
+    assert!(package.get_fees(cents_per_gram) == 4500, "Wrong fees");
 }

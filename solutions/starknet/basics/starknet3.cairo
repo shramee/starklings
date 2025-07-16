@@ -39,7 +39,7 @@ mod ProgressTracker {
             // Assert owner is calling
             let caller = get_caller_address();
             let owner = self.contract_owner.read();
-            assert(caller == owner, 'Only owner can set progress');
+            assert!(caller == owner, "Only owner can set progress");
 
             // Set new_progress for user
             self.progress.write(user, new_progress);
@@ -68,7 +68,7 @@ mod test {
     fn test_owner() {
         let owner: ContractAddress = 'Sensei'.try_into().unwrap();
         let dispatcher = deploy_contract();
-        assert(owner == dispatcher.get_contract_owner(), 'Mr. Sensei should be the owner');
+        assert!(owner == dispatcher.get_contract_owner(), "Mr. Sensei should be the owner");
     }
 
     #[test]

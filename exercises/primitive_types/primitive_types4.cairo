@@ -37,11 +37,11 @@ fn test_sum_big_numbers() {
 #[cfg(test)]
 #[test]
 fn test_convert_to_felt() {
-    assert(convert_to_felt(1_u8) == 1, 'Type conversion went wrong');
+    assert!(convert_to_felt(1_u8) == 1, "Type conversion went wrong");
 }
 
 #[cfg(test)]
 #[test]
 fn test_convert_to_u8() {
-    assert(convert_felt_to_u8(1) == 1_u8, 'Type conversion went wrong');
+    assert!(convert_felt_to_u8(1) == 1_u8, "Type conversion went wrong");
 }

@@ -72,7 +72,7 @@ fn test_match_message_call() {
     state.process(Message::Quit);
 
     assert(state.color == (255, 0, 255), 'wrong color');
-    assert(state.position.x == 10, 'wrong x position');
-    assert(state.position.y == 15, 'wrong y position');
-    assert(state.quit, 'quit should be true');
+    assert!(state.position.x == 10, "wrong x position");
+    assert!(state.position.y == 15, "wrong y position");
+    assert!(state.quit, "quit should be true");
 }

@@ -30,7 +30,7 @@ mod test {
     #[test]
     fn test_contract_view() {
         let dispatcher = deploy_contract();
-        assert('Joe' == dispatcher.get_owner(), 'Joe should be the owner.');
+        assert!('Joe' == dispatcher.get_owner(), "Joe should be the owner.");
     }
 
     fn deploy_contract() -> IJoesContractDispatcher {

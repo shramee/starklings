@@ -49,6 +49,6 @@ mod test {
         let (contract_address, _) = contract.deploy(@calldata).unwrap();
         let dispatcher = IJillsContractDispatcher { contract_address };
         let owner = dispatcher.get_owner();
-        assert(owner == 'Jill'.try_into().unwrap(), 'Owner should be Jill');
+        assert!(owner == 'Jill'.try_into().unwrap(), "Owner should be Jill");
     }
 }

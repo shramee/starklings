@@ -18,8 +18,8 @@ fn remove_element_from_array(ref a: Array<felt252>) {
 #[test]
 fn test_arrays2() {
     let mut a = create_array();
-    assert(a.len() == 1, 'Array should have one element');
-    assert(*a.at(0) == 42, 'First element should be 42');
+    assert!(a.len() == 1, "Array should have one element");
+    assert!(*a.at(0) == 42, "First element should be 42");
 }
 
 #[cfg(test)]
@@ -27,5 +27,5 @@ fn test_arrays2() {
 fn test_arrays2_empty() {
     let mut a = create_array();
     remove_element_from_array(ref a);
-    assert(a.len() == 0, 'Array length is not 0');
+    assert!(a.len() == 0, "Array length is not 0");
 }
