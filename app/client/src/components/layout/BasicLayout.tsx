@@ -6,6 +6,9 @@ import { GitHubLoginButton } from "../github/GitHubLoginButton";
 import { About } from "./About";
 import { useLocation, Link as RouterLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import AssessmentIcon from "@mui/icons-material/Assessment";
 
 const NAV_HEIGHT = "50px";
 
@@ -78,23 +81,16 @@ export const BasicLayout = ({ children }: IBasicLayoutProps) => {
             </Link>
           </Box>
           <Box sx={{ display: "flex", gap: 1, alignItems: "center", mr: 2 }}>
-            <Button
-              onClick={handleMenuClick}
-              sx={{
-                color: "#FFF",
-                textTransform: "none",
-                fontSize: 14,
-                "&:hover": {
-                  backgroundColor: "rgba(255, 255, 255, 0.08)",
-                },
-                display: "flex",
-                alignItems: "center",
-                gap: 0.5,
-              }}
-            >
-              <School sx={{ fontSize: 18 }} />
-              Mentor
-            </Button>
+            <Tooltip title="Starklings App Assessment">
+              <IconButton
+                id="header-icon"
+                onClick={handleMenuClick}
+                sx={{ p: 0.5, color: "#FFF" }}
+                aria-label="about"
+              >
+                <AssessmentIcon />
+              </IconButton>
+            </Tooltip>
             <Menu
               anchorEl={anchorEl}
               open={menuOpen}
