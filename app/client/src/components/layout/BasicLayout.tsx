@@ -81,7 +81,7 @@ export const BasicLayout = ({ children }: IBasicLayoutProps) => {
             </Link>
           </Box>
           <Box sx={{ display: "flex", gap: 1, alignItems: "center", mr: 2 }}>
-            <Tooltip title="Starklings App Assessment">
+            <Tooltip title="Assessment">
               <IconButton
                 id="header-icon"
                 onClick={handleMenuClick}

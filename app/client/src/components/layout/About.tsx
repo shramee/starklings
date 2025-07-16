@@ -19,7 +19,7 @@ export const About = () => {
   };
   return (
     <>
-      <Tooltip title="About Starklings App">
+      <Tooltip title="About">
         <IconButton
           id="header-icon"
           onClick={() => setDialogOpen(true)}
