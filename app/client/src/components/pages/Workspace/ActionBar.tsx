@@ -1,4 +1,4 @@
-import { SkipNext, SkipPrevious } from "@mui/icons-material";
+import { SkipNext, SkipPrevious, Add } from "@mui/icons-material";
 import { CircularProgress } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -17,6 +17,7 @@ interface IActionBarProps {
   onNextClick: () => void;
   onPrevClick: () => void;
   onRestartClick: () => void;
+  onAddExerciseClick: () => void;
   isTest: boolean;
   succeeded: boolean;
   hintVisible: boolean;
@@ -31,6 +32,7 @@ export const ActionBar = ({
   onPrevClick,
   onNextClick,
   onRestartClick,
+  onAddExerciseClick,
   isTest,
   succeeded,
   hintVisible,
@@ -65,6 +67,15 @@ export const ActionBar = ({
                   <RestartAltIcon />
                 </IconButton>
               </Tooltip> */}
+          <Tooltip title="Guía para agregar ejercicios">
+            <IconButton
+              onClick={onAddExerciseClick}
+              sx={{ p: 0.5, color: "#FFF" }}
+              aria-label="add-exercise-guide"
+            >
+              <Add />
+            </IconButton>
+          </Tooltip>
           <Tooltip title="Go to previous exercise">
             <IconButton
               disabled={first}

@@ -191,6 +191,11 @@ export const Workspace = () => {
     setEditorValue(data?.code ?? "");
   };
 
+  const handleAddExerciseClick = () => {
+    // Abrir la guía de agregar ejercicios en una nueva pestaña
+    window.open("https://github.com/shramee/starklings/blob/main/add_exercises.md", "_blank");
+  };
+
   return (
     <Box sx={{ height: "100%", overflowY: "hidden", display: "flex" }}>
       <Sidebar currentExercise={id ?? ""} />
@@ -312,6 +317,7 @@ export const Workspace = () => {
               onNextClick={handleNextClick}
               onPrevClick={handlePrevClick}
               onRestartClick={handleRestartClick}
+              onAddExerciseClick={handleAddExerciseClick}
               isTest={isTest}
               succeeded={succeeded}
               hintVisible={!!hint}
