@@ -198,10 +198,8 @@ export const Workspace = () => {
   };
 
   const handleEditExerciseClick = () => {
-    if (data?.path) {
     const githubUsername = localStorage.getItem(USERNAME);
-      window.open(`https://github.com/${githubUsername}/starklings/edit/main/${data.path}`, "_blank");
-    }
+    window.open(`https://github.com/${githubUsername}/starklings/edit/main/${data.path}`, "_blank");
   };
 
   const handleEditHintClick = async () => {
