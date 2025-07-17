@@ -32,29 +32,36 @@ Cada ejercicio en Starklings tiene **3 componentes principales**:
 
 ## ✏️ Editar un Ejercicio Existente
 
-### 🚀 **Botones de Edición Rápida**
+### 🚀 **Centro de Edición Unificado**
 
-Si estás conectado a GitHub en Starklings, verás estos botones en la barra de acciones:
+En la barra de acciones de cada ejercicio encontrarás un **botón de edición** (✏️) que abre un popup con todas las opciones:
 
-| Botón | Icono | Función | Destino |
-|-------|-------|---------|---------|
-| **Guía** | ➕ | Abre esta guía | `add_exercises.md` |
-| **Ejercicio** | ✏️ | Edita código del ejercicio | `exercises/.../ejercicio.cairo` |
-| **Hint** | 💡 | Edita hint del ejercicio | `info.toml` |
-
-**✨ Flujo de trabajo:**
+**✨ Flujo de trabajo mejorado:**
 1. Encuentras un error o mejora en un ejercicio
-2. Haces clic en el botón correspondiente (✏️ para código o 💡 para hint)
-3. Se abre automáticamente tu fork en GitHub
-4. **Para hints**: GitHub abre directamente en la línea exacta del ejercicio
-5. Editas directamente en el navegador
-6. Guardas y creas un pull request
+2. **Haces clic en el botón ✏️** (Opciones de edición)
+3. **Se abre un popup** con todas las opciones disponibles
+4. **Ves los requisitos** (fork y sincronización) claramente explicados
+5. **Seleccionas la acción** que necesitas
+6. **Se abre directamente** tu fork en GitHub en la ubicación correcta
 
-**🎯 Navegación Inteligente:**
-- El botón 💡 consulta tu fork de GitHub automáticamente
+### 🎯 **Opciones Disponibles en el Popup:**
+
+| Opción | Función | Requisitos |
+|--------|---------|------------|
+| **📚 Ver Guía** | Abre esta documentación | Ninguno |
+| **✏️ Editar Ejercicio** | Modifica código y descripción | GitHub conectado |
+| **💡 Editar Hint** | Mejora las pistas (línea exacta) | GitHub conectado |
+
+### 📋 **Requisitos Mostrados Claramente:**
+- ✅ **Fork del proyecto** en tu cuenta de GitHub
+- ✅ **Sincronización** con el repositorio principal  
+- ✅ **Conexión a GitHub** en Starklings
+
+**🎯 Navegación Inteligente para Hints:**
+- Consulta automáticamente tu fork de GitHub
 - Busca la línea exacta que contiene `name = "ejercicio"`
-- Te lleva directamente a esa línea usando `#L{numero}`
-- ¡No necesitas buscar manualmente - es completamente automático!
+- Te lleva directamente usando `#L{numero}`
+- ¡Completamente automático, sin búsqueda manual!
 
 ---
 
@@ -65,10 +72,11 @@ Para modificar la descripción de un ejercicio (por ejemplo, `arrays1.cairo`):
 #### 🎯 **Método Rápido (Recomendado)**
 Si estás conectado a GitHub en Starklings:
 
-1. **Haz clic en el botón ✏️** en la barra de acciones del ejercicio
-2. Se abrirá automáticamente el archivo del ejercicio en tu fork de GitHub
-3. Edita los comentarios al inicio del archivo
-4. Guarda y crea un pull request
+1. **Haz clic en el botón ✏️** (Opciones de edición) en la barra de acciones
+2. **Selecciona "✏️ Editar Código del Ejercicio"** en el popup
+3. Se abrirá automáticamente el archivo del ejercicio en tu fork de GitHub
+4. Edita los comentarios al inicio del archivo
+5. Guarda y crea un pull request
 
 #### 📝 **Método Manual**
 1. **Abre el archivo del ejercicio**:
@@ -101,11 +109,12 @@ Para modificar el hint (pista) que se muestra a los estudiantes:
 #### 🎯 **Método Rápido (Recomendado)**
 Si estás conectado a GitHub en Starklings:
 
-1. **Haz clic en el botón 💡** en la barra de acciones del ejercicio
-2. Se abrirá automáticamente el archivo `info.toml` en tu fork de GitHub
-3. **¡Te lleva directamente a la línea exacta del ejercicio!** (ej: línea 287 para `options3`)
-4. Edita el hint en la sección correspondiente
-5. Guarda y crea un pull request
+1. **Haz clic en el botón ✏️** (Opciones de edición) en la barra de acciones
+2. **Selecciona "💡 Editar Hint del Ejercicio"** en el popup
+3. Se abrirá automáticamente el archivo `info.toml` en tu fork de GitHub
+4. **¡Te lleva directamente a la línea exacta del ejercicio!** (ej: línea 287 para `options3`)
+5. Edita el hint en la sección correspondiente
+6. Guarda y crea un pull request
 
 #### 📝 **Método Manual**
 1. **Abre el archivo de configuración**:
@@ -218,14 +227,21 @@ En `info.toml`, cada ejercicio tiene un campo `mode` que determina cómo se ejec
 - 🚫 Mantén el marcador `// I AM NOT DONE`
 - 📦 Importa las dependencias necesarias
 
-## 🎯 **Resumen de Edición Rápida**
+## 🎯 **Resumen del Centro de Edición**
+
+### Para Todos los Usuarios:
+- **Un solo botón ✏️**: Acceso unificado a todas las opciones
+- **Popup informativo**: Requisitos y opciones claramente explicados
+- **Guía siempre disponible**: Sin necesidad de conexión a GitHub
 
 ### Para Usuarios Conectados a GitHub:
-- **Ejercicio actual**: Usa ✏️ para editar el código
-- **Hint actual**: Usa 💡 para editar el hint
-- **Nueva guía**: Usa ➕ para acceder a esta documentación
+- **Edición directa**: Código y hints desde la interfaz
+- **Navegación inteligente**: Va directamente a la línea correcta
+- **Contexto claro**: Nombre del ejercicio en el título del popup
 
-### Ventajas del Sistema:
+### Ventajas del Nuevo Sistema:
+- 🎨 **UX mejorada**: Un solo botón en lugar de múltiples iconos
+- 📋 **Requisitos claros**: Información sobre fork y sincronización
 - 🚀 **Edición directa**: Sin necesidad de clonar el repositorio
 - 🔄 **Fork automático**: GitHub crea tu fork si no existe
 - 📝 **Pull requests fáciles**: De edición a contribución en minutos

@@ -363,6 +363,7 @@ export const Workspace = () => {
               onEditExerciseClick={handleEditExerciseClick}
               onEditHintClick={handleEditHintClick}
               isGitHubConnected={isGitHubConnected}
+              currentExerciseName={data?.name}
               isTest={isTest}
               succeeded={succeeded}
               hintVisible={!!hint}
