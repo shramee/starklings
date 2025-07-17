@@ -91,15 +91,6 @@ export const ActionBar = ({
                   <RestartAltIcon />
                 </IconButton>
               </Tooltip> */}
-          <Tooltip title="Edit options">
-            <IconButton
-              onClick={openEditDialog}
-              sx={{ p: 0.5, color: "#FFF" }}
-              aria-label="edit-options"
-            >
-              <Edit />
-            </IconButton>
-          </Tooltip>
           <Tooltip title="Go to previous exercise">
             <IconButton
               disabled={first}
@@ -128,6 +119,15 @@ export const ActionBar = ({
             justifyContent: "flex-end",
           }}
         >
+          <Tooltip title="Edit">
+            <IconButton
+              onClick={openEditDialog}
+              sx={{ p: 0.5, color: "#FFF" }}
+              aria-label="edit-options"
+            >
+              <Edit />
+            </IconButton>
+          </Tooltip>
           <Button
             color="primary"
             variant="contained"
