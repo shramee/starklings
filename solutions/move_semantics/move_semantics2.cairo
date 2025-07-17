@@ -2,9 +2,9 @@
 
 
 fn main() {
-    let arr0 = ArrayTrait::new();
+    let mut arr0 = ArrayTrait::new();
 
-    let mut arr1 = fill_arr(arr0);
+    fill_arr(ref arr0);
 
     // Do not change the following line!
     print_arr(arr0);
@@ -15,12 +15,8 @@ fn print_arr(arr: Array<felt252>) {
 }
 
 // Do not change the following line!
-fn fill_arr(arr: Array<felt252>) -> Array<felt252> {
-    let mut arr = arr;
-
+fn fill_arr(ref arr: Array<felt252>){
     arr.append(22);
     arr.append(44);
     arr.append(66);
-
-    arr
 }
