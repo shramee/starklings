@@ -32,10 +32,45 @@ Cada ejercicio en Starklings tiene **3 componentes principales**:
 
 ## ✏️ Editar un Ejercicio Existente
 
+### 🚀 **Botones de Edición Rápida**
+
+Si estás conectado a GitHub en Starklings, verás estos botones en la barra de acciones:
+
+| Botón | Icono | Función | Destino |
+|-------|-------|---------|---------|
+| **Guía** | ➕ | Abre esta guía | `add_exercises.md` |
+| **Ejercicio** | ✏️ | Edita código del ejercicio | `exercises/.../ejercicio.cairo` |
+| **Hint** | 💡 | Edita hint del ejercicio | `info.toml` |
+
+**✨ Flujo de trabajo:**
+1. Encuentras un error o mejora en un ejercicio
+2. Haces clic en el botón correspondiente (✏️ para código o 💡 para hint)
+3. Se abre automáticamente tu fork en GitHub
+4. **Para hints**: GitHub abre directamente en la línea exacta del ejercicio
+5. Editas directamente en el navegador
+6. Guardas y creas un pull request
+
+**🎯 Navegación Inteligente:**
+- El botón 💡 consulta tu fork de GitHub automáticamente
+- Busca la línea exacta que contiene `name = "ejercicio"`
+- Te lleva directamente a esa línea usando `#L{numero}`
+- ¡No necesitas buscar manualmente - es completamente automático!
+
+---
+
 ### Editar la Descripción del Ejercicio
 
 Para modificar la descripción de un ejercicio (por ejemplo, `arrays1.cairo`):
 
+#### 🎯 **Método Rápido (Recomendado)**
+Si estás conectado a GitHub en Starklings:
+
+1. **Haz clic en el botón ✏️** en la barra de acciones del ejercicio
+2. Se abrirá automáticamente el archivo del ejercicio en tu fork de GitHub
+3. Edita los comentarios al inicio del archivo
+4. Guarda y crea un pull request
+
+#### 📝 **Método Manual**
 1. **Abre el archivo del ejercicio**:
    ```bash
    exercises/arrays/arrays1.cairo
@@ -63,6 +98,16 @@ Para modificar la descripción de un ejercicio (por ejemplo, `arrays1.cairo`):
 
 Para modificar el hint (pista) que se muestra a los estudiantes:
 
+#### 🎯 **Método Rápido (Recomendado)**
+Si estás conectado a GitHub en Starklings:
+
+1. **Haz clic en el botón 💡** en la barra de acciones del ejercicio
+2. Se abrirá automáticamente el archivo `info.toml` en tu fork de GitHub
+3. **¡Te lleva directamente a la línea exacta del ejercicio!** (ej: línea 287 para `options3`)
+4. Edita el hint en la sección correspondiente
+5. Guarda y crea un pull request
+
+#### 📝 **Método Manual**
 1. **Abre el archivo de configuración**:
    ```bash
    info.toml
@@ -173,4 +218,18 @@ En `info.toml`, cada ejercicio tiene un campo `mode` que determina cómo se ejec
 - 🚫 Mantén el marcador `// I AM NOT DONE`
 - 📦 Importa las dependencias necesarias
 
-¡Con esta guía ya puedes crear y editar ejercicios de Starklings de manera efectiva! 🚀
+## 🎯 **Resumen de Edición Rápida**
+
+### Para Usuarios Conectados a GitHub:
+- **Ejercicio actual**: Usa ✏️ para editar el código
+- **Hint actual**: Usa 💡 para editar el hint
+- **Nueva guía**: Usa ➕ para acceder a esta documentación
+
+### Ventajas del Sistema:
+- 🚀 **Edición directa**: Sin necesidad de clonar el repositorio
+- 🔄 **Fork automático**: GitHub crea tu fork si no existe
+- 📝 **Pull requests fáciles**: De edición a contribución en minutos
+- 🎯 **Contextual**: Editas exactamente lo que estás viendo
+- 🎯 **Navegación automática**: Va directamente a la línea exacta del ejercicio
+
+¡Con esta guía y los botones de edición rápida ya puedes crear y editar ejercicios de Starklings de manera efectiva! 🚀

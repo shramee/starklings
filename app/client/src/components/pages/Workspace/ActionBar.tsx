@@ -1,4 +1,4 @@
-import { SkipNext, SkipPrevious, Add } from "@mui/icons-material";
+import { SkipNext, SkipPrevious, Add, Edit, HelpOutline } from "@mui/icons-material";
 import { CircularProgress } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -18,6 +18,9 @@ interface IActionBarProps {
   onPrevClick: () => void;
   onRestartClick: () => void;
   onAddExerciseClick: () => void;
+  onEditExerciseClick?: () => void;
+  onEditHintClick?: () => void;
+  isGitHubConnected?: boolean;
   isTest: boolean;
   succeeded: boolean;
   hintVisible: boolean;
@@ -33,6 +36,9 @@ export const ActionBar = ({
   onNextClick,
   onRestartClick,
   onAddExerciseClick,
+  onEditExerciseClick,
+  onEditHintClick,
+  isGitHubConnected,
   isTest,
   succeeded,
   hintVisible,
@@ -76,6 +82,28 @@ export const ActionBar = ({
               <Add />
             </IconButton>
           </Tooltip>
+          {isGitHubConnected && onEditExerciseClick && (
+            <Tooltip title="Editar ejercicio en tu fork">
+              <IconButton
+                onClick={onEditExerciseClick}
+                sx={{ p: 0.5, color: "#FFF" }}
+                aria-label="edit-exercise"
+              >
+                <Edit />
+              </IconButton>
+            </Tooltip>
+          )}
+          {isGitHubConnected && onEditHintClick && (
+            <Tooltip title="Editar hint (va a línea exacta)">
+              <IconButton
+                onClick={onEditHintClick}
+                sx={{ p: 0.5, color: "#FFF" }}
+                aria-label="edit-hint"
+              >
+                <HelpOutline />
+              </IconButton>
+            </Tooltip>
+          )}
           <Tooltip title="Go to previous exercise">
             <IconButton
               disabled={first}
