@@ -91,7 +91,7 @@ export const ActionBar = ({
                   <RestartAltIcon />
                 </IconButton>
               </Tooltip> */}
-          <Tooltip title="Opciones de edición">
+          <Tooltip title="Edit options">
             <IconButton
               onClick={openEditDialog}
               sx={{ p: 0.5, color: "#FFF" }}
@@ -163,57 +163,65 @@ export const ActionBar = ({
         fullWidth
       >
         <DialogTitle id="edit-dialog-title">
-          🛠️ Opciones de Edición - {currentExerciseName}
+          🛠️ Edit Options - {currentExerciseName}
         </DialogTitle>
         <DialogContent>
           <DialogContentText sx={{ mb: 3 }}>
-            <strong>📋 Requisitos previos:</strong>
+            <strong>📋 Prerequisites:</strong>
             <br />
-            • Debes tener el proyecto <strong>forkeado</strong> en tu cuenta de GitHub
+            • You must have the project <strong>forked</strong> in your GitHub account
             <br />
-            • Tu fork debe estar <strong>sincronizado</strong> con el repositorio principal
+            • Your fork must be <strong>synced</strong> with the main repository
             <br />
-            • Debes estar <strong>conectado a GitHub</strong> en Starklings
+            • You must be <strong>logged into GitHub</strong> in Starklings
           </DialogContentText>
           
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Button
-              variant="outlined"
+              variant="contained"
               onClick={() => handleEditAction(onAddExerciseClick)}
               sx={{ 
                 justifyContent: "flex-start", 
                 textAlign: "left",
                 py: 1.5,
-                px: 2
+                px: 2,
+                backgroundColor: "#2196f3",
+                "&:hover": {
+                  backgroundColor: "#1976d2"
+                }
               }}
             >
               <Box>
                 <Box sx={{ fontWeight: "bold", mb: 0.5 }}>
-                  📚 Ver Guía de Contribución
+                  📚 View Contribution Guide
                 </Box>
-                <Box sx={{ fontSize: "0.85em", opacity: 0.8 }}>
-                  Aprende cómo agregar o editar ejercicios
+                <Box sx={{ fontSize: "0.85em", opacity: 0.9 }}>
+                  Learn how to add or edit exercises
                 </Box>
               </Box>
             </Button>
 
             {isGitHubConnected && onEditExerciseClick && (
               <Button
-                variant="outlined"
+                variant="contained"
                 onClick={() => handleEditAction(onEditExerciseClick)}
                 sx={{ 
                   justifyContent: "flex-start", 
                   textAlign: "left",
                   py: 1.5,
-                  px: 2
+                  px: 2,
+                  backgroundColor: "#4caf50",
+                  "&:hover": {
+                    backgroundColor: "#388e3c"
+                  }
                 }}
               >
                 <Box>
                   <Box sx={{ fontWeight: "bold", mb: 0.5 }}>
-                    ✏️ Editar Código del Ejercicio
+                    ✏️ Edit Exercise Code
                   </Box>
-                  <Box sx={{ fontSize: "0.85em", opacity: 0.8 }}>
-                    Modifica la descripción y código de {currentExerciseName}
+                  <Box sx={{ fontSize: "0.85em", opacity: 0.9 }}>
+                    Modify description and code of {currentExerciseName}
                   </Box>
                 </Box>
               </Button>
@@ -221,21 +229,25 @@ export const ActionBar = ({
 
             {isGitHubConnected && onEditHintClick && (
               <Button
-                variant="outlined"
+                variant="contained"
                 onClick={() => handleEditAction(onEditHintClick)}
                 sx={{ 
                   justifyContent: "flex-start", 
                   textAlign: "left",
                   py: 1.5,
-                  px: 2
+                  px: 2,
+                  backgroundColor: "#ff9800",
+                  "&:hover": {
+                    backgroundColor: "#f57c00"
+                  }
                 }}
               >
                 <Box>
                   <Box sx={{ fontWeight: "bold", mb: 0.5 }}>
-                    💡 Editar Hint del Ejercicio
+                    💡 Edit Exercise Hint
                   </Box>
-                  <Box sx={{ fontSize: "0.85em", opacity: 0.8 }}>
-                    Mejora las pistas para {currentExerciseName} (va a línea exacta)
+                  <Box sx={{ fontSize: "0.85em", opacity: 0.9 }}>
+                    Improve hints for {currentExerciseName} (goes to exact line)
                   </Box>
                 </Box>
               </Button>
@@ -251,10 +263,10 @@ export const ActionBar = ({
                 }}
               >
                 <Box sx={{ fontWeight: "bold", color: "#ff6f00", mb: 1 }}>
-                  ⚠️ GitHub no conectado
+                  ⚠️ GitHub not connected
                 </Box>
                 <Box sx={{ fontSize: "0.9em" }}>
-                  Conecta tu cuenta de GitHub para acceder a las opciones de edición de ejercicios.
+                  Connect your GitHub account to access exercise editing options.
                 </Box>
               </Box>
             )}
@@ -262,7 +274,7 @@ export const ActionBar = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={closeEditDialog} variant="contained">
-            Cerrar
+            Close
           </Button>
         </DialogActions>
       </Dialog>

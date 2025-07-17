@@ -195,7 +195,7 @@ export const Workspace = () => {
 
   const handleAddExerciseClick = () => {
     // Abrir la guía de agregar ejercicios en una nueva pestaña
-    window.open("https://github.com/shramee/starklings/blob/main/add_exercises.md", "_blank");
+    window.open("https://github.com/shramee/starklings/blob/main/CONTRIBUTION_GUIDE.md", "_blank");
   };
 
   const handleEditExerciseClick = () => {
