@@ -154,7 +154,6 @@ export const ActionBar = ({
         </Box>
       </Box>
 
-      {/* Edit Options Dialog */}
       <Dialog
         open={editDialogOpen}
         onClose={closeEditDialog}

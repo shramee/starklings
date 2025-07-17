@@ -194,49 +194,39 @@ export const Workspace = () => {
   };
 
   const handleAddExerciseClick = () => {
-    // Abrir la guía de agregar ejercicios en una nueva pestaña
-    window.open("https://github.com/shramee/starklings/blob/main/CONTRIBUTION_GUIDE.md", "_blank");
+    window.open("https://github.com/shramee/starklings/blob/main/EXERCISE_CONTRIBUTION_GUIDE.md", "_blank");
   };
 
   const handleEditExerciseClick = () => {
     if (data?.path) {
-      // const githubUsername = localStorage.getItem(USERNAME);
-    const githubUsername = "dpinones";
+    const githubUsername = localStorage.getItem(USERNAME);
       window.open(`https://github.com/${githubUsername}/starklings/edit/main/${data.path}`, "_blank");
     }
   };
 
   const handleEditHintClick = async () => {
-    // const githubUsername = localStorage.getItem(USERNAME);
-    const githubUsername = "dpinones";
+    const githubUsername = localStorage.getItem(USERNAME);
 
     try {
-      // Obtener el contenido raw del archivo info.toml desde GitHub
       const response = await fetch(`https://raw.githubusercontent.com/${githubUsername}/starklings/main/info.toml`);
       const content = await response.text();
       
-      // Buscar la línea que contiene name = "ejercicio"
       const lines = content.split('\n');
       const searchPattern = `name = "${data?.id}"`;
       const lineNumber = lines.findIndex(line => line.trim() === searchPattern) + 1;
 
       if (lineNumber > 0) {
-        // Abrir directamente en la línea encontrada
         window.open(`https://github.com/${githubUsername}/starklings/edit/main/info.toml#L${lineNumber}`, "_blank");
       } else {
-        // Fallback si no encuentra la línea
         window.open(`https://github.com/${githubUsername}/starklings/edit/main/info.toml`, "_blank");
       }
     } catch (error) {
       console.error('Error fetching info.toml:', error);
-      // Fallback en caso de error
       window.open(`https://github.com/${githubUsername}/starklings/edit/main/info.toml`, "_blank");
     }
   };
 
-  // Detectar si está conectado a GitHub
-  const isGitHubConnected = true;
-  // const isGitHubConnected = !!localStorage.getItem(GITHUB_ENABLED);
+  const isGitHubConnected = !!localStorage.getItem(GITHUB_ENABLED);
 
   return (
     <Box sx={{ height: "100%", overflowY: "hidden", display: "flex" }}>
