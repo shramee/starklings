@@ -16,11 +16,7 @@ trait PackageTrait {
 }
 impl PackageImpl of PackageTrait {
     fn new(sender_country: felt252, recipient_country: felt252, weight_in_grams: usize) -> Package {
-        if weight_in_grams <= 0{
-            let mut data = ArrayTrait::new();
-            data.append('x');
-            panic(data);
-        }
+        assert!(weight_in_grams > 0, "Weight must be greater than 0");
         Package { sender_country, recipient_country, weight_in_grams,  }
     }
 
