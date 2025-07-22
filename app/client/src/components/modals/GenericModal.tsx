@@ -114,7 +114,7 @@ export const GenericModal = ({ id, open, handleClose, handleOpen, image_src, ima
                 height: "100%",
               }}
             >
-              <a href={link} style={{ display: 'block' }}>
+              <a href={link} onClick={(e) => { e.preventDefault(); openInNewTab(link); }} style={{ display: 'block' }}>
                 <img
                   onClick={() => openInNewTab(link)}
                   src={image_src}
@@ -123,6 +123,7 @@ export const GenericModal = ({ id, open, handleClose, handleOpen, image_src, ima
                     width: "100%",
                     height: "100%",
                     display: "block",
+                    cursor: "pointer",
                   }}
                 />
               </a>
@@ -132,8 +133,12 @@ export const GenericModal = ({ id, open, handleClose, handleOpen, image_src, ima
                 onClick={handleDontShowAgain}
                 sx={{
                   color: "white",
+                  backgroundColor: "#4862b0",
                   borderRadius: 2,
                   py: 1.5,
+                  "&:hover": {
+                    backgroundColor: "#5a7bd0",
+                  },
                 }}
               >
                 Don't show again
@@ -187,11 +192,16 @@ export const GenericModal = ({ id, open, handleClose, handleOpen, image_src, ima
                     variant="outlined"
                     onClick={handleDontShowAgain}
                     sx={{
-                      borderColor: "rgba(255, 255, 255, 0.5)",
+                      borderColor: "#4862b0",
                       color: "white",
+                      backgroundColor: "#4862b0",
                       borderRadius: 2,
                       flex: "0 1 22em",
                       py: 1,
+                      "&:hover": {
+                        backgroundColor: "#5a7bd0",
+                        borderColor: "#5a7bd0",
+                      },
                     }}
                   >
                     Don't show again
