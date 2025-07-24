@@ -39,7 +39,6 @@ export const ActionBar = ({
   last,
 }: IActionBarProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
-
   const openDialog = () => {
     setDialogOpen(true);
   };
@@ -47,7 +46,6 @@ export const ActionBar = ({
   const closeDialog = () => {
     setDialogOpen(false);
   };
-
   return (
     <>
       <Box
@@ -120,8 +118,6 @@ export const ActionBar = ({
           )}
         </Box>
       </Box>
-
-      {/* Restart Dialog (existing) */}
       <Dialog
         open={dialogOpen}
         onClose={closeDialog}
