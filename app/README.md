@@ -23,7 +23,7 @@ Follow these steps to set up and run the backend:
 
 If you're running the backend for the first time, you need to configure the database connection:
 
-1. Create a table in the database. This example uses DBeaver to create a connection to PostgreSQL and then create the table.
+1. Create a new database named `starklings-test`. This example uses DBeaver to create a connection to PostgreSQL and then create the database.
 
    <img width="805" alt="Screenshot 2025-04-25 at 12 14 54 PM" src="https://github.com/user-attachments/assets/c4161f4e-8102-47e2-bffc-a2b836192abc" />
    
