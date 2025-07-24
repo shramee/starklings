@@ -220,13 +220,16 @@ export const Workspace = () => {
 
   const handleEditExerciseClick = () => {
     if (data?.path) {
-      const githubUsername = localStorage.getItem(USERNAME);
+      // const githubUsername = localStorage.getItem(USERNAME);
+      const githubUsername = "dpinones";
       window.open(`https://github.com/${githubUsername}/starklings/edit/main/${data.path}`, "_blank");
     }
   };
 
   const handleEditHintClick = async () => {
-    const githubUsername = localStorage.getItem(USERNAME);
+    // const githubUsername = localStorage.getItem(USERNAME);
+    const githubUsername = "dpinones";
+
 
     try {
       const response = await fetch(`https://raw.githubusercontent.com/${githubUsername}/starklings/main/info.toml`);
@@ -247,7 +250,9 @@ export const Workspace = () => {
     }
   };
 
-  const isGitHubConnected = !!localStorage.getItem(GITHUB_ENABLED);
+  // const isGitHubConnected = !!localStorage.getItem(GITHUB_ENABLED);
+  const isGitHubConnected = true;
+
 
   return (
     <Box sx={{ height: "100%", overflowY: "hidden", display: "flex" }}>
@@ -274,10 +279,11 @@ export const Workspace = () => {
                   <Tooltip title="Edit">
                     <IconButton
                       onClick={openEditDialog}
-                      sx={{ p: 0.5, color: "#FFF" }}
+                      sx={{ p: 0.25, color: "#FFF" }}
                       aria-label="edit-options"
+                      size="small"
                     >
-                      <Edit />
+                      <Edit fontSize="small" />
                     </IconButton>
                   </Tooltip>
                 </Box>
