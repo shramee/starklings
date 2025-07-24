@@ -73,19 +73,19 @@ function App() {
         <StarknetProvider>
           <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={darkTheme}>
-              {/* <GenericModal
+              <GenericModal
                 id="starknet_hackathon"
                 open={open}
                 handleClose={handleClose}
                 handleOpen={handleOpen}
-                image_src="/starknet_hackathon.png"
-                image_alt="Starknet Hackathon: Re{ignite}"
+                image_src="/developer_basecamp_13.png"
+                image_alt="Starknet Developer Basecamp 13"
                 // title="Starknet Hackathon"
                 // date="Starting May 12"
                 // description="From idea to MVP: Build real solutions, form teams, and compete for prizes."
                 // button_text="Register for Hackathon"
-                link="https://www.hackquest.io/hackathons/Starknet-Hackathon-Re%7Bignite%7D?utm=starklings"
-              /> */}
+                link="https://us06web.zoom.us/webinar/register/6517491159098/WN_VnPGmzseSBmi7FkNcPpRmQ#/registration"
+              />
 
               <BasicLayout>
                 <>
