@@ -220,16 +220,13 @@ export const Workspace = () => {
 
   const handleEditExerciseClick = () => {
     if (data?.path) {
-      // const githubUsername = localStorage.getItem(USERNAME);
-      const githubUsername = "dpinones";
+      const githubUsername = localStorage.getItem(USERNAME);
       window.open(`https://github.com/${githubUsername}/starklings/edit/main/${data.path}`, "_blank");
     }
   };
 
   const handleEditHintClick = async () => {
-    // const githubUsername = localStorage.getItem(USERNAME);
-    const githubUsername = "dpinones";
-
+    const githubUsername = localStorage.getItem(USERNAME);
 
     try {
       const response = await fetch(`https://raw.githubusercontent.com/${githubUsername}/starklings/main/info.toml`);
@@ -250,9 +247,7 @@ export const Workspace = () => {
     }
   };
 
-  // const isGitHubConnected = !!localStorage.getItem(GITHUB_ENABLED);
-  const isGitHubConnected = true;
-
+  const isGitHubConnected = !!localStorage.getItem(GITHUB_ENABLED);
 
   return (
     <Box sx={{ height: "100%", overflowY: "hidden", display: "flex" }}>
