@@ -114,7 +114,7 @@ export const GenericModal = ({ id, open, handleClose, handleOpen, image_src, ima
                 height: "100%",
               }}
             >
-              <a href={link} onClick={(e) => { e.preventDefault(); openInNewTab(link); }} style={{ display: 'block' }}>
+                <a href={link} target="_blank" style={{ display: 'block' }}>
                 <img
                   onClick={() => openInNewTab(link)}
                   src={image_src}
@@ -123,7 +123,6 @@ export const GenericModal = ({ id, open, handleClose, handleOpen, image_src, ima
                     width: "100%",
                     height: "100%",
                     display: "block",
-                    cursor: "pointer",
                   }}
                 />
               </a>
