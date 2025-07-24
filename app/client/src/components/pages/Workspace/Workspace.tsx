@@ -1,9 +1,16 @@
 import { Editor } from "@monaco-editor/react";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import { Edit } from "@mui/icons-material";
 import {
   Alert,
   AlertTitle,
   Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   IconButton,
   Link,
   TextField,
@@ -57,6 +64,7 @@ export const Workspace = () => {
   const navigate = useNavigate();
   const [hint, setHint] = useState<string | undefined>(undefined);
   const [warning, setWarning] = useState<string | undefined>(undefined);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   const isTest = data?.mode === "test";
   const {
     mutate: getHint,
@@ -91,6 +99,19 @@ export const Workspace = () => {
     setHint(undefined);
     setCompileError(undefined);
     setWarning(undefined);
+  };
+
+  const openEditDialog = () => {
+    setEditDialogOpen(true);
+  };
+
+  const closeEditDialog = () => {
+    setEditDialogOpen(false);
+  };
+
+  const handleEditAction = (action: () => void) => {
+    closeEditDialog();
+    action();
   };
 
   const handleCompileClick = async () => {
@@ -246,9 +267,20 @@ export const Workspace = () => {
             >
               {/* description */}
               <Box sx={{ px: 8, py: 6 }}>
-                <Typography sx={{ mb: 4, textTransform: "capitalize" }} variant="h4">
-                  {data?.name}
-                </Typography>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4 }}>
+                  <Typography sx={{ textTransform: "capitalize" }} variant="h4">
+                    {data?.name}
+                  </Typography>
+                  <Tooltip title="Edit">
+                    <IconButton
+                      onClick={openEditDialog}
+                      sx={{ p: 0.5, color: "#FFF" }}
+                      aria-label="edit-options"
+                    >
+                      <Edit />
+                    </IconButton>
+                  </Tooltip>
+                </Box>
                 {isLoading && <CircularProgressCenterLoader />}
                 {data && (
                   <Typography>
@@ -349,11 +381,6 @@ export const Workspace = () => {
               onNextClick={handleNextClick}
               onPrevClick={handlePrevClick}
               onRestartClick={handleRestartClick}
-              onAddExerciseClick={handleAddExerciseClick}
-              onEditExerciseClick={handleEditExerciseClick}
-              onEditHintClick={handleEditHintClick}
-              isGitHubConnected={isGitHubConnected}
-              currentExerciseName={data?.name}
               isTest={isTest}
               succeeded={succeeded}
               hintVisible={!!hint}
@@ -420,6 +447,131 @@ export const Workspace = () => {
         </Grid>
       </PanelGroup>
       {isMobileOnly && <MobileWarningDialog />}
+      
+      {/* Edit Dialog */}
+      <Dialog
+        open={editDialogOpen}
+        onClose={closeEditDialog}
+        aria-labelledby="edit-dialog-title"
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle id="edit-dialog-title">
+          🛠️ Edit Options - {data?.name}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText sx={{ mb: 3 }}>
+            <strong>📋 Prerequisites:</strong>
+            <br />
+            • You must have the project <strong>forked</strong> in your GitHub account
+            <br />
+            • Your fork must be <strong>synced</strong> with the main repository
+            <br />
+            • You must be <strong>logged into GitHub</strong> in Starklings
+          </DialogContentText>
+          
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Button
+              variant="contained"
+              onClick={() => handleEditAction(handleAddExerciseClick)}
+              sx={{ 
+                justifyContent: "flex-start", 
+                textAlign: "left",
+                py: 1.5,
+                px: 2,
+                backgroundColor: "#2196f3",
+                "&:hover": {
+                  backgroundColor: "#1976d2"
+                }
+              }}
+            >
+              <Box>
+                <Box sx={{ fontWeight: "bold", mb: 0.5 }}>
+                  📚 View Contribution Guide
+                </Box>
+                <Box sx={{ fontSize: "0.85em", opacity: 0.9 }}>
+                  Learn how to add or edit exercises
+                </Box>
+              </Box>
+            </Button>
+
+            {isGitHubConnected && (
+              <Button
+                variant="contained"
+                onClick={() => handleEditAction(handleEditExerciseClick)}
+                sx={{ 
+                  justifyContent: "flex-start", 
+                  textAlign: "left",
+                  py: 1.5,
+                  px: 2,
+                  backgroundColor: "#4caf50",
+                  "&:hover": {
+                    backgroundColor: "#388e3c"
+                  }
+                }}
+              >
+                <Box>
+                  <Box sx={{ fontWeight: "bold", mb: 0.5 }}>
+                    ✏️ Edit Exercise Code
+                  </Box>
+                  <Box sx={{ fontSize: "0.85em", opacity: 0.9 }}>
+                    Modify description and code of {data?.name}
+                  </Box>
+                </Box>
+              </Button>
+            )}
+
+            {isGitHubConnected && (
+              <Button
+                variant="contained"
+                onClick={() => handleEditAction(handleEditHintClick)}
+                sx={{ 
+                  justifyContent: "flex-start", 
+                  textAlign: "left",
+                  py: 1.5,
+                  px: 2,
+                  backgroundColor: "#ff9800",
+                  "&:hover": {
+                    backgroundColor: "#f57c00"
+                  }
+                }}
+              >
+                <Box>
+                  <Box sx={{ fontWeight: "bold", mb: 0.5 }}>
+                    💡 Edit Exercise Hint
+                  </Box>
+                  <Box sx={{ fontSize: "0.85em", opacity: 0.9 }}>
+                    Improve hints for {data?.name} (goes to exact line)
+                  </Box>
+                </Box>
+              </Button>
+            )}
+
+            {!isGitHubConnected && (
+              <Box 
+                sx={{ 
+                  p: 2, 
+                  bgcolor: "rgba(255, 193, 7, 0.1)", 
+                  borderRadius: 1,
+                  border: "1px solid rgba(255, 193, 7, 0.3)"
+                }}
+              >
+                <Box sx={{ fontWeight: "bold", color: "#ff6f00", mb: 1 }}>
+                  ⚠️ GitHub not connected
+                </Box>
+                <Box sx={{ fontSize: "0.9em" }}>
+                  Connect your GitHub account to access exercise editing options.
+                </Box>
+              </Box>
+            )}
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeEditDialog} variant="contained">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };
