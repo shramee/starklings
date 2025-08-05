@@ -23,25 +23,18 @@ mod JoesContract {
 
 #[cfg(test)]
 mod test {
-    use super::JoesContract;
-    use starknet::syscalls::deploy_syscall;
-    use super::IJoesContractDispatcher;
-    use super::IJoesContractDispatcherTrait;
+    use snforge_std::{ContractClassTrait, DeclareResultTrait, declare};
+    use super::{IJoesContractDispatcher, IJoesContractDispatcherTrait, JoesContract};
 
     #[test]
-    #[available_gas(2000000000)]
     fn test_contract_view() {
         let dispatcher = deploy_contract();
-        assert('Joe' == dispatcher.get_owner(), 'Joe should be the owner.');
+        assert!('Joe' == dispatcher.get_owner(), "Joe should be the owner.");
     }
 
     fn deploy_contract() -> IJoesContractDispatcher {
-        let mut calldata = ArrayTrait::new();
-        let (address0, _) = deploy_syscall(
-            JoesContract::TEST_CLASS_HASH.try_into().unwrap(), 0, calldata.span(), false
-        )
-            .unwrap();
-        let contract0 = IJoesContractDispatcher { contract_address: address0 };
-        contract0
+        let contract = declare("JoesContract").unwrap().contract_class();
+        let (contract_address, _) = contract.deploy(@array![]).unwrap();
+        IJoesContractDispatcher { contract_address }
     }
 }

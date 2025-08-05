@@ -2,5 +2,23 @@
 version = 1
 
 [[package]]
-name = "exercise_crate"
+name = "runner_crate"
 version = "0.1.0"
+dependencies = [
+ "snforge_std",
+]
+
+[[package]]
+name = "snforge_scarb_plugin"
+version = "0.44.0"
+source = "registry+https://scarbs.xyz/"
+checksum = "sha256:ec8c7637b33392a53153c1e5b87a4617ddcb1981951b233ea043cad5136697e2"
+
+[[package]]
+name = "snforge_std"
+version = "0.44.0"
+source = "registry+https://scarbs.xyz/"
+checksum = "sha256:d4affedfb90715b1ac417b915c0a63377ae6dd69432040e5d933130d65114702"
+dependencies = [
+ "snforge_scarb_plugin",
+]

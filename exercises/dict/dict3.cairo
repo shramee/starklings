@@ -6,6 +6,7 @@
 // Make me compile and pass the test!
 
 // I AM NOT DONE
+use core::dict::Felt252Dict;
 
 #[derive(Destruct)]
 struct Team {
@@ -20,7 +21,7 @@ impl TeamImpl of TeamTrait {
     }
 
     fn get_level(ref self: Team, name: felt252) -> usize {
-        //TODO 
+        //TODO
     }
 
     fn add_player(ref self: Team, name: felt252, level: usize) -> () {
@@ -37,24 +38,24 @@ impl TeamImpl of TeamTrait {
 }
 
 
+#[cfg(test)]
 #[test]
-#[available_gas(200000)]
 fn test_add_player() {
     let mut team = TeamTrait::new();
     team.add_player('bob', 10);
     team.add_player('alice', 20);
 
-    assert(team.players_count == 2, 'Wrong number of player');
-    assert(team.get_level('bob') == 10, 'Wrong level');
-    assert(team.get_level('alice') == 20, 'Wrong level');
+    assert!(team.players_count == 2, "Wrong number of player");
+    assert!(team.get_level('bob') == 10, "Wrong level");
+    assert!(team.get_level('alice') == 20, "Wrong level");
 }
 
+#[cfg(test)]
 #[test]
-#[available_gas(200000)]
 fn test_level_up() {
     let mut team = TeamTrait::new();
     team.add_player('bobby', 10);
     team.level_up('bobby');
 
-    assert(team.level.get('bobby') == 11, 'Wrong level');
+    assert!(team.level.get('bobby') == 11, "Wrong level");
 }

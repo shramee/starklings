@@ -3,6 +3,7 @@
 
 // I AM NOT DONE
 
+#[cfg(test)]
 #[test]
 fn main() {
     let mut a = ArrayTrait::new();

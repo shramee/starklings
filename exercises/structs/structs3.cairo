@@ -18,11 +18,7 @@ trait PackageTrait {
 }
 impl PackageImpl of PackageTrait {
     fn new(sender_country: felt252, recipient_country: felt252, weight_in_grams: usize) -> Package {
-        if weight_in_grams <= 0{
-            let mut data = ArrayTrait::new();
-            data.append('x');
-            panic(data);
-        }
+        assert!(weight_in_grams > 0, "Weight must be greater than 0");
         Package { sender_country, recipient_country, weight_in_grams,  }
     }
 
@@ -37,6 +33,7 @@ impl PackageImpl of PackageTrait {
     }
 }
 
+#[cfg(test)]
 #[test]
 #[should_panic]
 fn fail_creating_weightless_package() {
@@ -45,6 +42,7 @@ fn fail_creating_weightless_package() {
     PackageTrait::new(sender_country, recipient_country, 0);
 }
 
+#[cfg(test)]
 #[test]
 fn create_international_package() {
     let sender_country = 'Spain';
@@ -52,9 +50,10 @@ fn create_international_package() {
 
     let mut package = PackageTrait::new(sender_country, recipient_country, 1200);
 
-    assert(package.is_international() == true, 'Not international');
+    assert!(package.is_international() == true, "Not international");
 }
 
+#[cfg(test)]
 #[test]
 fn create_local_package() {
     let sender_country = 'Canada';
@@ -62,9 +61,10 @@ fn create_local_package() {
 
     let mut package = PackageTrait::new(sender_country, recipient_country, 1200);
 
-    assert(package.is_international() == false, 'International');
+    assert!(package.is_international() == false, "International");
 }
 
+#[cfg(test)]
 #[test]
 fn calculate_transport_fees() {
     let sender_country = 'Spain';
@@ -74,6 +74,5 @@ fn calculate_transport_fees() {
 
     let mut package = PackageTrait::new(sender_country, recipient_country, 1500);
 
-    assert(package.get_fees(cents_per_gram) == 4500, 'Wrong fees');
+    assert!(package.get_fees(cents_per_gram) == 4500, "Wrong fees");
 }
-

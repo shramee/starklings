@@ -4,18 +4,19 @@
 
 // I AM NOT DONE
 
-mod restaurant {
-    fn take_order() -> felt252 {
+pub mod restaurant {
+    pub fn take_order() -> felt252 {
         'order_taken'
     }
 }
 
+#[cfg(test)]
 #[test]
 fn test_mod_fn() {
     // Fix this line to call take_order function from module
     let order_result = take_order();
 
-    assert(order_result == 'order_taken', 'Order not taken');
+    assert!(order_result == 'order_taken', "Order not taken");
 }
 
 #[cfg(test)]
@@ -25,6 +26,6 @@ mod tests {
         // Fix this line to call take_order function
         let order_result = take_order();
 
-        assert(order_result == 'order_taken', 'Order not taken');
+        assert!(order_result == 'order_taken', "Order not taken");
     }
 }

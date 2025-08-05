@@ -1,11 +1,20 @@
 [package]
-name = "exercise_crate"
+name = "runner_crate"
 version = "0.1.0"
+edition = "2024_07"
 
-# See more keys and their definitions at https://docs.swmansion.com/scarb/docs/reference/manifest.html
+[scripts]
+test = "snforge test"
 
+[tool.scarb]
+allow-prebuilt-plugins = ["snforge_std"]
+
+# Core Starknet dependencies
 [dependencies]
-starknet = "2.8.2"
+starknet = "2.12.0"
 
 [dev-dependencies]
-cairo_test = "2.8.2"
+snforge_std = "0.47.0"
+assert_macros = "2.11.4"
+
+# Starknet contract compilation target

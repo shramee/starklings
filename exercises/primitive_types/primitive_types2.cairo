@@ -73,7 +73,9 @@ impl PartialOrdFelt of PartialOrd<felt252> {
     }
     #[inline(always)]
     fn lt(lhs: felt252, rhs: felt252) -> bool {
-        integer::u256_from_felt252(lhs) < integer::u256_from_felt252(rhs)
+        let lhs_u256: u256 = lhs.into();
+        let rhs_u256: u256 = rhs.into();
+        lhs_u256 < rhs_u256
     }
     #[inline(always)]
     fn gt(lhs: felt252, rhs: felt252) -> bool {

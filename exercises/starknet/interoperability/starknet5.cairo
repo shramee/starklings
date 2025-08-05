@@ -74,41 +74,37 @@ mod ContractB {
 
 #[cfg(test)]
 mod test {
-    use starknet::syscalls::deploy_syscall;
-    use super::ContractA;
-    use super::IContractADispatcher;
-    use super::IContractADispatcherTrait;
-    use super::ContractB;
-    use super::IContractBDispatcher;
-    use super::IContractBDispatcherTrait;
+    use snforge_std::{declare, ContractClassTrait, DeclareResultTrait};
+    use starknet::ContractAddress;
+    use super::{IContractBDispatcher, IContractADispatcher, IContractADispatcherTrait, IContractBDispatcherTrait};
 
+
+    fn deploy_contract_b() -> IContractBDispatcher {
+        let contract = declare("ContractB").unwrap().contract_class();
+        let (contract_address, _) = contract.deploy(@array![]).unwrap();
+        IContractBDispatcher { contract_address }
+    }
+
+    fn deploy_contract_a(contract_b_address: ContractAddress) -> IContractADispatcher {
+        let contract = declare("ContractA").unwrap().contract_class();
+        let constructor_calldata = array![contract_b_address.into()];
+        let (contract_address, _) = contract.deploy(@constructor_calldata).unwrap();
+        IContractADispatcher { contract_address }
+    }
 
     #[test]
-    #[available_gas(30000000)]
     fn test_interoperability() {
         // Deploy ContractB
-        let (address_b, _) = deploy_syscall(
-            ContractB::TEST_CLASS_HASH.try_into().unwrap(), 0, ArrayTrait::new().span(), false
-        )
-            .unwrap();
+        let contract_b = deploy_contract_b();
 
         // Deploy ContractA
-        let mut calldata = ArrayTrait::new();
-        calldata.append(address_b.into());
-        let (address_a, _) = deploy_syscall(
-            ContractA::TEST_CLASS_HASH.try_into().unwrap(), 0, calldata.span(), false
-        )
-            .unwrap();
-
-        // contract_a is of type IContractADispatcher. Its methods are defined in IContractADispatcherTrait.
-        let contract_a = IContractADispatcher { contract_address: address_a };
-        let contract_b = IContractBDispatcher { contract_address: address_b };
+        let contract_a = deploy_contract_a(contract_b.contract_address);
 
         //TODO interact with contract_b to make the test pass.
 
         // Tests
-        assert(contract_a.set_value(300) == true, 'Could not set value');
-        assert(contract_a.get_value() == 300, 'Value was not set');
-        assert(contract_b.is_enabled() == true, 'Contract b is not enabled');
+        assert!(contract_a.set_value(300) == true, "Could not set value");
+        assert!(contract_a.get_value() == 300, "Value was not set");
+        assert!(contract_b.is_enabled() == true, "Contract b is not enabled");
     }
 }

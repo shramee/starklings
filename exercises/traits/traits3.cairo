@@ -60,16 +60,17 @@ impl AnimalDogImpl of AnimalTrait<Dog> {
 
 // TODO: implement DogTrait for the type Dog
 
+#[cfg(test)]
 #[test]
 fn test_traits3() {
     // Don't modify this test!
     let mut salmon: Fish = AnimalTrait::new();
     salmon.swim();
-    assert(salmon.make_noise() == 'blub', 'Wrong noise');
-    assert(salmon.get_distance() == 1, 'Wrong distance');
+    assert!(salmon.make_noise() == 'blub', "Wrong noise");
+    assert!(salmon.get_distance() == 1, "Wrong distance");
 
     let mut dog: Dog = AnimalTrait::new();
     dog.walk();
-    assert(dog.make_noise() == 'woof', 'Wrong noise');
-    assert(dog.get_distance() == 1, 'Wrong distance');
+    assert!(dog.make_noise() == 'woof', "Wrong noise");
+    assert!(dog.get_distance() == 1, "Wrong distance");
 }

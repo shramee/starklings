@@ -8,7 +8,11 @@ fn main() {
     let mut _arr1 = fill_arr(arr0);
 
     // Do not change the following line!
-    println!("{:?}", arr0);
+    print_arr(arr0);
+}
+
+fn print_arr(arr: Array<felt252>) {
+    println!("arr: {:?}", arr);
 }
 
 // Do not change the following line!

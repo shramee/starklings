@@ -19,7 +19,7 @@ mod JillsContract {
 
     #[constructor]
     fn constructor(
-        ref self: ContractState, owner: ContractAddress
+        ref self: ContractState, owner: ContractAddress,
     ) { // TODO: Write `owner` to contract_owner storage
     }
 
@@ -37,22 +37,18 @@ trait IJillsContract<TContractState> {
 
 #[cfg(test)]
 mod test {
-    use starknet::syscalls::deploy_syscall;
-    use super::IJillsContractDispatcher;
-    use super::IJillsContractDispatcherTrait;
+    use snforge_std::{ContractClassTrait, DeclareResultTrait, declare};
+    use super::{IJillsContractDispatcher, IJillsContractDispatcherTrait, JillsContract};
 
-    use super::JillsContract;
     #[test]
-    #[available_gas(2000000000)]
     fn test_owner_setting() {
         let mut calldata = ArrayTrait::new();
         calldata.append('Jill');
-        let (address0, _) = deploy_syscall(
-            JillsContract::TEST_CLASS_HASH.try_into().unwrap(), 0, calldata.span(), false
-        )
-            .unwrap();
-        let dispatcher = IJillsContractDispatcher { contract_address: address0 };
+
+        let contract = declare("JillsContract").unwrap().contract_class();
+        let (contract_address, _) = contract.deploy(@calldata).unwrap();
+        let dispatcher = IJillsContractDispatcher { contract_address };
         let owner = dispatcher.get_owner();
-        assert(owner == 'Jill'.try_into().unwrap(), 'Owner should be Jill');
+        assert!(owner == 'Jill'.try_into().unwrap(), "Owner should be Jill");
     }
 }
