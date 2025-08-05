@@ -11,10 +11,10 @@ allow-prebuilt-plugins = ["snforge_std"]
 
 # Core Starknet dependencies
 [dependencies]
-starknet = "2.11.4"
+starknet = "2.12.0"
 
 [dev-dependencies]
-snforge_std = "0.44.0"
+snforge_std = "0.47.0"
 assert_macros = "2.11.4"
 
 # Starknet contract compilation target
