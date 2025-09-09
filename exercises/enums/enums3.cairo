@@ -52,6 +52,7 @@ impl StateImpl of StateTrait {
 }
 
 
+#[cfg(test)]
 #[test]
 fn test_match_message_call() {
     let mut state = State { quit: false, position: Point { x: 0, y: 0 }, color: (0, 0, 0) };
@@ -61,7 +62,7 @@ fn test_match_message_call() {
     state.process(Message::Quit);
 
     assert(state.color == (255, 0, 255), 'wrong color');
-    assert(state.position.x == 10, 'wrong x position');
-    assert(state.position.y == 15, 'wrong y position');
-    assert(state.quit == true, 'quit should be true');
+    assert!(state.position.x == 10, "wrong x position");
+    assert!(state.position.y == 15, "wrong y position");
+    assert!(state.quit == true, "quit should be true");
 }

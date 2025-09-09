@@ -20,7 +20,7 @@ mod ProgressTracker {
     use starknet::ContractAddress;
     use starknet::get_caller_address; // Required to use get_caller_address function
     use starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess, StoragePathEntry, Map};
-    
+
     #[storage]
     struct Storage {
         contract_owner: ContractAddress,
@@ -54,27 +54,25 @@ mod ProgressTracker {
 #[cfg(test)]
 mod test {
     use starknet::ContractAddress;
-    use starknet::syscalls::deploy_syscall;
     use super::IProgressTrackerDispatcher;
     use super::IProgressTrackerDispatcherTrait;
     use super::ProgressTracker;
+    use snforge_std::{declare, ContractClassTrait, DeclareResultTrait, start_cheat_caller_address, stop_cheat_caller_address};
 
     #[test]
-    #[available_gas(2000000000)]
     fn test_owner() {
         let owner: ContractAddress = 'Sensei'.try_into().unwrap();
         let dispatcher = deploy_contract();
-        assert(owner == dispatcher.get_contract_owner(), 'Mr. Sensei should be the owner');
+        assert!(owner == dispatcher.get_contract_owner(), "Mr. Sensei should be the owner");
     }
 
     #[test]
-    #[available_gas(2000000000)]
     fn test_set_progress() {
         let owner = util_felt_addr('Sensei');
         let dispatcher = deploy_contract();
 
         // Call contract as owner
-        starknet::testing::set_contract_address(owner);
+        start_cheat_caller_address(dispatcher.contract_address, owner);
 
         // Set progress
         dispatcher.set_progress('Joe'.try_into().unwrap(), 20);
@@ -82,20 +80,23 @@ mod test {
 
         let joe_score = dispatcher.get_progress('Joe'.try_into().unwrap());
         assert(joe_score == 20, 'Joe\'s progress should be 20');
+
+        stop_cheat_caller_address(dispatcher.contract_address);
     }
 
     #[test]
     #[should_panic]
-    #[available_gas(2000000000)]
     fn test_set_progress_fail() {
         let dispatcher = deploy_contract();
 
         let jon_doe = util_felt_addr('JonDoe');
         // Caller not owner
-        starknet::testing::set_contract_address(jon_doe);
+        start_cheat_caller_address(dispatcher.contract_address, jon_doe);
 
         // Try to set progress, should panic to pass test!
         dispatcher.set_progress('Joe'.try_into().unwrap(), 20);
+
+        stop_cheat_caller_address(dispatcher.contract_address);
     }
 
     fn util_felt_addr(addr_felt: felt252) -> ContractAddress {
@@ -106,11 +107,9 @@ mod test {
         let owner: felt252 = 'Sensei';
         let mut calldata = ArrayTrait::new();
         calldata.append(owner);
-        let (address0, _) = deploy_syscall(
-            ProgressTracker::TEST_CLASS_HASH.try_into().unwrap(), 0, calldata.span(), false
-        )
-            .unwrap();
-        let contract0 = IProgressTrackerDispatcher { contract_address: address0 };
-        contract0
+
+        let contract = declare("ProgressTracker").unwrap().contract_class();
+        let (contract_address, _) = contract.deploy(@calldata).unwrap();
+        IProgressTrackerDispatcher { contract_address }
     }
 }

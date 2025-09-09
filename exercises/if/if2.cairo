@@ -23,16 +23,16 @@ mod tests {
 
     #[test]
     fn foo_for_fizz() {
-        assert(foo_if_fizz('fizz') == 'foo', 'fizz returns foo')
+        assert!(foo_if_fizz('fizz') == 'foo', "fizz returns foo")
     }
 
     #[test]
     fn bar_for_fuzz() {
-        assert(foo_if_fizz('fuzz') == 'bar', 'fuzz returns bar');
+        assert!(foo_if_fizz('fuzz') == 'bar', "fuzz returns bar");
     }
 
     #[test]
     fn default_to_baz() {
-        assert(foo_if_fizz('literally anything') == 'baz', 'anything else returns baz');
+        assert!(foo_if_fizz('literally anything') == 'baz', "anything else returns baz");
     }
 }

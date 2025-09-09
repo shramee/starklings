@@ -12,12 +12,12 @@ trait IOwnable<TContractState> {
     fn set_owner(ref self: TContractState, new_owner: ContractAddress);
 }
 
-mod OwnableComponent {
+pub mod OwnableComponent {
     use starknet::ContractAddress;
     use super::IOwnable;
 
     #[storage]
-    struct Storage {
+    pub struct Storage {
         owner: ContractAddress,
     }
 
@@ -35,7 +35,7 @@ mod OwnableComponent {
 }
 
 #[starknet::contract]
-mod OwnableCounter {
+pub mod OwnableCounter {
     use starknet::ContractAddress;
     use super::OwnableComponent;
 
@@ -51,7 +51,7 @@ mod OwnableCounter {
         OwnableEvent: OwnableComponent::Event,
     }
     #[storage]
-    struct Storage {
+    pub struct Storage {
         counter: u128,
         #[substorage(v0)]
         ownable: OwnableComponent::Storage,
@@ -60,35 +60,32 @@ mod OwnableCounter {
 
 #[cfg(test)]
 mod tests {
-    use super::OwnableCounter;
-    use super::{IOwnableDispatcher, IOwnable, IOwnableDispatcherTrait};
-    use starknet::syscalls::deploy_syscall;
+    use crate::IOwnableDispatcherTrait;
+    use snforge_std::{declare, ContractClassTrait, DeclareResultTrait};
+    use starknet::{contract_address_const, ContractAddress};
+    use super::IOwnableDispatcher;
+
+    fn deploy_ownable_counter() -> IOwnableDispatcher {
+        let contract = declare("OwnableCounter").unwrap().contract_class();
+        let (contract_address, _) = contract.deploy(@array![]).unwrap();
+        IOwnableDispatcher { contract_address }
+    }
 
     #[test]
-    #[available_gas(200_000_000)]
     fn test_contract_read() {
-        let dispatcher = deploy_contract();
+        let dispatcher = deploy_ownable_counter();
         let address_0 = 0;
         dispatcher.set_owner(address_0.try_into().unwrap());
         assert(address_0.try_into().unwrap() == dispatcher.owner(), 'Some fuck up happened');
     }
+
     #[test]
-    #[available_gas(200_000_000)]
     #[should_panic]
     fn test_contract_read_fail() {
-        let dispatcher = deploy_contract();
+        let dispatcher = deploy_ownable_counter();
         let address_0 = 0;
         let address_1 = 1;
         dispatcher.set_owner(address_0.try_into().unwrap());
         assert(address_1.try_into().unwrap() == dispatcher.owner(), 'Some fuck up happened');
-    }
-    fn deploy_contract() -> IOwnableDispatcher {
-        let mut calldata = ArrayTrait::new();
-        let (address0, _) = deploy_syscall(
-            OwnableCounter::TEST_CLASS_HASH.try_into().unwrap(), 0, calldata.span(), false
-        )
-            .unwrap();
-        let contract0 = IOwnableDispatcher { contract_address: address0 };
-        contract0
     }
 }

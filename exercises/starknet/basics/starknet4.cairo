@@ -63,65 +63,66 @@ mod LizInventory {
 #[cfg(test)]
 mod test {
     use starknet::ContractAddress;
-    use starknet::syscalls::deploy_syscall;
     use super::LizInventory;
     use super::ILizInventoryDispatcher;
     use super::ILizInventoryDispatcherTrait;
+    use snforge_std::{declare, ContractClassTrait, DeclareResultTrait, start_cheat_caller_address, stop_cheat_caller_address};
 
     #[test]
-    #[available_gas(2000000000)]
     fn test_owner() {
         let owner: ContractAddress = 'Elizabeth'.try_into().unwrap();
         let dispatcher = deploy_contract();
 
         // Check that contract owner is set
         let contract_owner = dispatcher.get_owner();
-        assert(contract_owner == owner, 'Elizabeth should be the owner');
+        assert!(contract_owner == owner, "Elizabeth should be the owner");
     }
 
     #[test]
-    #[available_gas(2000000000)]
     fn test_stock() {
         let dispatcher = deploy_contract();
         let owner = util_felt_addr('Elizabeth');
 
         // Call contract as owner
-        starknet::testing::set_contract_address(owner);
+        start_cheat_caller_address(dispatcher.contract_address, owner);
 
         // Add stock
         dispatcher.add_stock('Nano', 10);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 10, 'stock should be 10');
+        assert!(stock == 10, "stock should be 10");
 
         dispatcher.add_stock('Nano', 15);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 25, 'stock should be 25');
+        assert!(stock == 25, "stock should be 25");
+
+        stop_cheat_caller_address(dispatcher.contract_address);
     }
 
     #[test]
-    #[available_gas(2000000000)]
     fn test_stock_purchase() {
         let owner = util_felt_addr('Elizabeth');
         let dispatcher = deploy_contract();
         // Call contract as owner
-        starknet::testing::set_contract_address(owner);
+        start_cheat_caller_address(dispatcher.contract_address, owner);
 
         // Add stock
         dispatcher.add_stock('Nano', 10);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 10, 'stock should be 10');
+        assert!(stock == 10, "stock should be 10");
 
-        // Call contract as owner
-        starknet::testing::set_caller_address(0.try_into().unwrap());
+        // Call contract as different address
+        stop_cheat_caller_address(dispatcher.contract_address);
+        start_cheat_caller_address(dispatcher.contract_address, 0.try_into().unwrap());
 
         dispatcher.purchase('Nano', 2);
         let stock = dispatcher.get_stock('Nano');
-        assert(stock == 8, 'stock should be 8');
+        assert!(stock == 8, "stock should be 8");
+
+        stop_cheat_caller_address(dispatcher.contract_address);
     }
 
     #[test]
     #[should_panic]
-    #[available_gas(2000000000)]
     fn test_set_stock_fail() {
         let dispatcher = deploy_contract();
         // Try to add stock, should panic to pass test!
@@ -130,10 +131,9 @@ mod test {
 
     #[test]
     #[should_panic]
-    #[available_gas(2000000000)]
     fn test_purchase_out_of_stock() {
         let dispatcher = deploy_contract();
-        // Purchse out of stock
+        // Purchase out of stock
         dispatcher.purchase('Nano', 2);
     }
 
@@ -145,11 +145,9 @@ mod test {
         let owner: felt252 = 'Elizabeth';
         let mut calldata = ArrayTrait::new();
         calldata.append(owner);
-        let (address0, _) = deploy_syscall(
-            LizInventory::TEST_CLASS_HASH.try_into().unwrap(), 0, calldata.span(), false
-        )
-            .unwrap();
-        let contract0 = ILizInventoryDispatcher { contract_address: address0 };
-        contract0
+
+        let contract = declare("LizInventory").unwrap().contract_class();
+        let (contract_address, _) = contract.deploy(@calldata).unwrap();
+        ILizInventoryDispatcher { contract_address }
     }
 }
