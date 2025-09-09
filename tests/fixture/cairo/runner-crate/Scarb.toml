@@ -3,13 +3,15 @@ name = "runner_crate"
 version = "0.1.0"
 edition = "2024_07"
 
-
 [dependencies]
 starknet = "2.11.4"
 
 [dev-dependencies]
 snforge_std = "0.44.0"
 assert_macros = "2.11.4"
+
+[lib]
+sierra = true
 
 [[target.starknet-contract]]
 sierra = true
