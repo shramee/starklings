@@ -18,6 +18,8 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
       - name: Install all Cairo tools
         run: curl --proto '=https' --tlsv1.2 -sSf https://sh.starkup.sh | sh -s -- --version-set latest --yes
+      - name: Setup Starknet Foundry
+        uses: foundry-rs/setup-snfoundry@v3
       - name: Build
         run: cargo build --verbose
       - name: Run tests
