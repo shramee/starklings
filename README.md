@@ -16,6 +16,8 @@
 
 # STARKLINGS
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 ![STARKLINGS](./.github/hero-banner.svg)
 
 ### An interactive tutorial to get you up and running with Cairo and Starknet
