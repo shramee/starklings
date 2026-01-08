@@ -5,6 +5,7 @@
 fn main() {
     let arr0 = array![];
 
+    // Do not change the following line!
     let mut _arr1 = fill_arr(arr0);
 
     // Do not change the following line!
