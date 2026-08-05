@@ -2,6 +2,7 @@
   "name": "starklings-app-lite",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://shramee.github.io/starklings-cairo1/app-lite",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -36,13 +37,16 @@
   },
   "devDependencies": {
     "@iarna/toml": "^2.2.5",
-    "@types/linkify-it": "^5.0.0"
+    "@types/linkify-it": "^5.0.0",
+    "gh-pages": "^6.1.1"
   },
   "scripts": {
     "generate": "node scripts/generate-exercises.js",
     "start": "npm run generate && PORT=4000 react-scripts start --env-file .env",
     "build": "npm run generate && react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build --dest app-lite"
   },
   "eslintConfig": {
     "extends": [
