@@ -14,7 +14,7 @@ curl https://sh.rustup.rs -sSf | sh -s
 
 1. Clone the repo and go in the directory,
    ```
-   git clone https://github.com/shramee/starklings-cairo1.git && cd starklings-cairo1
+   git clone https://github.com/shramee/starklings.git && cd starklings
    ```
 2. Run starklings (this might take a while the first time),
    ```sh
@@ -66,7 +66,7 @@ exercise_name`.
 4. When you have solved the exercise successfully, Remove `// I AM NOT DONE`
 comment to move on to the next exercise.
 5. If an exercise doesn't make sense to you, please open an issue on GitHub!
-(https://github.com/shramee/starklings-cairo1/issues/new).
+(https://github.com/shramee/starklings/issues/new).
 
 Got all that? Great! To get started, run `starklings watch` in order to get the
 first exercise. Make sure to have your editor open!

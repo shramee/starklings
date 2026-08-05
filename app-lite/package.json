@@ -2,7 +2,7 @@
   "name": "starklings-app-lite",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://shramee.github.io/starklings-cairo1/app-lite",
+  "homepage": "https://shramee.github.io/starklings",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
