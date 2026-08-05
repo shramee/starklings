@@ -1,0 +1,19 @@
+{
+  "id": "move_semantics5",
+  "name": "Move semantics 5",
+  "path": "exercises/move_semantics/move_semantics5.cairo",
+  "mode": "test",
+  "exercise_order": 40,
+  "description": "Make me compile only by reordering the lines in `main()`, but without\nadding, changing or removing any of them.",
+  "code": "#[test]\nfn main() {\n    let mut a = ArrayTrait::new();\n    let mut b = pass_by_value(a);\n    pass_by_ref(ref a);\n    pass_by_ref(ref b);\n    pass_by_snapshot(@a);\n}\n\nfn pass_by_value(mut arr: Array<felt252>) -> Array<felt252> {\n    arr\n}\n\nfn pass_by_ref(ref arr: Array<felt252>) {}\n\nfn pass_by_snapshot(x: @Array<felt252>) {}\n",
+  "hint": "Carefully reason about how each function takes ownership of the variable passed.\nIt depends on the keyword used to pass the variable.\nWhat happens when a function takes ownership of a variable and then returns it?\nCan we still use it later on?\n",
+  "antiCheat": {
+    "shouldContain": [
+      "let mut a = ArrayTrait::new();",
+      "let mut b = pass_by_value(a);",
+      "pass_by_ref(ref a);",
+      "pass_by_ref(ref b);",
+      "pass_by_snapshot(@a);"
+    ]
+  }
+}

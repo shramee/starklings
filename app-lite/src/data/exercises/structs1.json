@@ -1,0 +1,16 @@
+{
+  "id": "structs1",
+  "name": "Structs 1",
+  "path": "exercises/structs/structs1.cairo",
+  "mode": "test",
+  "exercise_order": 33,
+  "description": "Address all the TODOs to make the tests pass!",
+  "code": "#[derive(Copy, Drop)]\nstruct ColorStruct { // TODO: Something goes here\n// TODO: Your struct needs to have red, green, blue felts\n}\n\n\n#[test]\nfn classic_c_structs() {\n    // TODO: Instantiate a classic color struct!\n    // Green color neeeds to have green set to 255 and, red and blue, set to 0\n    // let green =\n\n    assert(green.red == 0, 0);\n    assert(green.green == 255, 0);\n    assert(green.blue == 0, 0);\n}\n",
+  "hint": "Cairo has a single type of struct that are named collections of related data stored in fields.\nIn this exercise you need to complete and implement a struct.\nHere is how we describe a person struct that stores a name and an age,\n\n#[derive(Copy, Drop)]\nstruct Person {\n    name: felt252,\n    age: felt252,\n}\n\nYou'd use the struct like so,\n\nlet john = Person { name: 'John', age: 29 };\n\n\nRead more about structs in the Structs section of this article: https://book.cairo-lang.org/ch05-01-defining-and-instantiating-structs.html ",
+  "antiCheat": {
+    "append": {
+      "to": "classic_c_structs",
+      "code": "assert(green.red == 0, 0); \n assert(green.green == 255, 0); \n assert(green.blue == 0, 0);"
+    }
+  }
+}

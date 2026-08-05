@@ -1,0 +1,15 @@
+{
+  "id": "options2",
+  "name": "Options 2",
+  "path": "exercises/options/options2.cairo",
+  "mode": "test",
+  "exercise_order": 28,
+  "description": "",
+  "code": "#[test]\nfn test_options() {\n    let target = 'starklings';\n    let optional_some = Option::Some(target);\n    let optional_none: Option<felt252> = Option::None;\n    simple_option(optional_some);\n    simple_option(optional_none);\n}\n\nfn simple_option(optional_target: Option<felt252>) {\n    // TODO: use the `is_some` and `is_none` methods to check if `optional_target` contains a value.\n    // Place the assertion and the print statement below in the correct blocks.\n    assert(optional_target.unwrap() == 'starklings', 'err1');\n    println!(\" option is empty ! \");\n}\n",
+  "hint": "check out: https://github.com/starkware-libs/cairo/blob/main/corelib/src/option.cairo\nto see the implementation of the Option type and its methods.\n",
+  "antiCheat": {
+    "append": {
+      "code": "#[test]\nfn test_options_duplicate() {\n    let target = 'starklings';\n    let optional_some = Option::Some(target);\n    let optional_none: Option<felt252> = Option::None;\n    simple_option(optional_some);\n    simple_option(optional_none);\n}\n"
+    }
+  }
+}

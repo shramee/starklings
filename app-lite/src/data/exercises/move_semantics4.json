@@ -1,0 +1,15 @@
+{
+  "id": "move_semantics4",
+  "name": "Move semantics 4",
+  "path": "exercises/move_semantics/move_semantics4.cairo",
+  "mode": "run",
+  "exercise_order": 39,
+  "description": "Refactor this code so that instead of passing `arr0` into the `fill_arr` function,\nthe Array gets created in the function itself and passed back to the main\nfunction.",
+  "code": "fn main() {\n    let arr0: Array<felt252> = array![];\n\n    let mut arr1 = fill_arr(arr0);\n\n    println!(\"{:?}\", arr1.clone());\n\n    arr1.append(88);\n\n    println!(\"{:?}\", arr1.clone());\n}\n\n// `fill_arr()` should no longer take `arr: Array<felt252>` as argument\nfn fill_arr(arr: Array<felt252>) -> Array<felt252> {\n    let mut arr = arr;\n\n    arr.append(22);\n    arr.append(44);\n    arr.append(66);\n\n    arr\n}\n",
+  "hint": "Stop reading whenever you feel like you have enough direction :) Or try\ndoing one step and then fixing the compiler errors that result!\nSo the end goal is to:\n   - get rid of the first line in main that creates the new array\n   - so then `arr0` doesn't exist, so we can't pass it to `fill_arr`\n   - we don't want to pass anything to `fill_arr`, so its signature should\n     reflect that it does not take any arguments\n   - since we're not creating a new array in `main` anymore, we need to create\n     a new array in `fill_arr`, similarly to the way we did in `main`",
+  "antiCheat": {
+    "shouldContain": [
+      "fn fill_arr()"
+    ]
+  }
+}

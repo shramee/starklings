@@ -1,0 +1,18 @@
+{
+  "id": "move_semantics3",
+  "name": "Move semantics 3",
+  "path": "exercises/move_semantics/move_semantics3.cairo",
+  "mode": "run",
+  "exercise_order": 38,
+  "description": "Make me compile without adding new lines-- just changing existing lines!\n(no lines with multiple semicolons necessary!)",
+  "code": "fn main() {\n    let arr0 = array![];\n\n    let mut arr1 = fill_arr(arr0);\n\n    println!(\"{:?}\", arr1.clone());\n\n    arr1.append(88);\n\n    println!(\"{:?}\", arr1.clone());\n}\n\nfn fill_arr(arr: Array<felt252>) -> Array<felt252> {\n    arr.append(22);\n    arr.append(44);\n    arr.append(66);\n\n    arr\n}\n",
+  "hint": "The difference between this one and the previous ones is that the first line\nof `fn fill_arr` that had `let mut arr = arr;` is no longer there. You can,\ninstead of adding that line back, add `mut` in one place that will change\nan existing binding to be a mutable binding instead of an immutable one :)",
+  "antiCheat": {
+    "shouldContain": [
+      "arr.append(22);",
+      "arr.append(44);",
+      "arr.append(66);",
+      "arr"
+    ]
+  }
+}

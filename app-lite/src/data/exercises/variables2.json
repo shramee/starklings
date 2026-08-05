@@ -1,0 +1,16 @@
+{
+  "id": "variables2",
+  "name": "Variables 2",
+  "path": "exercises/variables/variables2.cairo",
+  "mode": "run",
+  "exercise_order": 4,
+  "description": "",
+  "code": "fn main() {\n    let x;\n    if x == 10 {\n       println!(\"x is ten! \");\n    } else {\n        println!(\"x is not ten! \");\n    }\n}\n",
+  "hint": "What happens if you annotate line 7 with a type annotation?\nWhat if you give x a value?\nWhat if you do both?\nWhat type should x be, anyway? (remember what the basic type in Cairo is?)\nWhat if x is the same type as 10? What if it's a different type? (e.g. a u8)",
+  "antiCheat": {
+    "append": {
+      "to": "main",
+      "code": "assert(x == 0 || x != 0, 'x should exist');"
+    }
+  }
+}

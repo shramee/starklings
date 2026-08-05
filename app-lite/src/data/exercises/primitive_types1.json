@@ -1,0 +1,16 @@
+{
+  "id": "primitive_types1",
+  "name": "Primitive types 1",
+  "path": "exercises/primitive_types/primitive_types1.cairo",
+  "mode": "run",
+  "exercise_order": 9,
+  "description": "Fill in the rest of the line that has code missing!\nNo hints, there's no tricks, just get used to typing these :)",
+  "code": "fn main() {\n    // Booleans (`bool`)\n\n    let is_morning = true;\n    if is_morning {\n        println!(\"Good morning!\");\n    }\n\n    let // Finish the rest of this line like the example! Or make it be false!\n    if is_evening {\n        println!(\"Good evening!\");\n    }\n}\n",
+  "hint": "No hints this time ;)",
+  "antiCheat": {
+    "append": {
+      "to": "main",
+      "code": "assert(is_evening == true || is_evening == false, 'is_evening should exist');"
+    }
+  }
+}

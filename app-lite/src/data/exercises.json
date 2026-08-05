@@ -1,0 +1,332 @@
+[
+  {
+    "id": "intro1",
+    "name": "Intro 1",
+    "mode": "run",
+    "exercise_order": 1
+  },
+  {
+    "id": "intro2",
+    "name": "Intro 2",
+    "mode": "run",
+    "exercise_order": 2
+  },
+  {
+    "id": "variables1",
+    "name": "Variables 1",
+    "mode": "run",
+    "exercise_order": 3
+  },
+  {
+    "id": "variables2",
+    "name": "Variables 2",
+    "mode": "run",
+    "exercise_order": 4
+  },
+  {
+    "id": "variables3",
+    "name": "Variables 3",
+    "mode": "run",
+    "exercise_order": 5
+  },
+  {
+    "id": "variables4",
+    "name": "Variables 4",
+    "mode": "run",
+    "exercise_order": 6
+  },
+  {
+    "id": "variables5",
+    "name": "Variables 5",
+    "mode": "run",
+    "exercise_order": 7
+  },
+  {
+    "id": "variables6",
+    "name": "Variables 6",
+    "mode": "run",
+    "exercise_order": 8
+  },
+  {
+    "id": "primitive_types1",
+    "name": "Primitive types 1",
+    "mode": "run",
+    "exercise_order": 9
+  },
+  {
+    "id": "primitive_types2",
+    "name": "Primitive types 2",
+    "mode": "run",
+    "exercise_order": 10
+  },
+  {
+    "id": "primitive_types3",
+    "name": "Primitive types 3",
+    "mode": "run",
+    "exercise_order": 11
+  },
+  {
+    "id": "primitive_types4",
+    "name": "Primitive types 4",
+    "mode": "test",
+    "exercise_order": 12
+  },
+  {
+    "id": "operations1",
+    "name": "Operations 1",
+    "mode": "test",
+    "exercise_order": 13
+  },
+  {
+    "id": "operations2",
+    "name": "Operations 2",
+    "mode": "test",
+    "exercise_order": 14
+  },
+  {
+    "id": "if1",
+    "name": "If 1",
+    "mode": "test",
+    "exercise_order": 15
+  },
+  {
+    "id": "if2",
+    "name": "If 2",
+    "mode": "test",
+    "exercise_order": 16
+  },
+  {
+    "id": "functions1",
+    "name": "Functions 1",
+    "mode": "run",
+    "exercise_order": 17
+  },
+  {
+    "id": "functions2",
+    "name": "Functions 2",
+    "mode": "run",
+    "exercise_order": 18
+  },
+  {
+    "id": "functions3",
+    "name": "Functions 3",
+    "mode": "run",
+    "exercise_order": 19
+  },
+  {
+    "id": "functions4",
+    "name": "Functions 4",
+    "mode": "run",
+    "exercise_order": 20
+  },
+  {
+    "id": "quizs1",
+    "name": "Quizs 1",
+    "mode": "test",
+    "exercise_order": 21
+  },
+  {
+    "id": "loops1",
+    "name": "Loops 1",
+    "mode": "test",
+    "exercise_order": 22
+  },
+  {
+    "id": "loops2",
+    "name": "Loops 2",
+    "mode": "test",
+    "exercise_order": 23
+  },
+  {
+    "id": "enums1",
+    "name": "Enums 1",
+    "mode": "run",
+    "exercise_order": 24
+  },
+  {
+    "id": "enums2",
+    "name": "Enums 2",
+    "mode": "run",
+    "exercise_order": 25
+  },
+  {
+    "id": "enums3",
+    "name": "Enums 3",
+    "mode": "test",
+    "exercise_order": 26
+  },
+  {
+    "id": "options1",
+    "name": "Options 1",
+    "mode": "test",
+    "exercise_order": 27
+  },
+  {
+    "id": "options2",
+    "name": "Options 2",
+    "mode": "test",
+    "exercise_order": 28
+  },
+  {
+    "id": "options3",
+    "name": "Options 3",
+    "mode": "test",
+    "exercise_order": 29
+  },
+  {
+    "id": "arrays1",
+    "name": "Arrays 1",
+    "mode": "test",
+    "exercise_order": 30
+  },
+  {
+    "id": "arrays2",
+    "name": "Arrays 2",
+    "mode": "test",
+    "exercise_order": 31
+  },
+  {
+    "id": "arrays3",
+    "name": "Arrays 3",
+    "mode": "test",
+    "exercise_order": 32
+  },
+  {
+    "id": "structs1",
+    "name": "Structs 1",
+    "mode": "test",
+    "exercise_order": 33
+  },
+  {
+    "id": "structs2",
+    "name": "Structs 2",
+    "mode": "test",
+    "exercise_order": 34
+  },
+  {
+    "id": "structs3",
+    "name": "Structs 3",
+    "mode": "test",
+    "exercise_order": 35
+  },
+  {
+    "id": "move_semantics1",
+    "name": "Move semantics 1",
+    "mode": "run",
+    "exercise_order": 36
+  },
+  {
+    "id": "move_semantics2",
+    "name": "Move semantics 2",
+    "mode": "run",
+    "exercise_order": 37
+  },
+  {
+    "id": "move_semantics3",
+    "name": "Move semantics 3",
+    "mode": "run",
+    "exercise_order": 38
+  },
+  {
+    "id": "move_semantics4",
+    "name": "Move semantics 4",
+    "mode": "run",
+    "exercise_order": 39
+  },
+  {
+    "id": "move_semantics5",
+    "name": "Move semantics 5",
+    "mode": "test",
+    "exercise_order": 40
+  },
+  {
+    "id": "move_semantics6",
+    "name": "Move semantics 6",
+    "mode": "run",
+    "exercise_order": 41
+  },
+  {
+    "id": "traits1",
+    "name": "Traits 1",
+    "mode": "test",
+    "exercise_order": 42
+  },
+  {
+    "id": "traits2",
+    "name": "Traits 2",
+    "mode": "test",
+    "exercise_order": 43
+  },
+  {
+    "id": "traits3",
+    "name": "Traits 3",
+    "mode": "test",
+    "exercise_order": 44
+  },
+  {
+    "id": "dict1",
+    "name": "Dict 1",
+    "mode": "test",
+    "exercise_order": 45
+  },
+  {
+    "id": "dict2",
+    "name": "Dict 2",
+    "mode": "test",
+    "exercise_order": 46
+  },
+  {
+    "id": "dict3",
+    "name": "Dict 3",
+    "mode": "test",
+    "exercise_order": 47
+  },
+  {
+    "id": "modules1",
+    "name": "Modules 1",
+    "mode": "test",
+    "exercise_order": 48
+  },
+  {
+    "id": "modules2",
+    "name": "Modules 2",
+    "mode": "test",
+    "exercise_order": 49
+  },
+  {
+    "id": "starknet1",
+    "name": "Starknet 1",
+    "mode": "test",
+    "exercise_order": 50
+  },
+  {
+    "id": "starknet2",
+    "name": "Starknet 2",
+    "mode": "test",
+    "exercise_order": 51
+  },
+  {
+    "id": "starknet3",
+    "name": "Starknet 3",
+    "mode": "test",
+    "exercise_order": 52
+  },
+  {
+    "id": "starknet4",
+    "name": "Starknet 4",
+    "mode": "test",
+    "exercise_order": 53
+  },
+  {
+    "id": "starknet5",
+    "name": "Starknet 5",
+    "mode": "test",
+    "exercise_order": 54
+  },
+  {
+    "id": "starknet6",
+    "name": "Starknet 6",
+    "mode": "test",
+    "exercise_order": 55
+  }
+]

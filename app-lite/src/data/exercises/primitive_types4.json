@@ -1,0 +1,15 @@
+{
+  "id": "primitive_types4",
+  "name": "Primitive types 4",
+  "path": "exercises/primitive_types/primitive_types4.cairo",
+  "mode": "test",
+  "exercise_order": 12,
+  "description": "Modify the integer types to make the tests pass.\nLearn how to convert between integer types, and felts.",
+  "code": "fn sum_u8s(x: u8, y: u8) -> u8 {\n    x + y\n}\n\n//TODO modify the types of this function to prevent an overflow when summing big values\nfn sum_big_numbers(x: u8, y: u8) -> u8 {\n    x + y\n}\n\nfn convert_to_felt(x: u8) -> felt252 { //TODO return x as a felt252.\n}\n\nfn convert_felt_to_u8(x: felt252) -> u8 { //TODO return x as a u8.\n}\n\n#[test]\nfn test_sum_u8s() {\n    assert(sum_u8s(1, 2_u8) == 3_u8, 'Something went wrong');\n}\n\n#[test]\nfn test_sum_big_numbers() {\n    //TODO modify this test to use the correct integer types.\n    // Don't modify the values, just the types.\n    // See how using the _u8 suffix on the numbers lets us specify the type?\n    // Try to do the same thing with other integer types.\n    assert(sum_big_numbers(255_u8, 255_u8) == 510_u8, 'Something went wrong');\n}\n\n#[test]\nfn test_convert_to_felt() {\n    assert(convert_to_felt(1_u8) == 1, 'Type conversion went wrong');\n}\n\n#[test]\nfn test_convert_to_u8() {\n    assert(convert_felt_to_u8(1) == 1_u8, 'Type conversion went wrong');\n}\n",
+  "hint": "There are multiple integer types in Cairo. You can read about them here:\nhttps://book.cairo-lang.org/ch02-02-data-types.html#integer-types\nIf you try to sum two integers and the result is bigger than the biggest integer of this type, you'll get a compilation error.\nYou can convert integers to felts using the `.into()` method. Make sure that you imported the `Into` trait.\nYou can convert felts to integers using the `.try_into()` method. Make sure that you imported the `TryInto` trait.\nThis method will return an `Option` type, so you'll need to unwrap it. To use the `unwrap()` method, you'll need to import the `OptionTrait` trait.\nTake a look at the top of the file to see how these traits are imported.\n",
+  "antiCheat": {
+    "append": {
+      "code": "#[test]\nfn test_sum_u8s_duplicate() {\n    assert(sum_u8s(1, 2_u8) == 3_u8, 'Something went wrong');\n}\n\n#[test]\nfn test_convert_to_felt_duplicate() {\n    assert(convert_to_felt(1_u8) == 1, 'Type conversion went wrong');\n}\n\n#[test]\nfn test_convert_to_u8_duplicate() {\n    assert(convert_felt_to_u8(1) == 1_u8, 'Type conversion went wrong');\n}\n"
+    }
+  }
+}

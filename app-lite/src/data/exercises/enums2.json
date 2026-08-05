@@ -1,0 +1,18 @@
+{
+  "id": "enums2",
+  "name": "Enums 2",
+  "path": "exercises/enums/enums2.cairo",
+  "mode": "run",
+  "exercise_order": 25,
+  "description": "",
+  "code": "use core::fmt::{Display, Formatter, Error};\n\n#[derive(Copy, Drop)]\nenum Message { // TODO: define the different variants used below\n}\n\n\nfn main() { // don't change any of the lines inside main\n    let mut messages: Array<Message> = ArrayTrait::new();\n\n    //don't change any of the next 4 lines\n    messages.append(Message::Quit);\n    messages.append(Message::Echo('hello world'));\n    messages.append(Message::Move((10, 30)));\n    messages.append(Message::ChangeColor((0, 255, 255)));\n\n    print_messages_recursive(messages, 0)\n}\n\n// Utility function to print messages. Don't modify these.\n\ntrait MessageTrait<T> {\n    fn call(self: T);\n}\n\nimpl MessageImpl of MessageTrait<Message> {\n    fn call(self: Message) {\n        println!(\"{}\", self);\n    }\n}\n\nfn print_messages_recursive(messages: Array<Message>, index: u32) {\n    if index >= messages.len() {\n        return ();\n    }\n    let message = *messages.at(index);\n    message.call();\n    print_messages_recursive(messages, index + 1)\n}\n\n\nimpl MessageDisplay of Display<Message> {\n    fn fmt(self: @Message, ref f: Formatter) -> Result<(), Error> {\n        println!(\"___MESSAGE BEGINS___\");\n        let str: ByteArray = match self {\n            Message::Quit => format!(\"Quit\"),\n            Message::Echo(msg) => format!(\"{}\", msg),\n            Message::Move((a, b)) => { format!(\"{} {}\", a, b) },\n            Message::ChangeColor((red, green, blue)) => { format!(\"{} {} {}\", red, green, blue) },\n        };\n        f.buffer.append(@str);\n        println!(\"___MESSAGE ENDS___\");\n        Result::Ok(())\n    }\n}\n",
+  "hint": "You can create enumerations that have different variants with different types\nsuch as no data, structs, a single felt string, tuples, ...etc\nhttps://book.cairo-lang.org/ch06-01-enums.html\n",
+  "antiCheat": {
+    "shouldContain": [
+      "messages.append(Message::Quit);",
+      "messages.append(Message::Echo('hello world'));",
+      "messages.append(Message::Move((10, 30)));",
+      "messages.append(Message::ChangeColor((0, 255, 255)));"
+    ]
+  }
+}

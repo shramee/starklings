@@ -1,0 +1,15 @@
+{
+  "id": "quizs1",
+  "name": "Quizs 1",
+  "path": "exercises/quizs/quizs1.cairo",
+  "mode": "test",
+  "exercise_order": 21,
+  "description": "Mary is buying apples. The price of an apple is calculated as follows:\n- An apple costs 3 cairobucks.\n- If Mary buys more than 40 apples, each apple only costs 2 cairobuck!\nWrite a function that calculates the price of an order of apples given\nthe quantity bought. No hints this time!",
+  "code": "fn calculate_price_of_apples{\n\n}\n\n// Do not change the tests!\n#[test]\nfn verify_test() {\n    let price1 = calculate_price_of_apples(35);\n    let price2 = calculate_price_of_apples(40);\n    let price3 = calculate_price_of_apples(41);\n    let price4 = calculate_price_of_apples(65);\n\n    assert(105 == price1, 'Incorrect price');\n    assert(120 == price2, 'Incorrect price');\n    assert(82 == price3, 'Incorrect price');\n    assert(130 == price4, 'Incorrect price');\n}\n",
+  "hint": "No hints this time ;)",
+  "antiCheat": {
+    "append": {
+      "code": "#[test]\nfn verify_test_duplicate() {\n    let price1 = calculate_price_of_apples(35);\n    let price2 = calculate_price_of_apples(40);\n    let price3 = calculate_price_of_apples(41);\n    let price4 = calculate_price_of_apples(65);\n\n    assert(105 == price1, 'Incorrect price');\n    assert(120 == price2, 'Incorrect price');\n    assert(82 == price3, 'Incorrect price');\n    assert(130 == price4, 'Incorrect price');\n}\n"
+    }
+  }
+}

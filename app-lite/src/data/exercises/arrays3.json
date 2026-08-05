@@ -1,0 +1,10 @@
+{
+  "id": "arrays3",
+  "name": "Arrays 3",
+  "path": "exercises/arrays/arrays3.cairo",
+  "mode": "test",
+  "exercise_order": 32,
+  "description": "Make me compile and pass the test!",
+  "code": "fn create_array() -> Array<felt252> {\n    let a = ArrayTrait::new(); // something to change here...\n    a.append(0);\n    a.append(1);\n    a.append(2);\n    a.pop_front().unwrap();\n    a\n}\n\n\n#[test]\nfn test_arrays3() {\n    let mut a = create_array();\n    //TODO modify the method called below to make the test pass.\n    // You should not change the index accessed.\n    a.at(2);\n}\n",
+  "hint": "The test fails because you are trying to access an element that is out of bounds!\nBy using array.pop_front(), we remove the first element from the array, so the index of the last element is no longer 2.\nWithout changing the index accessed, how can we make the test pass? Is there a method that returns an option that could help us?\n"
+}

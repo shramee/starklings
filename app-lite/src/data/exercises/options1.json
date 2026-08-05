@@ -1,0 +1,18 @@
+{
+  "id": "options1",
+  "name": "Options 1",
+  "path": "exercises/options/options1.cairo",
+  "mode": "test",
+  "exercise_order": 27,
+  "description": "This function returns how much icecream there is left in the fridge.\nIf it's before 10PM, there's 5 pieces left. At 10PM, someone eats them\nall, so there'll be no more left :(",
+  "code": "fn maybe_icecream(\n    time_of_day: usize\n) -> Option<usize> { // We use the 24-hour system here, so 10PM is a value of 22 and 12AM is a value of 0\n// The Option output should gracefully handle cases where time_of_day > 23.\n// TODO: Complete the function body - remember to return an Option!\n}\n\n\n#[test]\nfn check_icecream() {\n    assert(maybe_icecream(9).unwrap() == 5, 'err_1');\n    assert(maybe_icecream(10).unwrap() == 5, 'err_2');\n    assert(maybe_icecream(23).unwrap() == 0, 'err_3');\n    assert(maybe_icecream(22).unwrap() == 0, 'err_4');\n    assert(maybe_icecream(25).is_none(), 'err_5');\n}\n\n#[test]\nfn raw_value() {\n    // TODO: Fix this test. How do you get at the value contained in the Option?\n    let icecreams = maybe_icecream(12);\n    assert(icecreams == 5, 'err_6');\n}\n",
+  "hint": "Options can have a Some value, with an inner value, or a None value, without an inner value.\nThere's multiple ways to get at the inner value, you can use unwrap, or pattern match. Unwrapping\nis the easiest, but how do you do it safely so that it doesn't panic in your face later?\nhttps://book.cairo-lang.org/ch06-01-enums.html#the-option-enum-and-its-advantages\n",
+  "antiCheat": {
+    "shouldContain": [
+      "assert(icecreams == 5, 'err_6');"
+    ],
+    "append": {
+      "code": "#[test]\nfn check_icecream_duplicate() {\n    assert(maybe_icecream(9).unwrap() == 5, 'err_1');\n    assert(maybe_icecream(10).unwrap() == 5, 'err_2');\n    assert(maybe_icecream(23).unwrap() == 0, 'err_3');\n    assert(maybe_icecream(22).unwrap() == 0, 'err_4');\n    assert(maybe_icecream(25).is_none(), 'err_5');\n}\n"
+    }
+  }
+}
