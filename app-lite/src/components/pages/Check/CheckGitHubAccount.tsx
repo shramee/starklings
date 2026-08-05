@@ -5,14 +5,23 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useGetExercises } from "../../../queries/useGetExercises";
 import { CircularProgressCenterLoader } from "../../shared/CircularProgressCenterLoader";
+import { getUser } from "../../../utils/getUser";
 
 export const CheckGitHubAccount = () => {
   const { account } = useParams();
   const [accountInput, setAccountInput] = useState("");
   const [searchedAccount, setSearchedAccount] = useState<string | undefined>(account);
   const [hasSearched, setHasSearched] = useState(!!account);
-  
-  const { data: exercises, isLoading } = useGetExercises(searchedAccount);
+  const localUser = getUser();
+
+  // app-lite keeps progress only in this browser, so results are shown
+  // only for the locally logged-in user; other accounts have no records.
+  const matchesLocalUser =
+    searchedAccount && searchedAccount.toLowerCase() === localUser.toLowerCase();
+
+  const { data: exercises, isLoading } = useGetExercises(
+    matchesLocalUser ? localUser : undefined
+  );
   const completedExercises =
     exercises?.filter((exercise) => exercise.completed)?.length ?? 0;
     
@@ -99,7 +108,13 @@ export const CheckGitHubAccount = () => {
           <Typography variant="h5" sx={{ mb: 2 }}>
             Results for: {searchedAccount}
           </Typography>
-          {!isLoading && (
+          {!matchesLocalUser && (
+            <Typography sx={{ mb: 3 }}>
+              No records found for this account. app-lite stores progress only
+              in this browser.
+            </Typography>
+          )}
+          {matchesLocalUser && !isLoading && (
             <Typography sx={{ mb: 3 }}>
               {completedExercises}/{exercises?.length ?? 54} exercises completed
             </Typography>

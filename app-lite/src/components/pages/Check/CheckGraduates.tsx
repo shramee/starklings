@@ -17,6 +17,10 @@ export const CheckGraduates = () => {
       }}
     >
       <Typography variant="h5">Starklings graduates:</Typography> <br />
+      <Typography sx={{ mb: 3 }}>
+        The graduates list is only available in the full app with a backend.
+        app-lite stores progress only in this browser.
+      </Typography>
       <Box sx={{ maxHeight: "calc(100vh - 300px)", overflowY: "auto" }}>
         {isLoading ? (
           <CircularProgressCenterLoader />

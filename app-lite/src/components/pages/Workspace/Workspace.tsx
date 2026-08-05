@@ -18,7 +18,7 @@ import {
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
@@ -26,7 +26,6 @@ import {
   CURRENT_EXERCISE,
   EXERCISE_SOLUTION,
   GITHUB_ENABLED,
-  USERNAME,
 } from "../../../constants/localStorage";
 import { useGetExercise } from "../../../queries/useGetExercise";
 import { useGetExercises } from "../../../queries/useGetExercises";
@@ -68,7 +67,6 @@ export const Workspace = () => {
   const isTest = data?.mode === "test";
   const {
     mutate: getHint,
-    data: hintResponse,
     isPending: hintLoading,
   } = useGetHint(id ?? "", (data) => {
     setHint(data.data.hints);
@@ -220,16 +218,13 @@ export const Workspace = () => {
 
   const handleEditExerciseClick = () => {
     if (data?.path) {
-      const githubUsername = localStorage.getItem(USERNAME);
-      window.open(`https://github.com/${githubUsername}/starklings/edit/main/${data.path}`, "_blank");
+      window.open(`https://github.com/shramee/starklings/edit/main/${data.path}`, "_blank");
     }
   };
 
   const handleEditHintClick = async () => {
-    const githubUsername = localStorage.getItem(USERNAME);
-
     try {
-      const response = await fetch(`https://raw.githubusercontent.com/${githubUsername}/starklings/main/info.toml`);
+      const response = await fetch(`https://raw.githubusercontent.com/shramee/starklings/main/info.toml`);
       const content = await response.text();
       
       const lines = content.split('\n');
@@ -237,13 +232,13 @@ export const Workspace = () => {
       const lineNumber = lines.findIndex(line => line.trim() === searchPattern) + 1;
 
       if (lineNumber > 0) {
-        window.open(`https://github.com/${githubUsername}/starklings/edit/main/info.toml#L${lineNumber}`, "_blank");
+        window.open(`https://github.com/shramee/starklings/edit/main/info.toml#L${lineNumber}`, "_blank");
       } else {
-        window.open(`https://github.com/${githubUsername}/starklings/edit/main/info.toml`, "_blank");
+        window.open(`https://github.com/shramee/starklings/edit/main/info.toml`, "_blank");
       }
     } catch (error) {
       console.error('Error fetching info.toml:', error);
-      window.open(`https://github.com/${githubUsername}/starklings/edit/main/info.toml`, "_blank");
+      window.open(`https://github.com/shramee/starklings/edit/main/info.toml`, "_blank");
     }
   };
 
@@ -464,11 +459,9 @@ export const Workspace = () => {
           <DialogContentText sx={{ mb: 3 }}>
             <strong>📋 Prerequisites:</strong>
             <br />
-            • You must have the project <strong>forked</strong> in your GitHub account
-            <br />
-            • Your fork must be <strong>synced</strong> with the main repository
-            <br />
             • You must be <strong>logged into GitHub</strong> in Starklings
+            <br />
+            • Edits open the <strong>main repository</strong> for a pull request
           </DialogContentText>
           
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>

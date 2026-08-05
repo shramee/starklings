@@ -16,6 +16,7 @@ import {
   useGetUserData,
 } from "../../queries/useGetUserData";
 import { useMatchUserToGitHubAccount } from "../../queries/useMatchUserToGitHubAccount";
+import { mergeProgress } from "../../utils/progress";
 
 const convertGHUsername = (username: string) => {
   const ghUser = username?.match(/^\d/) ? "gh" + username : username;
@@ -39,6 +40,11 @@ export const GitHubLoginButton = () => {
       const loggedInUser = convertGHUsername(response?.data?.login);
       const avatar = response?.data?.avatar_url;
       if (loggedInUser) {
+        const previousUser = localStorage.getItem(USERNAME);
+        // Carry over locally stored progress into the GitHub account.
+        if (previousUser) {
+          mergeProgress(previousUser, loggedInUser);
+        }
         localStorage.setItem(USERNAME, loggedInUser);
         localStorage.setItem(GITHUB_ENABLED, "true");
         localStorage.setItem(GITHUB_AVATAR, avatar);
