@@ -1,14 +1,9 @@
-import { Link, Typography, Button, Menu, MenuItem } from "@mui/material";
-import { School } from "@mui/icons-material";
+import { Link, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { isMobileOnly } from "react-device-detect";
 import { GitHubLoginButton } from "../github/GitHubLoginButton";
 import { About } from "./About";
-import { useLocation, Link as RouterLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import Tooltip from "@mui/material/Tooltip";
-import IconButton from "@mui/material/IconButton";
-import AssessmentIcon from "@mui/icons-material/Assessment";
+import { useLocation } from "react-router-dom";
 
 const NAV_HEIGHT = "50px";
 
@@ -18,34 +13,6 @@ interface IBasicLayoutProps {
 export const BasicLayout = ({ children }: IBasicLayoutProps) => {
   const location = useLocation();
   const path = location.pathname.substring(1);
-  const navigate = useNavigate();
-  
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  
-  const menuOpen = Boolean(anchorEl);
-  
-  const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-  
-  const handleGraduatesClick = () => {
-    navigate("/graduates");
-    handleMenuClose();
-  };
-  
-  const handleStudentExercisesClick = () => {
-    navigate("/check-student");
-    handleMenuClose();
-  };
-  
-  const handleMentorUtilsClick = () => {
-    navigate("/evaluate-students");
-    handleMenuClose();
-  };
   return (
     <Box
       className={path.replaceAll("/", "-") || "home"}
@@ -68,7 +35,11 @@ export const BasicLayout = ({ children }: IBasicLayoutProps) => {
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "row", gap: 1, ml: 2 }}>
-            <img width="32px" src="/logo.svg" alt="starklings logo" />
+            <img
+              width="32px"
+              src={`${process.env.PUBLIC_URL}/logo.svg`}
+              alt="starklings logo"
+            />
             <Link sx={{ textDecoration: "none" }} href="/">
               <Typography
                 id="logotext-header"
@@ -81,38 +52,6 @@ export const BasicLayout = ({ children }: IBasicLayoutProps) => {
             </Link>
           </Box>
           <Box sx={{ display: "flex", gap: 1, alignItems: "center", mr: 2 }}>
-            <Tooltip title="Assessment">
-              <IconButton
-                id="header-icon"
-                onClick={handleMenuClick}
-                sx={{ p: 0.5, color: "#FFF" }}
-                aria-label="about"
-              >
-                <AssessmentIcon />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              anchorEl={anchorEl}
-              open={menuOpen}
-              onClose={handleMenuClose}
-              MenuListProps={{
-                "aria-labelledby": "admin-menu-button",
-              }}
-              sx={{
-                "& .MuiPaper-root": {
-                  backgroundColor: "#333",
-                  color: "#FFF",
-                },
-              }}
-            >
-              <MenuItem onClick={handleGraduatesClick}>Graduates</MenuItem>
-              <MenuItem onClick={handleStudentExercisesClick}>
-                Student Progress
-              </MenuItem>
-              <MenuItem onClick={handleMentorUtilsClick}>
-                Student Evaluation
-              </MenuItem>
-            </Menu>
             <About />
             {!isMobileOnly && <GitHubLoginButton />}
           </Box>

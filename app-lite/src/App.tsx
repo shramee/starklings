@@ -18,9 +18,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Route, Routes } from "react-router-dom";
 import { ErrorFallback } from "./components/error/ErrorFallback";
 import { BasicLayout } from "./components/layout/BasicLayout";
-import { CheckGitHubAccount } from "./components/pages/Check/CheckGitHubAccount";
-import { CheckGraduates } from "./components/pages/Check/CheckGraduates";
-import { EvaluateGraduates } from "./components/pages/EvaluateGraduates/EvaluateGraduates";
 import { FinalScreen } from "./components/pages/FinalScreen/FinalScreen";
 import { Home } from "./components/pages/Home/Home";
 import { Workspace } from "./components/pages/Workspace/Workspace";
@@ -78,7 +75,7 @@ function App() {
                 open={open}
                 handleClose={handleClose}
                 handleOpen={handleOpen}
-                image_src="/developer_basecamp_13.png"
+                image_src={`${process.env.PUBLIC_URL}/developer_basecamp_13.png`}
                 image_alt="Starknet Developer Basecamp 13"
                 // title="Starknet Hackathon"
                 // date="Starting May 12"
@@ -93,12 +90,6 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/exercise/:id" element={<Workspace />} />
                     <Route path="/end" element={<FinalScreen />} />
-                    <Route path="/check-student" element={<CheckGitHubAccount />} />
-                    <Route path="/graduates" element={<CheckGraduates />} />
-                    <Route
-                      path="/evaluate-students"
-                      element={<EvaluateGraduates />}
-                    />
                   </Routes>
                   <Box
                     className="snf-pow"

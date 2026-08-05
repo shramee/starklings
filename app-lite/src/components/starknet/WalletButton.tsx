@@ -62,7 +62,11 @@ export const WalletButton = ({
         opacity: disabled ? 0.5 : 1,
       }}
     >
-      <img width="30px" src={`/${connector.id}.png`} alt="starknet logo" />
+      <img
+        width="30px"
+        src={`${process.env.PUBLIC_URL}/${connector.id}.png`}
+        alt="starknet logo"
+      />
       <Typography sx={{ ml: 2 }}>{connector.name}</Typography>
     </Box>
   );

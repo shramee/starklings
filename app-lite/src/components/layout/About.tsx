@@ -54,7 +54,7 @@ export const About = () => {
                     >
                       <img
                         width="150px"
-                        src="/logo.svg"
+                        src={`${process.env.PUBLIC_URL}/logo.svg`}
                         alt="starklings logo"
                       />
                     </Box>
