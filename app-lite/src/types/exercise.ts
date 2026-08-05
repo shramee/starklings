@@ -1,14 +1,14 @@
 export interface IExercise {
   id: string;
   name: string;
-  path: string;
+  path?: string;
   mode: "run" | "test";
   exercise_group?: string;
   exercise_order?: number;
   code?: string;
   description?: string;
   completed: boolean;
-  disabled: boolean;
+  disabled?: boolean;
   antiCheat?: AntiCheat;
 }
 

@@ -18,6 +18,7 @@
     "@types/node": "^16.18.62",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "axios": "^1.19.0",
     "get-starknet-core": "^3.2.0",
     "linkify-it": "^5.0.0",
     "notistack": "^3.0.1",
@@ -34,7 +35,8 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@iarna/toml": "^2.2.5"
+    "@iarna/toml": "^2.2.5",
+    "@types/linkify-it": "^5.0.0"
   },
   "scripts": {
     "generate": "node scripts/generate-exercises.js",
@@ -46,6 +48,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@starknet-react|@tanstack|get-starknet-core)/)"
     ]
   },
   "browserslist": {

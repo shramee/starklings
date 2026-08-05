@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useGetExercises } from "../../../queries/useGetExercises";
 import { CircularProgressCenterLoader } from "../../shared/CircularProgressCenterLoader";
 import { getUser } from "../../../utils/getUser";
+import { IExercise } from "../../../types/exercise";
 
 export const CheckGitHubAccount = () => {
   const { account } = useParams();
@@ -23,7 +24,7 @@ export const CheckGitHubAccount = () => {
     matchesLocalUser ? localUser : undefined
   );
   const completedExercises =
-    exercises?.filter((exercise) => exercise.completed)?.length ?? 0;
+    exercises?.filter((exercise: IExercise) => exercise.completed)?.length ?? 0;
     
   const handleSearch = () => {
     const trimmedAccount = accountInput.trim();
@@ -124,7 +125,7 @@ export const CheckGitHubAccount = () => {
               <CircularProgressCenterLoader />
             ) : (
               <List>
-                {exercises?.map((exercise) => (
+                {exercises?.map((exercise: IExercise) => (
                   <ListItem
                     sx={{
                       my: 0,

@@ -12,6 +12,7 @@ export const useGetExercises = (user = getUser()) => {
       return exercisesIndex.map((exercise) => {
         return {
           ...exercise,
+          mode: exercise.mode as IExercise["mode"],
           completed: completedExercises.includes(exercise.id),
           disabled: false,
         };

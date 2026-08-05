@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { useGetExercises } from "../../../queries/useGetExercises";
 import { CircularProgressCenterLoader } from "../../shared/CircularProgressCenterLoader";
+import { IExercise } from "../../../types/exercise";
 
 const DESIRED_LENGTH = 25;
 
@@ -67,13 +68,13 @@ export const ExerciseList = ({ currentExercise, open }: IExerciseListProps) => {
   
   const lastCompleted =
   exercises
-  ?.filter((exercise) => {
+  ?.filter((exercise: IExercise) => {
     return !!exercise.completed;
   })
   ?.slice(-1)[0]?.exercise_order ?? 0;
   
   const currentExerciseOrder =
-  exercises?.find((exercise) => exercise.id === currentExercise)
+  exercises?.find((exercise: IExercise) => exercise.id === currentExercise)
   ?.exercise_order ?? 0;
 
   const shownExercises =
