@@ -1,0 +1,9 @@
+# Taste
+- Prefers frequent atomic git commits, one after every checkpoint/milestone in the workflow, rather than batching changes into fewer, larger commits. Confidence: 0.9
+- Prefers frontend-only, no-server variants of an app: when asked for a "lite" version, keep all visual/UI features intact but strip backend, database records, checks, and scorings (client-side only). Confidence: 0.8
+- Prefers static/embedded data over runtime fetching of source files: exercise/content data should be generated into JSON at build time (codegen script from source of truth) so the app has zero runtime backend dependency. Confidence: 0.7
+- Prefers splitting generated data into a lightweight index plus per-item files loaded on demand (dynamic import) so the initial page load stays small, mirroring lazy per-item fetch behavior of the original app. Confidence: 0.6
+- Prefers persisting user progress in localStorage (per-user keys) when no backend exists, including merging local progress on login identity changes. Confidence: 0.6
+- When adding a stripped-down sibling app, prefers reusing the existing stack/tooling (same bundler, same framework versions) for parity rather than introducing new tooling. Confidence: 0.5
+- Prefers frontend apps to be deployable to GitHub Pages via the `gh-pages` package: sets a `homepage` base URL matching the served site URL, adds `predeploy`/`deploy` scripts that publish the build to the root of the `gh-pages` branch on `origin` (e.g., `gh-pages -d build --remote origin` → https://shramee.github.io/starklings), and a `.nojekyll` marker so JS chunks deploy without Jekyll interference. Confidence: 0.8
+- When deploying under a gh-pages subpath, all runtime asset references (logo, wallet icons, modal images) must be `process.env.PUBLIC_URL`-prefixed or relative so they resolve correctly under the subpath — a broken logo/assets in the deployed app is treated as a bug to fix. Confidence: 0.7

@@ -28,6 +28,7 @@ The `start` script regenerates the exercise data before launching.
 | `npm run start` | Run the dev server on port 4000 |
 | `npm run build` | Production build |
 | `npm test` | Run tests |
+| `npm run deploy` | Build and publish to the `gh-pages` branch of `origin` (shramee/starklings) → https://shramee.github.io/starklings |
 
 ## Configuration
 

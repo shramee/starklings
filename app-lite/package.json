@@ -46,7 +46,7 @@
     "build": "npm run generate && react-scripts build",
     "test": "react-scripts test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build --dest app-lite"
+    "deploy": "gh-pages -d build --remote origin"
   },
   "eslintConfig": {
     "extends": [
