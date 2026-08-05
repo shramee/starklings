@@ -1,13 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { API_URL } from "../constants/api";
-import { getUser } from "../utils/getUser";
 
+// app-lite has no backend to merge records into; progress is merged
+// locally in GitHubLoginButton instead. Kept as a no-op for parity.
 export const useMatchUserToGitHubAccount = () => {
-  const user = getUser();
   return useMutation({
-    mutationFn: (ghAccount: string) => {
-      return axios.post(`${API_URL}/user/${user}/match/${ghAccount}`);
+    mutationFn: async (ghAccount: string) => {
+      return { message: "ok" };
     },
   });
 };

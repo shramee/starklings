@@ -1,17 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { API_URL } from "../constants/api";
 import { getUser } from "../utils/getUser";
+import { markCompleted } from "../utils/progress";
 
 export const useMarkExerciseDone = () => {
   const queryClient = useQueryClient();
   const user = getUser();
   return useMutation({
-    mutationFn: (exercise: string) => {
-      return axios.post(
-        `${API_URL}/user/${user}/exercise/${exercise}/done`,
-        {}
-      );
+    mutationFn: async (exercise: string) => {
+      markCompleted(user, exercise);
+      return { message: "ok" };
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["exercises"] });
