@@ -1,32 +1,25 @@
-import { antiCheatAppend, antiCheatShouldContain } from "./antiCheat";
+import { init, run, test } from "cairo-runner";
+import { antiCheatAppend } from "./antiCheat";
 import { Append, CairoResponse } from "../types/exercise";
-import { RUNNER_API_URL } from "../constants/api";
 
 export const compileCairoCode = async (code: string, mode: string, append?: Append): Promise<CairoResponse> => {
   // Prepare the code with any necessary appends
   code = antiCheatAppend(code, append);
 
-  let endpoint: string;
+  // Load the wasm runner once (idempotent); subsequent calls are cheap
+  await init();
 
-  if (mode === "TEST" || mode === "TEST_CONTRACT") {
-    endpoint = `${RUNNER_API_URL}/test`;
-  } else {
-    endpoint = `${RUNNER_API_URL}/run`;
+  const res: CairoResponse =
+    mode === "TEST" || mode === "TEST_CONTRACT"
+      ? await test(code)
+      : await run(code);
+
+  if (!res.success) {
+    res.message = res.message || "error: compilation failed"
   }
 
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ code })
-  });
+  console.log(`Cairo ${mode} response:`, res);
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
-
-  const res: CairoResponse = await response.json();
   res.success = res.success && !res.message.includes("... fail");
   return res;
 };
