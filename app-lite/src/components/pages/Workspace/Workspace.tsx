@@ -148,14 +148,14 @@ export const Workspace = () => {
         }
       } else {
         const { message } = result;
-        
+
         let processedMessage = message;
         if (message.includes("tests")) {
           const lines = message.split('\n');
           const originalLines = lines.slice();
           const filteredLines = lines.filter(line => !line.includes("duplicate"));
           const removedCount = originalLines.length - filteredLines.length;
-          
+
           if (removedCount > 0) {
             const updatedLines = filteredLines.map(line => {
               if (line.startsWith("running") && line.includes("tests")) {
@@ -173,12 +173,12 @@ export const Workspace = () => {
             processedMessage = filteredLines.join('\n');
           }
         }
-        
+
         setCompileError(processedMessage);
       }
     } catch (error) {
       console.error('Compilation request failed:', error);
-      setCompileError(`Network error: ${error}`);
+      setCompileError(`Compilation error: ${error}`);
     } finally {
       setCompiling(false);
     }
@@ -226,7 +226,7 @@ export const Workspace = () => {
     try {
       const response = await fetch(`https://raw.githubusercontent.com/shramee/starklings/main/info.toml`);
       const content = await response.text();
-      
+
       const lines = content.split('\n');
       const searchPattern = `name = "${data?.id}"`;
       const lineNumber = lines.findIndex(line => line.trim() === searchPattern) + 1;
@@ -363,7 +363,9 @@ export const Workspace = () => {
                       Ups! Something went wrong with your code
                     </AlertTitle>
                     <Typography sx={{ whiteSpace: "pre-wrap", fontSize: 14 }}>
-                      {compileError}
+                      <pre>
+                        {compileError}
+                      </pre>
                       <br />
                       Fix the code and click <strong>{isTest ? "TEST" : "COMPILE"}</strong> again.
                     </Typography>
@@ -443,7 +445,7 @@ export const Workspace = () => {
         </Grid>
       </PanelGroup>
       {isMobileOnly && <MobileWarningDialog />}
-      
+
       {/* Edit Dialog */}
       <Dialog
         open={editDialogOpen}
@@ -463,13 +465,13 @@ export const Workspace = () => {
             <br />
             • Edits open the <strong>main repository</strong> for a pull request
           </DialogContentText>
-          
+
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Button
               variant="contained"
               onClick={() => handleEditAction(handleAddExerciseClick)}
-              sx={{ 
-                justifyContent: "flex-start", 
+              sx={{
+                justifyContent: "flex-start",
                 textAlign: "left",
                 py: 1.5,
                 px: 2,
@@ -493,8 +495,8 @@ export const Workspace = () => {
               <Button
                 variant="contained"
                 onClick={() => handleEditAction(handleEditExerciseClick)}
-                sx={{ 
-                  justifyContent: "flex-start", 
+                sx={{
+                  justifyContent: "flex-start",
                   textAlign: "left",
                   py: 1.5,
                   px: 2,
@@ -519,8 +521,8 @@ export const Workspace = () => {
               <Button
                 variant="contained"
                 onClick={() => handleEditAction(handleEditHintClick)}
-                sx={{ 
-                  justifyContent: "flex-start", 
+                sx={{
+                  justifyContent: "flex-start",
                   textAlign: "left",
                   py: 1.5,
                   px: 2,
@@ -542,10 +544,10 @@ export const Workspace = () => {
             )}
 
             {!isGitHubConnected && (
-              <Box 
-                sx={{ 
-                  p: 2, 
-                  bgcolor: "rgba(255, 193, 7, 0.1)", 
+              <Box
+                sx={{
+                  p: 2,
+                  bgcolor: "rgba(255, 193, 7, 0.1)",
                   borderRadius: 1,
                   border: "1px solid rgba(255, 193, 7, 0.3)"
                 }}

@@ -13,7 +13,8 @@ body {
   font-family: "IBM Plex Sans", "Sometype Mono", monospace !important;
 }
 
-code {
+code,
+pre {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace !important;
 }
