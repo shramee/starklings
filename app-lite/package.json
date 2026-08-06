@@ -20,7 +20,7 @@
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "axios": "^1.19.0",
-    "cairo-runner": "0.3.0",
+    "cairo-runner": "0.3.1",
     "get-starknet-core": "^3.2.0",
     "linkify-it": "^5.0.0",
     "notistack": "^3.0.1",
@@ -48,7 +48,7 @@
     "test": "react-scripts test",
     "test:wasm": "node --test scripts/test-cairo-runner.mjs",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build --remote origin"
+    "deploy": "gh-pages -d build --dotfiles --remote origin"
   },
   "eslintConfig": {
     "extends": [

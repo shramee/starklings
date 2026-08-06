@@ -57,8 +57,8 @@ importers:
         specifier: ^1.19.0
         version: 1.19.0
       cairo-runner:
-        specifier: 0.3.0
-        version: 0.3.0
+        specifier: 0.3.1
+        version: 0.3.1
       get-starknet-core:
         specifier: ^3.2.0
         version: 3.3.5(starknet@5.29.0)
@@ -2098,8 +2098,8 @@ packages:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
 
-  cairo-runner@0.3.0:
-    resolution: {integrity: sha512-RuDXibNeNv5JEmb8K96tiW+Vzaa0/YZNLPEMMtdRc7j6JZKLDZH5eE1XyFM79ZaSubSTnkzxf97FN/QnG9lEIw==}
+  cairo-runner@0.3.1:
+    resolution: {integrity: sha512-y60lCx6SiuSFF8BrFU781AUOSEavbs81MbqapxcfrzSYOdfU3jIfV7CE6BCVftsAG/tZOpcWE65HG48UFMf9vg==}
 
   call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}
@@ -8564,7 +8564,7 @@ snapshots:
 
   bytes@3.1.2: {}
 
-  cairo-runner@0.3.0: {}
+  cairo-runner@0.3.1: {}
 
   call-bind-apply-helpers@1.0.2:
     dependencies:
