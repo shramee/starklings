@@ -1,0 +1,16 @@
+{
+  "id": "loops2",
+  "name": "Loops 2",
+  "path": "exercises/loops/loops2.cairo",
+  "mode": "test",
+  "exercise_order": 23,
+  "description": "",
+  "code": "#[test]\n#[available_gas(200000)]\nfn test_loop() {\n    let mut counter = 0;\n\n    let result = loop {\n        if counter == 5 {\n    //TODO return a value from the loop\n        }\n        counter += 1;\n    };\n\n    assert(result == 5, 'result should be 5');\n}\n",
+  "hint": "You can return values from loops by adding the value you want returned after the `break` expression you use to stop the loop. Don't forget that assigning a variable to the value returned from a `loop` is an expression, and thus must end with a semicolomn.\n",
+  "antiCheat": {
+    "append": {
+      "to": "test_loop",
+      "code": "assert(result == 5, 'result should be 5');"
+    }
+  }
+}

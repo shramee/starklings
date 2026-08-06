@@ -1,0 +1,15 @@
+{
+  "id": "arrays1",
+  "name": "Arrays 1",
+  "path": "exercises/arrays/arrays1.cairo",
+  "mode": "test",
+  "exercise_order": 30,
+  "description": "Your task is to create an `Array` which holds three elements of type `felt252`.\nThe first element should be 0.\nMake me compile and pass the test!",
+  "code": "fn create_array() -> Array<felt252> {\n    let a = ArrayTrait::new(); // something to change here...\n    a.append(1);\n    a\n}\n\n\n// Don't change anything in the test\n#[test]\nfn test_array_len() {\n    let mut a = create_array();\n    assert(a.len() == 3, 'Array length is not 3');\n    assert(a.pop_front().unwrap() == 0, 'First element is not 0');\n}\n\n",
+  "hint": "You can declare an array in Cairo using the following syntax:\n`let your_array = ArrayTrait::new();`\nYou can append elements to an array using the following syntax:\n`your_array.append(element);`\n\nThe `pop_front` method removes the first element from the array and returns an Option::Some(value) if the array is not empty, or Option::None() if the array is empty.\n",
+  "antiCheat": {
+    "append": {
+      "code": "#[test]\nfn test_array_len_duplicate() {\n    let mut a = create_array();\n    assert(a.len() == 3, 'Array length is not 3');\n    assert(a.pop_front().unwrap() == 0, 'First element is not 0');\n}\n"
+    }
+  }
+}

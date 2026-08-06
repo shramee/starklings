@@ -1,0 +1,19 @@
+{
+  "id": "variables6",
+  "name": "Variables 6",
+  "path": "exercises/variables/variables6.cairo",
+  "mode": "run",
+  "exercise_order": 8,
+  "description": "",
+  "code": "const NUMBER = 3;\nconst SMALL_NUMBER = 3_u8;\nfn main() {\n    println!(\"NUMBER is {}\", NUMBER);\n    println!(\"SMALL_NUMBER is {}\", SMALL_NUMBER);\n}\n",
+  "hint": "We know about variables and mutability, but there is another important type of\nvariable available: constants.\nConstants are always immutable and they are declared with keyword 'const' rather\nthan keyword 'let'.\nConstants types must also always be annotated.\nYou can read about the constants here: https://book.cairo-lang.org/ch02-01-variables-and-mutability.html?highlight=const#constants\n",
+  "antiCheat": {
+    "shouldContain": [
+      "3_u8;"
+    ],
+    "append": {
+      "to": "main",
+      "code": "assert(NUMBER == 3, 'NUMBER should be 3'); \nassert(SMALL_NUMBER == 3, 'SMALL_NUMBER should be 3');"
+    }
+  }
+}

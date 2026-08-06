@@ -1,0 +1,16 @@
+{
+  "id": "structs2",
+  "name": "Structs 2",
+  "path": "exercises/structs/structs2.cairo",
+  "mode": "test",
+  "exercise_order": 34,
+  "description": "Address all the TODOs to make the tests pass!",
+  "code": "#[derive(Copy, Drop)]\nstruct Order {\n    name: felt252,\n    year: felt252,\n    made_by_phone: bool,\n    made_by_mobile: bool,\n    made_by_email: bool,\n    item_number: felt252,\n    count: felt252,\n}\n\nfn create_order_template() -> Order {\n    Order {\n        name: 'Bob',\n        year: 2019,\n        made_by_phone: false,\n        made_by_mobile: false,\n        made_by_email: true,\n        item_number: 123,\n        count: 0\n    }\n}\n#[test]\nfn test_your_order() {\n    let order_template = create_order_template();\n    // TODO: Destructure your order into multiple variables to make the assertions pass!\n    // let ...\n\n    assert(name == 'Bob', 'Wrong name');\n    assert(year == order_template.year, 'Wrong year');\n    assert(made_by_phone == order_template.made_by_phone, 'Wrong phone');\n    assert(made_by_mobile == order_template.made_by_mobile, 'Wrong mobile');\n    assert(made_by_email == order_template.made_by_email, 'Wrong email');\n    assert(item_number == order_template.item_number, 'Wrong item number');\n    assert(count == 0, 'Wrong count');\n}\n\n",
+  "hint": "Cairo requires you to initialize all fields when creating a struct and there is no update syntax available at the moment.\nYou can have multiple data types in a struct, and even other structs.\n\nThere are some shortcuts that can be taken when destructuring structs,\n```\nlet Foo {x, y} = foo; // Creates variables x and y with values foo.x and foo.y\nlet Foo {x: a, y: b} = foo; // Creates variables a and b with values foo.x and foo.y\n```\nRead more about structs in the Structs section of this article: https://book.cairo-lang.org/ch05-01-defining-and-instantiating-structs.html ",
+  "antiCheat": {
+    "append": {
+      "to": "test_your_order",
+      "code": "assert(name == 'Bob', 'Wrong name'); \n assert(year == order_template.year, 'Wrong year'); \nassert(made_by_phone == order_template.made_by_phone, 'Wrong phone'); \n assert(made_by_mobile == order_template.made_by_mobile, 'Wrong mobile'); \n assert(made_by_email == order_template.made_by_email, 'Wrong email'); \n assert(item_number == order_template.item_number, 'Wrong item number'); \n assert(count == 0, 'Wrong count');"
+    }
+  }
+}

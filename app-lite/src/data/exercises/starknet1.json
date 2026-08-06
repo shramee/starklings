@@ -1,0 +1,16 @@
+{
+  "id": "starknet1",
+  "name": "Starknet 1",
+  "path": "exercises/starknet/basics/starknet1.cairo",
+  "mode": "test",
+  "exercise_order": 50,
+  "description": "Starkling, Joe, is writing a really simple contract.\nThe contract shows that he is the owner of the contract.\nHowever, his contract is not working. What's he missing?",
+  "code": "#[starknet::interface]\ntrait IJoesContract<TContractState> {\n    fn get_owner(self: @TContractState) -> felt252;\n}\n\n#[starknet::contract]\nmod JoesContract {\n    #[storage]\n    struct Storage {}\n\n    impl IJoesContractImpl of super::IJoesContract<ContractState> {\n        fn get_owner(self: @ContractState) -> felt252 {\n            'Joe'\n        }\n    }\n}\n\n#[cfg(test)]\nmod test {\n    use super::JoesContract;\n    use starknet::syscalls::deploy_syscall;\n    use super::IJoesContractDispatcher;\n    use super::IJoesContractDispatcherTrait;\n\n    #[test]\n    #[available_gas(2000000000)]\n    fn test_contract_view() {\n        let dispatcher = deploy_contract();\n        assert('Joe' == dispatcher.get_owner(), 'Joe should be the owner.');\n    }\n\n    fn deploy_contract() -> IJoesContractDispatcher {\n        let mut calldata = ArrayTrait::new();\n        let (address0, _) = deploy_syscall(\n            JoesContract::TEST_CLASS_HASH.try_into().unwrap(), 0, calldata.span(), false\n        )\n            .unwrap();\n        let contract0 = IJoesContractDispatcher { contract_address: address0 };\n        contract0\n    }\n}\n",
+  "hint": "No hints this time ;)\n",
+  "antiCheat": {
+    "append": {
+      "to": "test",
+      "code": "#[test]\n #[available_gas(2000000000)]\n fn test_contract_view_duplicate() {\n let dispatcher = deploy_contract();\n assert('Joe' == dispatcher.get_owner(), 'Joe should be the owner.');\n }"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "move_semantics1",
+  "name": "Move semantics 1",
+  "path": "exercises/move_semantics/move_semantics1.cairo",
+  "mode": "run",
+  "exercise_order": 36,
+  "description": "",
+  "code": "fn main() {\n    let arr0 = array![];\n\n    let arr1 = fill_arr(arr0);\n\n    // This is just a print statement for arrays.\n    println!(\"{:?}\", arr1.clone());\n\n    //TODO fix the error here without modifying this line.\n    arr1.append(88);\n\n    println!(\"{:?}\", arr1);\n}\n\nfn fill_arr(arr: Array<felt252>) -> Array<felt252> {\n    let mut arr = arr;\n\n    arr.append(22);\n    arr.append(44);\n    arr.append(66);\n\n    arr\n}\n",
+  "hint": "So you've got the \"ref argument must be a mutable variable.\" error on line 17,\nright? The fix for this is going to be adding one keyword, and the addition is NOT on line 17\nwhere the error is.\n\nAlso: Try accessing `arr0` after having called `fill_arr()`. See what happens!\n\nRead more about move semantics and ownership here: https://book.cairo-lang.org/ch04-01-what-is-ownership.html\n",
+  "antiCheat": {
+    "shouldContain": [
+      "let arr0 = array![];",
+      "println!(\"{:?}\", arr1.clone());",
+      "arr1.append(88);",
+      "println!(\"{:?}\", arr1);"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "primitive_types3",
+  "name": "Primitive types 3",
+  "path": "exercises/primitive_types/primitive_types3.cairo",
+  "mode": "run",
+  "exercise_order": 11,
+  "description": "Destructure the `cat` tuple to call print on each member.",
+  "code": "fn main() {\n    let cat = ('Furry McFurson', 3);\n    let // your pattern here = cat;\n    println!(\"name is {}\", name);\n    println!(\"age is {}\", age);\n}\n",
+  "hint": "You'll need to make a pattern to bind `name` and `age` to the appropriate parts\nof the tuple.\nIf you're familiar with Rust, you should know that Cairo has a similar syntax to \ndestructure tuples into multiple variables.\nhttps://book.cairo-lang.org/ch02-02-data-types.html?highlight=destructu#the-tuple-type\nYou can do it!!\n",
+  "antiCheat": {
+    "shouldContain": [
+      "let cat = ('Furry McFurson', 3);"
+    ],
+    "append": {
+      "to": "main",
+      "code": "assert(name == 'Furry McFurson' && age == 3, 'name and cat should not change');"
+    }
+  }
+}

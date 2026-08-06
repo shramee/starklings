@@ -1,0 +1,15 @@
+{
+  "id": "options3",
+  "name": "Options 3",
+  "path": "exercises/options/options3.cairo",
+  "mode": "test",
+  "exercise_order": 29,
+  "description": "",
+  "code": "#[derive(Drop)]\nstruct Student {\n    name: felt252,\n    courses: Array<Option<felt252>>,\n}\n\n\nfn display_grades(student: @Student, index: usize) {\n    // don't mind these lines! They are required when\n    // running recursive functions.\n    match gas::withdraw_gas() {\n        Option::Some(_) => {},\n        Option::None => {\n            let mut data = ArrayTrait::new();\n            data.append('Out of gas');\n            panic(data);\n        },\n    }\n\n    if index == 0 {\n        let mut msg = ArrayTrait::new();\n        msg.append(*student.name);\n        msg.append('\\'s grades:');\n        debug::print(msg);\n    }\n    if index >= student.courses.len() {\n        return ();\n    }\n\n    let course = *student.courses.at(index);\n\n    // TODO: Modify the following lines so that if there is a grade for the course, it is printed.\n    //       Otherwise, print \"No grade\".\n    // \n    println!(\"grade is {}\", course.unwrap());\n    display_grades(student, index + 1);\n}\n\n\n#[test]\n#[available_gas(20000000)]\nfn test_all_defined() {\n    let courses = array![\n        Option::Some('A'),\n        Option::Some('B'),\n        Option::Some('C'),\n        Option::Some('A'),\n    ];\n    let mut student = Student { name: 'Alice', courses: courses };\n    display_grades(@student, 0);\n}\n\n\n#[test]\n#[available_gas(20000000)]\nfn test_some_empty() {\n    let courses = array![\n        Option::Some('A'),\n        Option::None,\n        Option::Some('B'),\n        Option::Some('C'),\n        Option::None,\n    ];\n    let mut student = Student { name: 'Bob', courses: courses };\n    display_grades(@student, 0);\n}\n",
+  "hint": "Reminder: You can use a match statement with an Option to handle both the Some and None cases.\nThis syntax is more flexible than using unwrap, which only handles the Some case, and contributes to more robust code.\n",
+  "antiCheat": {
+    "append": {
+      "code": "#[test]\n#[available_gas(20000000)]\nfn test_all_defined_duplicate() {\n    let courses = array![\n        Option::Some('A'),\n        Option::Some('B'),\n        Option::Some('C'),\n        Option::Some('A'),\n    ];\n    let mut student = Student { name: 'Alice', courses: courses };\n    display_grades(@student, 0);\n}\n\n#[test]\n#[available_gas(20000000)]\nfn test_some_empty_duplicate() {\n    let courses = array![\n        Option::Some('A'),\n        Option::None,\n        Option::Some('B'),\n        Option::Some('C'),\n        Option::None,\n    ];\n    let mut student = Student { name: 'Bob', courses: courses };\n    display_grades(@student, 0);\n}\n"
+    }
+  }
+}

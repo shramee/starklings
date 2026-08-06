@@ -470,7 +470,7 @@ exercise_name`.
 4. When you have solved the exercise successfully, Remove `// I AM NOT DONE`
 comment to move on to the next exercise.
 5. If an exercise doesn't make sense to you, please open an issue on GitHub!
-(https://github.com/shramee/starklings-cairo1/issues/new).
+(https://github.com/shramee/starklings/issues/new).
 
 Got all that? Great! To get started, run `starklings watch` in order to get the
 first exercise. Make sure to have your editor open!"#;
@@ -510,7 +510,7 @@ const FINISH_LINE: &str = r#"+--------------------------------------------------
 
 We hope you enjoyed learning about Cairo and Starknet!
 If you noticed any issues, please don't hesitate to report them to our repo.
-https://github.com/shramee/starklings-cairo1/"#;
+https://github.com/shramee/starklings/"#;
 
 pub const WELCOME: &str = r#"starklings - An interactive tutorial to get started with Cairo and Starknet
 

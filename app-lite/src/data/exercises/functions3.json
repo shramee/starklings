@@ -1,0 +1,16 @@
+{
+  "id": "functions3",
+  "name": "Functions 3",
+  "path": "exercises/functions/functions3.cairo",
+  "mode": "run",
+  "exercise_order": 19,
+  "description": "",
+  "code": "fn main() {\n    call_me();\n}\n\nfn call_me(num: u64) {\n    println!(\"num is {}\", num);\n}\n",
+  "hint": "This time, the function *declaration* is okay, but there's something wrong\nwith the place where we're calling the function.\nAs a reminder, you can freely play around with different solutions in Starklings!\nWatch mode will only jump to the next exercise if you remove the I AM NOT DONE comment.",
+  "antiCheat": {
+    "append": {
+      "to": "main",
+      "code": "call_me(3);"
+    }
+  }
+}

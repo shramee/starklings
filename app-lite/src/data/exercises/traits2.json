@@ -1,0 +1,15 @@
+{
+  "id": "traits2",
+  "name": "Traits 2",
+  "path": "exercises/traits/traits2.cairo",
+  "mode": "test",
+  "exercise_order": 43,
+  "description": "The previous exercise did not make the distinction\nbetween different types of animals, but this one does.\nThe trait `AnimalTrait` has two functions:\n`new` and `make_noise`.\n`new` should return a new instance of the type\nimplementing the trait.\n`make_noise` should return the noise the animal makes.\nThe types `Cat` and `Cow` are already defined for you.\nYou need to implement the trait `AnimalTrait` for them.\nNo hints for this one!",
+  "code": "#[derive(Copy, Drop)]\nstruct Cat {\n    noise: felt252, \n}\n\n#[derive(Copy, Drop)]\nstruct Cow {\n    noise: felt252, \n}\n\ntrait AnimalTrait<T> {\n    fn new() -> T;\n    fn make_noise(self: T) -> felt252;\n}\n\nimpl CatImpl of AnimalTrait<Cat> { // TODO: implement the trait Animal for the type Cat\n}\n\n// TODO: implement the trait Animal for the type Cow\n\n#[test]\nfn test_traits2() {\n    let kitty: Cat = AnimalTrait::new();\n    assert(kitty.make_noise() == 'meow', 'Wrong noise');\n\n    let cow: Cow = AnimalTrait::new();\n    assert(cow.make_noise() == 'moo', 'Wrong noise');\n}\n",
+  "hint": " No hints for this one! It is very similar to the previous exercise.",
+  "antiCheat": {
+    "append": {
+      "code": "#[test]\nfn test_traits2_duplicate() {\n    let kitty: Cat = AnimalTrait::new();\n    assert(kitty.make_noise() == 'meow', 'Wrong noise');\n\n    let cow: Cow = AnimalTrait::new();\n    assert(cow.make_noise() == 'moo', 'Wrong noise');\n}\n"
+    }
+  }
+}

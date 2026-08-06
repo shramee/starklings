@@ -1,0 +1,16 @@
+{
+  "id": "variables1",
+  "name": "Variables 1",
+  "path": "exercises/variables/variables1.cairo",
+  "mode": "run",
+  "exercise_order": 3,
+  "description": "Make me compile!",
+  "code": "fn main() {\n    x = 5 ;\n    println!(\" x is {}\", x)\n}\n",
+  "hint": "The declaration on line 8 is missing a keyword that is needed in Cairo\nto create a new variable binding.",
+  "antiCheat": {
+    "append": {
+      "to": "main",
+      "code": "assert(x == 5, 'x should be 5');"
+    }
+  }
+}

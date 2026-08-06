@@ -1,0 +1,15 @@
+{
+  "id": "modules2",
+  "name": "Modules 2",
+  "path": "exercises/modules/modules2.cairo",
+  "mode": "test",
+  "exercise_order": 49,
+  "description": "These modules have some issues, can you fix them?",
+  "code": "const YEAR: u16 = 2050;\n\nmod order {\n    #[derive(Copy, Drop)]\n    struct Order {\n        name: felt252,\n        year: u16,\n        made_by_phone: bool,\n        made_by_email: bool,\n        item: felt252,\n    }\n\n    fn new_order(name: felt252, made_by_phone: bool, item: felt252) -> Order {\n        Order { name, year: YEAR, made_by_phone, made_by_email: !made_by_phone, item,  }\n    }\n}\n\nmod order_utils {\n    fn dummy_phoned_order(name: felt252) -> Order {\n        new_order(name, true, 'item_a')\n    }\n\n    fn dummy_emailed_order(name: felt252) -> Order {\n        new_order(name, false, 'item_a')\n    }\n\n    fn order_fees(order: Order) -> felt252 {\n        if order.made_by_phone {\n            return 500;\n        }\n\n        200\n    }\n}\n\n#[test]\nfn test_array() {\n    let order1 = order_utils::dummy_phoned_order('John Doe');\n    let fees1 = order_utils::order_fees(order1);\n    assert(fees1 == 500, 'Order fee should be 500');\n\n    let order2 = order_utils::dummy_emailed_order('Jane Doe');\n    let fees2 = order_utils::order_fees(order2);\n    assert(fees2 == 200, 'Order fee should be 200');\n}\n",
+  "hint": "While using functions/structs and other items from outside the module,\nyou can refer to them with their full path or import them in the current context with the use keyword.\n",
+  "antiCheat": {
+    "append": {
+      "code": "#[test]\nfn test_array_duplicate() {\n    let order1 = order_utils::dummy_phoned_order('John Doe');\n    let fees1 = order_utils::order_fees(order1);\n    assert(fees1 == 500, 'Order fee should be 500');\n\n    let order2 = order_utils::dummy_emailed_order('Jane Doe');\n    let fees2 = order_utils::order_fees(order2);\n    assert(fees2 == 200, 'Order fee should be 200');\n}\n"
+    }
+  }
+}
