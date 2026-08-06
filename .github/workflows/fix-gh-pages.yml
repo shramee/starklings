@@ -14,14 +14,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: gh-pages
-          fetch-depth: 0
       - name: Remove dangling symlinks
         run: |
-          if [ -L app/api/exercises ] && [ ! -e app/api/exercises ]; then
-            git rm app/api/exercises
+          dangling=$(find . -xtype l -not -path './.git/*')
+          if [ -n "$dangling" ]; then
+            echo "$dangling" | xargs git rm
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git commit -m "fix: remove dangling symlink app/api/exercises"
+            git commit -m "fix: remove dangling symlinks from gh-pages"
             git push origin gh-pages
           else
             echo "No dangling symlinks found, nothing to do."
