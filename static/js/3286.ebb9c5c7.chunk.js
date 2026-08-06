@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkstarklings_app_lite=self.webpackChunkstarklings_app_lite||[]).push([[3286],{3286(e){e.exports=JSON.parse('{"id":"intro2","name":"Intro 2","path":"exercises/intro/intro2.cairo","mode":"run","exercise_order":2,"description":"This exercise won\'t compile... Can you make it compile?","code":"","hint":"No hints this time ;)\\n"}')}}]);
