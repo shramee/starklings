@@ -1,0 +1,28 @@
+name: Fix gh-pages symlinks
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  fix-gh-pages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+      - name: Remove dangling symlinks
+        run: |
+          if [ -L app/api/exercises ] && [ ! -e app/api/exercises ]; then
+            git rm app/api/exercises
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "fix: remove dangling symlink app/api/exercises"
+            git push origin gh-pages
+          else
+            echo "No dangling symlinks found, nothing to do."
+          fi
